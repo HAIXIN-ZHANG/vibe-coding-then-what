@@ -100,3 +100,33 @@ for (const [from, to] of [[1194, 375], [375, 1194]]) {
     await expect(heading).toBeInViewport({ ratio: 1 });
   });
 }
+
+test('an outline fragment stays below sticky tools across a breakpoint at different text metrics', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(at('/zh/read/a-page-and-a-system/'));
+  await expect(page.locator('.chapter-layout')).toHaveAttribute('data-enhanced', 'true');
+  // Exercise a different heading wrap and earlier prose height on all hosts.
+  await page.addStyleTag({ content: 'html { font-size: 105%; }' });
+  const title = '时间：先发生什么，用户要等到哪里？';
+  const outline = page.locator('.mobile-outline details');
+  await outline.locator('summary').press('Enter');
+  await outline.getByRole('link', { name: title, exact: true }).press('Enter');
+  const heading = page.getByRole('heading', { name: title, exact: true });
+  await expect(heading).toBeFocused();
+  const url = page.url();
+
+  const navigation = page.locator('.mobile-book-navigation details');
+  const summary = navigation.locator('summary');
+  await summary.press('Enter');
+  await navigation.locator('a[aria-current="page"]').focus();
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await expect(page.locator('#main')).toBeFocused();
+  await expect(heading).toBeInViewport({ ratio: 1 });
+  await page.getByRole('separator', { name: '调整章节栏宽度' }).focus();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(summary).toBeFocused();
+  await expect.poll(() => heading.evaluate(element => element.getBoundingClientRect().top -
+    document.querySelector('.reading-tools').getBoundingClientRect().bottom)).toBeGreaterThanOrEqual(0);
+  await expect(heading).toBeInViewport({ ratio: 1 });
+  await expect(page).toHaveURL(url);
+});

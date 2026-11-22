@@ -3,8 +3,7 @@
 type Passage = {
   article: HTMLElement;
   element: HTMLElement;
-  fraction: number;
-  offset: number;
+  point: { fraction: number; offset: number } | null;
   path: string;
 };
 
@@ -20,6 +19,20 @@ export function preserveReadingViewport(layout: HTMLElement): () => void {
       : edge, 0);
   const currentPath = () => window.location.pathname + window.location.hash;
 
+  function addressedHeading(article: HTMLElement) {
+    try {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      const target = document.getElementById(id);
+      return target?.matches('h1,h2,h3,h4,h5,h6,.legacy-heading-target') && article.contains(target) ? target : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function retainHeading(article: HTMLElement, heading: HTMLElement) {
+    passage = { article, element: heading, point: null, path: currentPath() };
+  }
+
   function capture() {
     captureFrame = 0;
     if (window.innerWidth !== width || restoreFrame) return;
@@ -27,6 +40,17 @@ export function preserveReadingViewport(layout: HTMLElement): () => void {
     passage = null;
     if (!article || window.scrollY < 1) return;
     const top = readableTop();
+    const heading = addressedHeading(article);
+    if (heading) {
+      const rect = heading.getBoundingClientRect();
+      const landing = Math.max(top, Number.parseFloat(getComputedStyle(heading).scrollMarginTop) || 0);
+      // Keep the explicit target while the reader is still at its landing. A stale
+      // fragment must not pull someone back after they scroll down to read.
+      if (rect.bottom > top && rect.top <= landing + 1) {
+        retainHeading(article, heading);
+        return;
+      }
+    }
     const height = window.innerHeight - top;
     const readingLine = top + height * .43;
     const blocks = [...article.children].filter((node): node is HTMLElement =>
@@ -44,7 +68,15 @@ export function preserveReadingViewport(layout: HTMLElement): () => void {
     // Keep a visible block's top. For a passage extending above the tools, retain
     // the relative point within the block currently crossing the reading line.
     const point = rect.top >= top ? rect.top : Math.min(readingLine, rect.bottom - 1);
-    passage = { article, element, fraction: (point - rect.top) / rect.height, offset: point - top, path: currentPath() };
+    passage = { article, element, point: { fraction: (point - rect.top) / rect.height, offset: point - top }, path: currentPath() };
+  }
+
+  function rememberFragmentFocus(event: FocusEvent) {
+    const article = layout.querySelector<HTMLElement>('.chapter-prose');
+    if (!article) return;
+    const heading = addressedHeading(article);
+    // Native fragment focus can land before the next scroll or animation frame.
+    if (heading && event.target === heading) retainHeading(article, heading);
   }
 
   function scheduleCapture() {
@@ -69,9 +101,16 @@ export function preserveReadingViewport(layout: HTMLElement): () => void {
             !retained.article.contains(retained.element)) { scheduleCapture(); return; }
         const rect = retained.element.getBoundingClientRect();
         const top = readableTop();
-        const offset = Math.min(retained.offset, Math.max(0, window.innerHeight - top - 32));
-        const delta = rect.top + retained.fraction * rect.height - (top + offset);
-        if (Math.abs(delta) > 1) window.scrollBy({ top: delta, behavior: 'instant' });
+        if (retained.point) {
+          const offset = Math.min(retained.point.offset, Math.max(0, window.innerHeight - top - 32));
+          const delta = rect.top + retained.point.fraction * rect.height - (top + offset);
+          if (Math.abs(delta) > 1) window.scrollBy({ top: delta, behavior: 'instant' });
+        } else {
+          // Restore the native heading clearance once the new sticky tools are measured.
+          const margin = Number.parseFloat(getComputedStyle(retained.element).scrollMarginTop) || 0;
+          const delta = Math.floor(rect.top - Math.max(top, margin));
+          if (delta) window.scrollBy({ top: delta, behavior: 'instant' });
+        }
         scheduleCapture();
       });
     });
@@ -85,6 +124,7 @@ export function preserveReadingViewport(layout: HTMLElement): () => void {
   };
   const intents = ['pointerdown', 'wheel', 'touchstart', 'keydown'] as const;
   for (const type of intents) window.addEventListener(type, takeControl, { capture: true, passive: true });
+  layout.addEventListener('focusin', rememberFragmentFocus);
   window.addEventListener('resize', resize);
   window.addEventListener('scroll', scheduleCapture, { passive: true });
   window.addEventListener('hashchange', scheduleCapture);
@@ -92,6 +132,7 @@ export function preserveReadingViewport(layout: HTMLElement): () => void {
   return () => {
     window.cancelAnimationFrame(captureFrame);
     window.cancelAnimationFrame(restoreFrame);
+    layout.removeEventListener('focusin', rememberFragmentFocus);
     window.removeEventListener('resize', resize);
     window.removeEventListener('scroll', scheduleCapture);
     window.removeEventListener('hashchange', scheduleCapture);
