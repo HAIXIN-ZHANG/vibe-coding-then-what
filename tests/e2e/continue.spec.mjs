@@ -276,7 +276,7 @@ test('a saved public pre-R2 heading resumes at the chapter start and the old sha
   expect(await snapshot(page)).toBe(raw(old));
 });
 
-test('Chinese homepage offers the deliberate saved position and restarts a stale chapter', async ({ page }) => {
+test('Chinese homepage offers the deliberate saved position and restarts a stale chapter', { tag: '@smoke' }, async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(at('/zh/'));
   const link = page.locator('.home-reading-action a');

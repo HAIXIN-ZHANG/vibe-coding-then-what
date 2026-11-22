@@ -31,7 +31,7 @@ async function expectReadable(diagram, label) {
 }
 
 for (const [from, to] of [[1194, 375], [375, 1194]]) {
-  test(`split view ${from}→${to} keeps the diagram in view and reading controls usable`, async ({ page }) => {
+  test(`split view ${from}→${to} keeps the diagram in view and reading controls usable`, { tag: '@smoke' }, async ({ page }) => {
     await page.setViewportSize({ width: from, height });
     await page.goto(at('/zh/'));
     await page.locator('.home-chapters').getByRole('link', {
@@ -101,7 +101,7 @@ for (const [from, to] of [[1194, 375], [375, 1194]]) {
   });
 }
 
-test('an outline fragment stays below sticky tools across a breakpoint at different text metrics', async ({ page }) => {
+test('an outline fragment stays below sticky tools across a breakpoint at different text metrics', { tag: '@smoke' }, async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(at('/zh/read/a-page-and-a-system/'));
   await expect(page.locator('.chapter-layout')).toHaveAttribute('data-enhanced', 'true');

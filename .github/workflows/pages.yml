@@ -51,7 +51,8 @@ jobs:
           npm --version
       - name: Install locked dependencies
         run: npm ci --no-fund
-      - name: Check source
+      - name: Check source for manual release
+        if: github.event_name == 'workflow_dispatch'
         run: npm run check
       - name: Build Pages export
         run: npm run build:pages
@@ -59,7 +60,11 @@ jobs:
         run: npm run verify:export
       - name: Install Chromium
         run: npx --no-install playwright install --with-deps chromium
-      - name: Test the static reading experience
+      - name: Smoke test the rebuilt production export
+        if: github.event_name == 'workflow_run'
+        run: npm run test:e2e:smoke
+      - name: Run the full reading regression suite for manual release
+        if: github.event_name == 'workflow_dispatch'
         run: npm run test:e2e
       - name: Stamp public release identity and validate output boundary
         run: npm run release:metadata
@@ -74,7 +79,10 @@ jobs:
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: pages-browser-failure-${{ github.run_attempt }}
-          path: .artifacts/playwright/
+          # The runner can remove its hidden staging ZIP while evidence uploads.
+          path: |
+            .artifacts/playwright/
+            !.artifacts/playwright/.playwright-artifacts-*/**
           include-hidden-files: true
           if-no-files-found: ignore
           retention-days: 7

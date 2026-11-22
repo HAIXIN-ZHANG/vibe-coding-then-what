@@ -15,31 +15,71 @@ async function chapter(page) {
   await expect(page.locator('.chapter-layout')).toHaveAttribute('data-enhanced', 'true');
 }
 
-test('quiet reset follows saved width, preserves clamping and returns keyboard focus without scrolling', async ({ page }) => {
+async function measurePassage(page) {
+  await page.evaluate(() => new Promise(resolve => window.requestAnimationFrame(() => window.requestAnimationFrame(resolve))));
+  return page.evaluate(() => {
+    const readableTop = Math.max(0, ...[...document.querySelectorAll('.site-header, .reading-tools')]
+      .filter(element => window.getComputedStyle(element).position === 'sticky')
+      .map(element => element.getBoundingClientRect().bottom));
+    const visible = [...document.querySelectorAll('.chapter-prose > p')].flatMap((paragraph, index) => {
+      const bounds = paragraph.getBoundingClientRect();
+      if (bounds.bottom <= readableTop || bounds.top >= window.innerHeight) return [];
+      const range = document.createRange();
+      range.selectNodeContents(paragraph);
+      const readable = [...range.getClientRects()].some(rect => rect.bottom > readableTop && rect.top < window.innerHeight);
+      if (!readable) return [];
+      return [{
+        index, offset: bounds.top - readableTop,
+        lineHeight: Number.parseFloat(window.getComputedStyle(paragraph).lineHeight),
+      }];
+    });
+    return { visible, scrollY: window.scrollY };
+  });
+}
+
+test('quiet reset retains the reading passage and keyboard focus across saved and clamped widths', async ({ page }, testInfo) => {
   await page.setViewportSize({ width: 1440, height: 900 }); await chapter(page);
   const grip = page.getByRole('separator', { name: '调整章节栏宽度' });
   const reset = page.getByRole('button', { name: '重置宽度', exact: true });
+  const persistedWidth = () => page.evaluate(() => JSON.parse(window.localStorage.getItem('btf.readerNavigation')).width);
+  async function checkReset(label, trigger = reset) {
+    await page.evaluate(() => window.scrollTo(0, 600));
+    await trigger.focus();
+    const before = await measurePassage(page);
+    const passage = before.visible[0];
+    expect(passage, 'a prose paragraph must be readable before reset').toBeDefined();
+    await trigger.press('Enter');
+    await expect(reset).toHaveCount(0);
+    await expect(grip).toHaveAttribute('aria-valuenow', '248');
+    const after = await measurePassage(page);
+    await testInfo.attach(label, { body: JSON.stringify({ before, after }), contentType: 'application/json' });
+    await expectVisibleKeyboardFocus(grip);
+    const same = after.visible.find(paragraph => paragraph.index === passage.index);
+    expect(same, 'the same prose paragraph must remain readable after reset').toBeDefined();
+    // Rewrapping can move a line at the reading edge.
+    expect(Math.abs(same.offset - passage.offset), 'the passage must stay within one line of its previous viewport position')
+      .toBeLessThanOrEqual(Math.max(same.lineHeight, passage.lineHeight) + 1);
+    expect(await persistedWidth()).toBe(248);
+  }
   await expect(reset).toHaveCount(0);
   await expect(page.locator('.sidebar-width-controls')).toHaveCount(0);
   await grip.focus(); await grip.press('End'); await expect(grip).toHaveAttribute('aria-valuenow', '360');
   await expect(reset).toBeVisible();
   await page.setViewportSize({ width: 900, height: 900 });
   await expect(grip).toHaveAttribute('aria-valuenow', '300'); await expect(reset).toBeVisible();
-  expect(await page.evaluate(() => JSON.parse(window.localStorage.getItem('btf.readerNavigation')).width)).toBe(360);
+  expect(await persistedWidth()).toBe(360);
   await page.setViewportSize({ width: 1440, height: 900 });
   await expect(grip).toHaveAttribute('aria-valuenow', '360');
-  await page.evaluate(() => window.scrollTo(0, 600));
-  await reset.focus(); const scroll = await page.evaluate(() => window.scrollY);
-  await reset.press('Enter'); await expect(reset).toHaveCount(0);
-  await expect(grip).toBeFocused(); await expect(grip).toHaveAttribute('aria-valuenow', '248');
-  expect(await page.evaluate(() => window.scrollY)).toBe(scroll);
-  expect(await page.evaluate(() => JSON.parse(window.localStorage.getItem('btf.readerNavigation')).width)).toBe(248);
-  for (const width of [820,900,1261]) {
-    await page.setViewportSize({ width, height: 900 });
-    await expect(reset).toHaveCount(0);
-  }
-  await grip.focus(); await grip.press('ArrowRight'); await expect(reset).toBeVisible();
-  await grip.press('Enter'); await expect(reset).toHaveCount(0); await expect(grip).toBeFocused();
+  await checkReset('wide rail to default');
+  await grip.press('Home'); await expect(grip).toHaveAttribute('aria-valuenow', '224');
+  await checkReset('narrow rail to default');
+  await grip.press('End');
+  await page.setViewportSize({ width: 900, height: 900 });
+  await expect(grip).toHaveAttribute('aria-valuenow', '300');
+  expect(await persistedWidth()).toBe(360);
+  await checkReset('clamped rail to default');
+  await grip.press('ArrowRight'); await expect(reset).toBeVisible();
+  await checkReset('keyboard reset on the separator', grip);
 });
 
 test('sidebar actions remain recognizable in 44px controls across collapse, hide and restore', async ({ page }) => {

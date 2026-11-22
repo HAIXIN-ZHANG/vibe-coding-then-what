@@ -1,6 +1,7 @@
 name: CI
 
 on:
+  workflow_dispatch:
   pull_request:
   push:
     branches: [main]
@@ -9,7 +10,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: ci-${{ github.event.pull_request.number || github.ref }}
+  group: ci-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 env:
@@ -85,14 +86,21 @@ jobs:
         run: npm run verify:export
       - name: Install Chromium for static reading checks
         run: npx --no-install playwright install --with-deps chromium
-      - name: Test the static reading experience
+      - name: Test core reading journeys
+        if: ${{ github.event_name == 'pull_request' || (github.event_name == 'push' && matrix.deployment == 'root') }}
+        run: npm run test:e2e:smoke
+      - name: Run the full reading regression suite
+        if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && matrix.deployment == 'pages') }}
         run: npm run test:e2e
       - name: Retain failed public browser-check evidence
         if: ${{ failure() }}
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: browser-failure-${{ matrix.deployment }}-${{ github.run_attempt }}
-          path: .artifacts/playwright/
+          # The runner can remove its hidden staging ZIP while evidence uploads.
+          path: |
+            .artifacts/playwright/
+            !.artifacts/playwright/.playwright-artifacts-*/**
           include-hidden-files: true
           if-no-files-found: ignore
           retention-days: 7
