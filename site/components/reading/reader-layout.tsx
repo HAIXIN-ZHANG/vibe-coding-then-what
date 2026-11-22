@@ -6,6 +6,7 @@ import { IconButton } from '../ui/icon-button.tsx';
 import { Button } from '../ui/button.tsx';
 import { ReadingTools } from './reading-tools.tsx';
 import { ReadingDisclosure } from './reading-disclosure.tsx';
+import { preserveReadingViewport } from './reading-viewport.ts';
 import { SidebarIcon } from './sidebar-icon.tsx';
 import { effectiveSidebarWidth, readSidebarPreference, sidebarBreakpoint, sidebarDefault,
   sidebarMin, sidebarStorageKey, sidebarWidthLimit } from './sidebar-preference.ts';
@@ -101,6 +102,7 @@ export function ReaderLayout({ navigation, outline, bookInfo, children }: { navi
   useLayoutEffect(() => {
     const layout = root.current;
     if (!ready || !layout) return;
+    const releaseViewport = preserveReadingViewport(layout);
     const header = document.querySelector<HTMLElement>('.site-header');
     const tools = layout.querySelector<HTMLElement>('.reading-tools');
     let pendingHash = window.location.hash;
@@ -148,6 +150,7 @@ export function ReaderLayout({ navigation, outline, bookInfo, children }: { navi
     for (const type of intents) window.addEventListener(type, relinquish, { capture: true, passive: true });
     schedule();
     return () => {
+      releaseViewport();
       window.cancelAnimationFrame(frame); observer.disconnect(); window.removeEventListener('hashchange', navigate);
       window.removeEventListener('click', repeatFragment);
       for (const type of intents) window.removeEventListener(type, relinquish, true);
