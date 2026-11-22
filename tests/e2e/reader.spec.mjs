@@ -1,5 +1,6 @@
 import { test as base, expect } from '@playwright/test';
 import { mkdir, writeFile } from 'node:fs/promises';
+import { loadBook } from '../../site/content/load-book.ts';
 import { chapterManifest, chapterPath, legacyHeadingAliases } from '../../site/content/manifest.ts';
 import { withBasePath } from '../../site/config/deployment.ts';
 import { getMessages } from '../../site/config/i18n.ts';
@@ -234,7 +235,8 @@ test('approved browser chapter renders illustrative source safely and every inde
   const response = await request.get(at('/search-index/zh.json'));
   expect(response.status()).toBe(200);
   const entries = (await response.json()).entries.filter(entry => entry.chapterId === browserChapter.id);
-  expect(entries).toHaveLength(9);
+  const source = (await loadBook()).find(chapter => chapter.entry.id === browserChapter.id);
+  expect(entries.map(entry => entry.headingId)).toEqual(source.headingIds);
   for (const width of [1440, 390, 320]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto(at(chapterPath(browserChapter)));
@@ -926,7 +928,7 @@ for (const javaScriptEnabled of [true, false]) test(`reviewed source identity an
     }
     const response = await page.request.get(`http://127.0.0.1:4179${at('/search-index/zh.json')}`);
     const index = await response.json();
-    expect(index.entries).toHaveLength(221);
+    expect(index.entries).toHaveLength((await loadBook()).reduce((total, chapter) => total + chapter.headingIds.length, 0));
     expect(index.entries.some(entry => entry.headingId === legacyId)).toBe(false);
     for (const entry of chapterManifest) {
       expect(index.entries.filter(item => item.chapterId === entry.id).every(item => item.sourceHash === entry.sha256)).toBe(true);
