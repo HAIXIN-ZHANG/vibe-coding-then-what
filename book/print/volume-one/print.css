@@ -1,0 +1,85 @@
+@page { size: A5; }
+body { margin: 0 auto; max-width: 116mm; color: #202124; font: 10.4pt/1.68 "Songti SC", "PingFang SC", serif; }
+h1, h2, h3, h4 { font-family: "PingFang SC", sans-serif; line-height: 1.35; break-after: avoid; }
+h1 { font-size: 24pt; margin: 0 0 6mm; letter-spacing: .01em; }
+h2 { font-size: 13.5pt; margin: 5.6mm 0 2.2mm; }
+h3, h4 { font-size: 11pt; }
+p { margin: 0 0 2.6mm; orphans: 2; widows: 2; }
+a { color: #244465; text-underline-offset: 2px; overflow-wrap: anywhere; }
+table { border-collapse: collapse; width: 100%; font-size: 9pt; margin: 0 0 3mm; break-inside: avoid; }
+thead { display: table-header-group; }
+th, td { border: .5pt solid #aeb5bd; padding: 1.5mm 2mm; text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+tr, li { break-inside: avoid; }
+ol, ul { margin: 0 0 3mm; padding-left: 5mm; }
+li p { margin: 0 0 1.4mm; }
+code { font: .92em "Menlo", "PingFang SC", monospace; }
+pre { margin: 0 0 2.8mm; background: #edf1f4; padding: 3.1mm; font: 8.9pt/1.47 "Menlo", "PingFang SC", monospace; white-space: pre-wrap; overflow-wrap: anywhere; break-inside: avoid; }
+pre code { font: inherit; }
+.diagram, .keep-paragraph, figure { break-inside: avoid; }
+.keep-paragraph p, .chapter-start h1 { text-wrap: balance; }
+.diagram pre, pre.wireframe { white-space: pre; }
+blockquote { margin: 0 0 2.6mm; padding-left: 3mm; border-left: .6pt solid #aeb5bd; }
+figure { margin: 0 0 3mm; }
+figure img { display: block; max-width: 100%; max-height: 125mm; margin: 0 auto; }
+figure figcaption { color: #4e5967; font: 9pt/1.55 "PingFang SC", sans-serif; text-align: center; }
+.figure-stages { display: flex; justify-content: space-between; margin: 0 7% 1.4mm; padding: 0; list-style: none; font-size: 9pt; }
+
+.cover { break-after: page; }
+.cover-frame { position: relative; height: 154.67mm; overflow: hidden; margin-top: 12mm; }
+.cover-frame img { position: absolute; top: 0; right: 0; width: 200%; height: auto; max-width: none; }
+.edition, .part-label { color: #4e5967; font: 9pt/1.55 "PingFang SC", sans-serif; }
+.edition { text-align: center; margin-top: 4mm; }
+.credits { font-size: 9pt; margin-bottom: 7mm; }
+.credits h2 { margin-top: 0; }
+.contents { break-after: page; }
+.contents h2 { margin: 0 0 4mm; }
+.contents h3 { margin: 2.8mm 0 .8mm; line-height: 1.4; }
+.contents a { display: grid; grid-template-columns: 1fr 4ch; gap: 3mm; break-inside: avoid; align-items: baseline; text-decoration: none; color: inherit; line-height: 1.54; padding: .5mm 0; }
+.contents a:hover { text-decoration: underline; }
+.contents a span:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.contents .chapter-entry { padding-inline-start: 3mm; }
+.contents .subentry { padding-inline-start: 6mm; font-size: 9pt; }
+.chapter-start { break-inside: avoid; }
+.chapter + .chapter .chapter-start { margin-top: 8mm; }
+.part-label { margin-bottom: 2mm; break-after: avoid; }
+
+@media print {
+  .print-volume[data-pagination="chapter"] main > .chapter + .chapter { break-before: page; }
+  .print-volume[data-pagination="chapter"] main > .chapter + .chapter .chapter-start { margin-top: 0; }
+}
+
+.paper-reference { display: none; }
+@media print {
+  .print-volume .prototype-new-page { break-before: page; }
+  .print-volume .prototype-panel { break-inside: avoid; }
+  .print-volume .paper-reference {
+    display: inline-block;
+    white-space: nowrap;
+    font: 8.7pt/1.35 "PingFang SC", sans-serif;
+    color: #364452;
+  }
+  .print-volume .paper-folio {
+    display: inline-block;
+    min-width: 3ch;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media print {
+  .print-volume .prototype-choice h3 {
+    font-size: 17pt;
+    margin: 0 0 8mm;
+  }
+  .print-volume .prototype-choice .prototype-option {
+    padding: 3.5mm 2.8mm;
+    margin: 0;
+    border-top: .55pt solid #aeb5bd;
+  }
+  .print-volume .prototype-choice .prototype-option a { font-weight: 600; }
+  .print-volume .prototype-choice .prototype-option + p:not(.prototype-option) {
+    border-top: .55pt solid #aeb5bd;
+    padding-top: 5mm;
+    margin-top: 0;
+  }
+}

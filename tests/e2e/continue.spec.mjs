@@ -272,7 +272,7 @@ test('a saved public pre-R2 heading resumes at the chapter start and the old sha
   await expect(page.locator('article h1')).toBeInViewport();
   await page.goto(at(opening.href) + '#' + encodeURIComponent(old.headingId));
   await expect(page.locator(`[id="${old.headingId}"]`)).toBeFocused();
-  await expect(page.locator('[id="往后看也往旁边看"]')).toBeInViewport();
+  await expect(page.locator('[id="老师明天要带什么去开门"]')).toBeInViewport();
   expect(await snapshot(page)).toBe(raw(old));
 });
 
@@ -280,7 +280,7 @@ test('Chinese homepage offers the deliberate saved position and restarts a stale
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(at('/zh/'));
   const link = page.locator('.home-reading-action a');
-  await expect(link).toHaveAccessibleName('阅读中文原稿');
+  await expect(link).toHaveAccessibleName('开始阅读');
   await expect(link).toHaveAttribute('href', at(opening.href));
   await page.goto(at(chapter.href));
   await ready(page);

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -9,6 +10,7 @@ import { getMessages } from '../site/config/i18n.ts';
 import { themeStorageKey } from '../site/theme/runtime.ts';
 import { loadBook } from '../site/content/load-book.ts';
 import { chapterPath, legacyHeadingAliases } from '../site/content/manifest.ts';
+import { volumeOnePdf } from '../site/content/downloads.ts';
 import { readingParts } from '../site/content/reading-parts.ts';
 import { walkMarkdown } from '../site/content/markdown.ts';
 import { buildSearchIndex } from '../site/content/build-search-index.ts';
@@ -24,6 +26,9 @@ const pages = [
   ['404.html', 'en', 'Page not found | Vibe Coding, Then What?', '/zh/'],
 ];
 const chapters = await loadBook();
+const pdf = await readFile(path.join(output, volumeOnePdf.path.slice(1)));
+assert.equal(pdf.subarray(0, 5).toString(), '%PDF-', 'Download must be a real PDF');
+assert.equal(createHash('sha256').update(pdf).digest('hex'), volumeOnePdf.sha256, 'Download differs from the approved A5');
 pages.push(...chapters.map(chapter => [
   `${chapterPath(chapter.entry).slice(1)}index.html`, 'zh-CN', `${chapter.title} | 用 AI 写代码：能跑，然后呢？`, '/read/',
 ]));
@@ -81,6 +86,10 @@ for (const [page, language, title, alternatePath] of pages) {
 
   const alternateLanguage = language === 'en' ? 'zh' : 'en';
   const links = [...html.matchAll(/<a\b[^>]*>/g)].map(([tag]) => attributes(tag));
+  if (page === 'zh/index.html' || page === 'zh/read/index.html') {
+    assert.ok(links.some(link => link.href === basePath + volumeOnePdf.path && Object.hasOwn(link, 'download')),
+      `${page}: missing prefixed A5 download`);
+  }
   assert.ok(links.some(link => link.href === 'https://github.com/HAIXIN-ZHANG/vibe-coding-then-what'),
     `${page}: incorrect repository link`);
   assert.ok(links.some(link => link.href === 'https://github.com/HAIXIN-ZHANG/vibe-coding-then-what/issues'),
@@ -108,7 +117,7 @@ for (const [page, language, title, alternatePath] of pages) {
     assert.ok(article.includes(escapeHtml(chapter.title)), `${page}: source title was lost`);
     assert.ok(html.includes(`data-source-sha256="${chapter.entry.sha256}"`), `${page}: wrong reviewed revision`);
     assert.equal((article.match(/class="section-actions"/g) || []).length, chapter.headingIds.length, `${page}: missing heading sharing actions`);
-    assert.ok(html.includes('中文 · 第二稿'), `${page}: missing truthful draft context`);
+    assert.ok(html.includes(messages.chineseEdition), `${page}: missing truthful edition context`);
     assert.ok(!article.includes('中文初稿 · 待 review'), `${page}: stale authoring preamble exposed`);
     assert.doesNotMatch(html, /book\/(?:drafts|revisions)\//, `${page}: internal source path exposed`);
     const articleTags = [...article.matchAll(/<[a-z][\w-]*\b[^>]*>/gi)].map(([tag]) => tag);
@@ -159,7 +168,14 @@ for (const [page, language, title, alternatePath] of pages) {
     }
     assert.equal(html.includes('已到当前最后一章'), position === chapters.length - 1, `${page}: incorrect last-chapter state`);
     const counts = { table: 0, code: 0 };
-    walkMarkdown(chapter.tree, node => { if (node.type === 'table' || node.type === 'code') counts[node.type] += 1; });
+    const bodyHrefs = new Set([...article.matchAll(/<a\b[^>]*>/g)].map(([tag]) => attributes(tag).href));
+    walkMarkdown(chapter.tree, node => {
+      if (node.type === 'table' || node.type === 'code') counts[node.type] += 1;
+      if (node.type === 'link') {
+        const href = node.url.startsWith('/') ? basePath + node.url : node.url;
+        assert.ok(bodyHrefs.has(href), `${page}: authored link missing: ${href}`);
+      }
+    });
     assert.equal((article.match(/<table\b/g) || []).length, counts.table, `${page}: source tables missing`);
     assert.equal((article.match(/<pre\b/g) || []).length, counts.code, `${page}: source code/diagrams missing`);
   }
@@ -174,7 +190,7 @@ for (const [page, language, title, alternatePath] of pages) {
     }
     for (const item of chapters) assert.ok(links.some(link => link.href === `${basePath}${chapterPath(item.entry)}`), `${page}: available chapter absent`);
     if (page === 'read/index.html') {
-      assert.ok(html.includes(messages.englishUnavailable) && html.includes(messages.chineseDraft), `${page}: missing language availability explanation`);
+      assert.ok(html.includes(messages.englishUnavailable) && html.includes(messages.chineseEdition), `${page}: missing language availability explanation`);
       assert.ok(!links.some(link => /^\/read\/[^/]+\//.test(link.href?.slice(basePath.length) || '')), `${page}: invented English article`);
     }
   }

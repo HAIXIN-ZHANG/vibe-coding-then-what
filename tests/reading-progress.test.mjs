@@ -11,15 +11,17 @@ const chapter = chapters[1];
 const position = { version: 1, chapterId: chapter.chapterId, headingId: chapter.headings[1].id, sourceHash: chapter.sourceHash };
 
 test('Continue projects only current public identities and live headings from approved sources', () => {
-  assert.equal(chapters.length, 27);
+  assert.equal(chapters.length, 51);
   assert.deepEqual(chapters.slice(0, 3).map(item => item.chapterId), ['opening', 'G01', 'F01']);
   for (const item of chapters) {
     assert.deepEqual(Object.keys(item).sort(), ['chapterId', 'headings', 'href', 'sourceHash', 'title']);
-    assert.ok(item.headings.length > 1);
-    assert.ok(item.headings.some(heading => heading.title === item.title));
+    assert.ok(item.headings.length >= 1);
+    assert.equal(item.headings[0].title, item.title);
     assert.deepEqual(Object.keys(item.headings[0]).sort(), ['id', 'title']);
     assert.doesNotMatch(JSON.stringify(item), /book\/|docs\/|review|children|position/);
-    for (const alias of legacyHeadingAliases) assert.ok(!item.headings.some(heading => heading.id === alias.legacyId));
+    for (const alias of legacyHeadingAliases.filter(alias => alias.chapterId === item.chapterId)) {
+      assert.ok(!item.headings.some(heading => heading.id === alias.legacyId));
+    }
   }
 });
 

@@ -10,9 +10,15 @@ For a security vulnerability, follow [SECURITY.md](SECURITY.md) rather than post
 
 ## Propose changes
 
-For a substantial change or a new chapter, start with an issue to discuss scope and evidence. Small, self-contained changes may be proposed through a pull request. Accepted changes require maintainer review against the project direction, technical correctness and writing quality; a response or review is not guaranteed. Submission does not guarantee acceptance or a response deadline.
+For a substantial change or a new chapter, start with an issue to discuss scope and evidence. Small, self-contained changes may be proposed through a pull request. Maintainers review proposed changes for technical accuracy, clarity and fit with the book.
 
 Write explanations, examples and diagrams in your own words and design. Do not copy third-party text, images, diagrams or code without permission under applicable terms. Identify external sources and disclose any third-party material and its license. Do not submit private, employer-confidential or personal information.
+
+## Choose the language for your change
+
+Write chapters, captions, figure descriptions and navigation in the language of the edition. For a translated chapter, preserve what the original claims, including its uncertainty, and adapt the examples and humour where a literal translation would lose the point. Keep code identifiers, API names and product names in their original form.
+
+Use English for shared contributor and developer instructions, release procedures, filenames and design-layer names. Add a short English note to a Chinese design specimen when someone inspecting the source needs to understand the interaction. A Chinese editorial outline, author reading note or localized reader guide can stay in Chinese. Link to the document that owns each decision so there is only one set of instructions to maintain.
 
 ## Run the website locally
 
@@ -23,7 +29,7 @@ npm ci
 NEXT_PUBLIC_BASE_PATH='' npm run dev
 ```
 
-Open the address printed by Next.js, normally `http://localhost:3000/`. English is the default; Chinese starts at `/zh/`. English chapter bodies are not currently available. There is no database or application backend to configure. Installation and development commands generate the required PandaCSS files automatically.
+Open the address printed by Next.js, normally `http://localhost:3000/`. The English and Chinese entries are `/` and `/zh/`. Each edition’s contents show which chapters you can read in that language. There is no database or application backend to configure. Installation and development commands generate the required PandaCSS files automatically.
 
 See the [developer guide's setup](site/DEVELOPMENT.md#environment-and-commands) for implementation details and [source-to-page contract](site/DEVELOPMENT.md#source-to-page-reader) for reviewed manuscript intake. A draft file does not automatically become a website chapter. Keep changes focused; do not update manuscript hashes or the chapter allowlist to bypass review.
 

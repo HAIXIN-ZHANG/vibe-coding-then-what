@@ -41,7 +41,7 @@ type Messages = {
   editionLabel: string;
   availableNotice: (count: number) => string;
   englishUnavailable: string;
-  chineseDraft: string;
+  chineseEdition: string;
   chapterLabels: Readonly<Record<string, string>>;
   startReading: string;
   chapterBenefits: Readonly<Record<string, string>>;
@@ -84,16 +84,16 @@ const messages = {
     currentAppearance: 'Current appearance',
     systemAppearanceHint: 'Follow device appearance.',
     explicitAppearanceHint: 'This site uses your selected appearance instead of the device setting.',
-    editionLabel: 'Chinese second draft',
-    availableNotice: count => `Read the complete Chinese second draft in ${count} entries.`,
+    editionLabel: 'Complete Chinese edition',
+    availableNotice: count => `Read the complete Chinese edition in ${count} entries.`,
     englishUnavailable: 'English chapters are not available yet. The links below open the Chinese originals.',
-    chineseDraft: 'Chinese · Second draft',
+    chineseEdition: 'Chinese · Complete edition',
     chapterLabels: {
       opening: 'Before We Start: It Runs. Then What?',
       G01: 'A Page and the System Behind It',
       F01: 'How the Browser Builds a Page',
     },
-    startReading: 'Start with these Chinese drafts',
+    startReading: 'Start reading in Chinese',
     directory: { title: 'Explore the chapters', available: 'Available in Chinese', planned: 'Coming in the book', openChinese: 'Chinese' },
     continueReading: {
       title: 'Continue reading', destination: 'Chinese original', lastRead: 'Last read:', return: 'Return to your place',
@@ -140,10 +140,10 @@ const messages = {
     currentAppearance: '当前外观',
     systemAppearanceHint: '跟随设备的外观设置。',
     explicitAppearanceHint: '本网站使用所选外观，不再跟随系统。',
-    editionLabel: '中文第二稿',
-    availableNotice: count => `完整中文第二稿 · 共 ${count} 篇可阅读`,
-    englishUnavailable: '英文正文尚未提供，下方链接为中文原稿。',
-    chineseDraft: '中文 · 第二稿',
+    editionLabel: '中文完整版',
+    availableNotice: count => `中文完整版 · 共 ${count} 篇可阅读`,
+    englishUnavailable: '英文正文尚未提供，下方链接可阅读中文原文。',
+    chineseEdition: '中文 · 完整版',
     chapterLabels: {},
     startReading: '从这里开始读',
     directory: { title: '浏览章节', available: '可阅读的中文章节', planned: '后续主题', openChinese: '中文' },

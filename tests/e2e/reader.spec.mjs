@@ -43,19 +43,19 @@ test('every real search match remains available with a truthful count and contex
     await page.goto(at('/zh/read/'));
     const dialog = await openSearch(page);
     await dialog.getByRole('searchbox').fill('报名');
-    await expect(dialog.getByRole('status')).toHaveText('57 条匹配 · 中文第二稿');
+    await expect(dialog.getByRole('status')).toHaveText('112 条匹配 · 中文完整版');
     const links = dialog.locator('.search-results a');
-    await expect(links).toHaveCount(57);
+    await expect(links).toHaveCount(112);
     const response = await page.request.get(at('/search-index/zh.json'));
     const index = await response.json();
     const expected = index.entries.filter(entry => `${entry.chapterTitle} ${entry.headingTitle} ${entry.text}`.includes('报名'));
     expect(new Set(await links.evaluateAll(elements => elements.map(element => element.getAttribute('href'))))).toEqual(new Set(expected.map(entry => at(entry.href))));
-    for (const item of await dialog.locator('.search-results li').all()) {
-      await expect(item.locator('mark').first()).toHaveText('报名');
-      expect(Array.from(await item.locator('p').innerText()).length).toBeLessThanOrEqual(66);
-    }
+    const excerpts = await dialog.locator('.search-results li').evaluateAll(items => items.map(item => ({
+      firstMatch: item.querySelector('mark')?.textContent, length: Array.from(item.querySelector('p').innerText).length,
+    })));
+    expect(excerpts.every(({ firstMatch, length }) => firstMatch === '报名' && length <= 66)).toBe(true);
     await dialog.getByRole('searchbox').press('ArrowDown');
-    for (let index = 1; index < 57; index++) await page.keyboard.press('ArrowDown');
+    for (let index = 1; index < 112; index++) await page.keyboard.press('ArrowDown');
     await expect(links.last()).toBeFocused();
     const destination = new URL(await links.last().getAttribute('href'), page.url());
     await page.keyboard.press('Enter');
@@ -926,7 +926,7 @@ for (const javaScriptEnabled of [true, false]) test(`reviewed source identity an
     }
     const response = await page.request.get(`http://127.0.0.1:4179${at('/search-index/zh.json')}`);
     const index = await response.json();
-    expect(index.entries).toHaveLength(108);
+    expect(index.entries).toHaveLength(221);
     expect(index.entries.some(entry => entry.headingId === legacyId)).toBe(false);
     for (const entry of chapterManifest) {
       expect(index.entries.filter(item => item.chapterId === entry.id).every(item => item.sourceHash === entry.sha256)).toBe(true);
@@ -1086,7 +1086,7 @@ test('V2 real chapter remains readable across appearances, accents, widths and e
     await expect(page.locator('html')).toHaveAttribute('data-accent', mode === 'light' ? 'blue' : 'purple');
     await expect(page.locator('article h1')).toHaveText(g01.title);
     await expect(page.locator('article')).toHaveAttribute('data-source-sha256', g01.sha256);
-    await expect(page.locator('.chapter-context')).toHaveText('中文 · 第二稿');
+    await expect(page.locator('.chapter-context')).toHaveText('中文 · 完整版');
     await expect(page.locator('#reader-book-navigation')).toContainText('第八部分');
     const geometry = await page.evaluate(() => {
       const article = window.document.querySelector('article'), header = window.document.querySelector('.site-header');
@@ -1219,7 +1219,7 @@ test('V2 home keyboard navigation, real search, language menu and enlarged text 
     await page.getByRole('button', { name: locale === 'en' ? 'Search chapters' : '搜索章节', exact: true }).click();
     const dialog = page.getByRole('dialog');
     if (locale === 'zh') {
-      await dialog.getByRole('searchbox').fill('报名'); await expect(dialog.locator('.search-results a')).toHaveCount(57);
+      await dialog.getByRole('searchbox').fill('报名'); await expect(dialog.locator('.search-results a')).toHaveCount(112);
     } else await expect(dialog).toContainText('English');
     await page.keyboard.press('Escape'); await expect(dialog).not.toBeVisible();
     await expect(page.getByRole('button', { name: locale === 'en' ? 'Search chapters' : '搜索章节', exact: true })).toBeFocused();
@@ -1279,7 +1279,7 @@ test('exact chapter-title search keeps chapter and real H1 destinations distinct
     await page.goto(at(samePage ? deep.href : chapterPath(g01)));
     const dialog = await openSearch(page), input = dialog.getByRole('searchbox');
     await input.fill(width === 320 ? `  ${browserChapter.title.normalize('NFKC')}  ` : browserChapter.title);
-    await expect(dialog.getByRole('status')).toHaveText('2 条匹配 · 中文第二稿');
+    await expect(dialog.getByRole('status')).toHaveText('2 条匹配 · 中文完整版');
     await expect(dialog.locator('.search-results a')).toHaveCount(2);
     const chapterResult = dialog.locator('[data-search-kind="chapter"] a'), sectionResult = dialog.locator('[data-search-kind="section"] a');
     await expect(chapterResult).toHaveAttribute('href', at(chapterPath(browserChapter)));
@@ -1370,7 +1370,7 @@ test('V2 directory shows only real localized Chinese reading rows across viewpor
       await expect(links.nth(index)).toHaveAttribute('href', at(chapterPath(chapter)));
       await expect(links.nth(index)).toHaveAttribute('hreflang', 'zh');
       await expect(links.nth(index)).toHaveAccessibleName(m.chapterLabels[chapter.id] ?? chapter.title);
-      await expect(links.nth(index)).toHaveAccessibleDescription(m.chineseDraft);
+      await expect(links.nth(index)).toHaveAccessibleDescription(m.chineseEdition);
       await expect(links.nth(index).locator('.directory-chapter-language')).toHaveText(`${m.directory.openChinese} →`);
       if (m.chapterBenefits[chapter.id]) await expect(page.locator('.available-chapters li').nth(index).locator('p')).toHaveText(m.chapterBenefits[chapter.id]);
       expect((await links.nth(index).boundingBox()).height).toBeGreaterThanOrEqual(44);
@@ -1411,7 +1411,7 @@ test('V2 directory keyboard links, locale changes, search, appearance and enlarg
     await page.getByRole('button', { name: locale === 'en' ? 'Search chapters' : '搜索章节', exact: true }).click();
     const dialog = page.getByRole('dialog'); await expect(dialog).toBeVisible();
     if (locale === 'zh') {
-      await dialog.getByRole('searchbox').fill('报名'); await expect(dialog.locator('.search-results a')).toHaveCount(57);
+      await dialog.getByRole('searchbox').fill('报名'); await expect(dialog.locator('.search-results a')).toHaveCount(112);
     } else await expect(dialog).toContainText('English');
     await page.keyboard.press('Escape'); await expect(dialog).not.toBeVisible();
     await expect(page.getByRole('button', { name: locale === 'en' ? 'Search chapters' : '搜索章节', exact: true })).toBeFocused();
@@ -1551,7 +1551,7 @@ test('repeating the current native section remeasures enlarged tools without a h
   await attachGeometry(testInfo, 'repeated-fragment-landing', observations);
 });
 
-test('R2 closing, new chapter cross-link, supplemental figure and old shared fragments remain directly reachable', async ({ page }) => {
+test('Closing sections, chapter cross-links, the supplemental figure and old shared fragments remain directly reachable', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 760 });
   await page.goto(at('/zh/read/'));
   const closingLinks = page.locator('.closing-sections a');
@@ -1578,4 +1578,31 @@ test('R2 closing, new chapter cross-link, supplemental figure and old shared fra
   await expect(figure.locator('figcaption')).toHaveText(homeContent.zh.exampleCaption);
   const svg = await figure.getByRole('img').evaluate(async image => { await image.decode(); return new URL(image.currentSrc).pathname; });
   expect(svg).toBe(at('/illustrations/home-systems-mobile.svg'));
+});
+
+test('the paper prototype opens its authored states and returns, and the approved A5 downloads', async ({ page }) => {
+  const prototype = chapterManifest.find(entry => entry.id === 'p2-one-less-click');
+  const route = at(chapterPath(prototype));
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(route + '#' + encodeURIComponent('甲版列表'));
+  const article = page.locator('article');
+  await article.getByRole('link', { name: '报名', exact: true }).click();
+  await expect(page.locator('[id="纸一"]')).toBeFocused();
+  await article.getByRole('link', { name: '返回原卡', exact: true }).first().click();
+  await expect(page.locator('[id="甲版列表"]')).toBeFocused();
+  await article.getByRole('link', { name: '查看场次', exact: true }).click();
+  await expect(page.locator('[id="纸五"]')).toBeFocused();
+  await article.getByRole('link', { name: '选周六十点这一场', exact: true }).click();
+  await expect(page.locator('[id="纸七"]')).toBeFocused();
+  await article.getByRole('link', { name: '走完两版以后', exact: true }).last().click();
+  await expect(page.locator('[id="走完两版以后"]')).toBeFocused();
+
+  await page.goto(at('/zh/read/'));
+  const link = page.getByRole('link', { name: '下载中文 A5 PDF' });
+  await expect(link).toHaveAttribute('href', at('/downloads/volume-one-zh-a5.pdf'));
+  const download = page.waitForEvent('download');
+  await link.click();
+  const pdf = await download;
+  expect(pdf.suggestedFilename()).toBe('volume-one-zh-a5.pdf');
+  expect(await pdf.failure()).toBeNull();
 });

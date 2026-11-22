@@ -11,6 +11,7 @@ import { HomeReadingAction } from './reading/continue-reading.tsx';
 import { readingParts } from '../content/reading-parts.ts';
 import { action } from '../styled-system/recipes/action.js';
 import { ChapterNavigation } from './reading/chapter-navigation.tsx';
+import { VolumeOneDownload } from './volume-one-download.tsx';
 import { homeContent } from './home-content.ts';
 
 export async function HomePage({ locale }: { locale: Locale }) {
@@ -36,7 +37,7 @@ export async function HomePage({ locale }: { locale: Locale }) {
           <Link className="home-overview" href={localePath(locale)} aria-current="page">{copy.overview}</Link>
           <ChapterNavigation showAvailability={false} label={copy.navigation} groups={groups.map(part => ({
             id: part.id, title: part.title, chapters: part.entries.map(chapter => ({
-              id: chapter.id, title: messages.chapterLabels[chapter.id] ?? chapter.title, availability: messages.chineseDraft,
+              id: chapter.id, title: messages.chapterLabels[chapter.id] ?? chapter.title, availability: messages.chineseEdition,
               status: 'available', href: chapterPath(chapter), lang: messages.chapterLabels[chapter.id] ? undefined : 'zh-CN',
             })),
           }))} />
@@ -55,6 +56,7 @@ export async function HomePage({ locale }: { locale: Locale }) {
             <Link className="text-link" href={localePath(locale, 'read/')}>{messages.browse} <span aria-hidden="true">→</span></Link>
           </div>
           <p className="availability-note">{messages.availableNotice(chapterManifest.length)}</p>
+          {locale === 'zh' ? <VolumeOneDownload /> : null}
         </div>
         {illustration}
       </div>
