@@ -3,12 +3,12 @@ import test from 'node:test';
 import { alternateLocalePath, defaultLocale, getMessages } from '../site/config/i18n.ts';
 import { chapterManifest } from '../site/content/manifest.ts';
 
-test('localized book identity and English catalog labels preserve the Chinese-only publication boundary', () => {
+test('localized book identity and English catalog labels preserve the separate edition identities', () => {
   assert.equal(getMessages('en').description, 'Understanding the Systems We Build, and Learning to Live with What We Can’t Fully Control');
   assert.equal(getMessages('zh').description, '看懂我们构建的系统，也学着与无法完全掌控的事相处。');
   assert.equal(getMessages('en').title, 'Vibe Coding, Then What?');
   assert.equal(getMessages('zh').title, '用 AI 写代码：能跑，然后呢？');
-  assert.deepEqual(Object.keys(getMessages('en').chapterLabels), ['opening', 'G01', 'F01']);
+  assert.deepEqual(Object.keys(getMessages('en').chapterLabels), ['opening', 'G01', 'F01', 'P810']);
   for (const chapter of chapterManifest) {
     assert.equal(chapter.locale, 'zh');
     const englishLabel = getMessages('en').chapterLabels[chapter.id];
@@ -18,7 +18,7 @@ test('localized book identity and English catalog labels preserve the Chinese-on
 });
 
 test('availability reflects a public count without importing the source manifest into shared messages', () => {
-  assert.match(getMessages('en').availableNotice(chapterManifest.length), /complete Chinese edition in 51 entries/);
+  assert.match(getMessages('en').availableNotice(chapterManifest.length), /51 entries in the full Chinese edition/);
   assert.match(getMessages('zh').availableNotice(chapterManifest.length), /中文完整版 · 共 51 篇可阅读/);
   assert.equal(getMessages('en').chapterLabels.F01, 'How the Browser Builds a Page');
 });

@@ -1,6 +1,14 @@
 # Vibe Coding, Then What? — coordination board
 
-Updated: 2026-11-21 (Australia/Perth). This is the sole live assignment/hold/workspace record. Read [AGENTS](../AGENTS.md) → explicit role guide → this board → task brief/necessary inputs. [Collaboration](collaboration.md) owns detailed workflow; reviews own acceptance and handoffs execution/recovery evidence.
+Updated: 2026-11-22 (Australia/Perth). This is the sole live assignment/hold/workspace record. Read [AGENTS](../AGENTS.md) → explicit role guide → this board → task brief/necessary inputs. [Collaboration](collaboration.md) owns detailed workflow; reviews own acceptance and handoffs execution/recovery evidence.
+
+## Current delivery
+
+Delivery Lead owns integration of the reviewed Volume I and the reading platform. Writer reviews language adaptations against their frozen source. Developer validates reading routes and production exports at the root and Pages prefix. The Product & Design Lead checks the reader journey at the exact candidate revision. Use the [release record](https://haixin-zhang.github.io/vibe-coding-then-what/release.json) for the deployed version and the [roadmap](roadmap.md) for later milestones.
+
+The [release record](delivery/milestone-3.md) distinguishes the signed-off manuscript, the web edition and the listening sample. Check the public release identity before reporting deployment.
+
+## Historical coordination records
 
 ## Risk-based E2E maintenance — local review accepted, integration gate
 

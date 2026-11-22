@@ -2,11 +2,13 @@ import assert from 'node:assert/strict';
 import { lstat, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { englishEditions } from '../site/content/english-edition.ts';
 import { chapterManifest, chapterPath, validateManifest } from '../site/content/manifest.ts';
 import { loadBook } from '../site/content/load-book.ts';
 import { parseBasePath } from '../site/config/deployment.ts';
+import { site } from '../site/config/site.ts';
 
-export const pagesBasePath = '/vibe-coding-then-what';
+export const pagesBasePath = site.publicBasePath;
 
 export function createReleaseMetadata(commit, basePath, entries = chapterManifest) {
   assert.ok(typeof commit === 'string' && commit.length === 40, 'A full lowercase commit SHA is required');
@@ -16,6 +18,11 @@ export function createReleaseMetadata(commit, basePath, entries = chapterManifes
   // Publish only the approved identity/hash projection, never source or review paths.
   return {
     version: 1, commit, basePath,
+    english: entries.filter(entry => englishEditions[entry.id]).map(entry => {
+      const edition = englishEditions[entry.id];
+      return { id: entry.id, locale: 'en', kind: edition.source ? 'body' : 'overview', route: chapterPath(entry, 'en'),
+        chineseSha256: entry.sha256, ...(edition.source ? { sha256: edition.sha256 } : {}) };
+    }),
     chapters: entries.map(entry => ({ id: entry.id, locale: entry.locale, route: chapterPath(entry), sha256: entry.sha256 })),
   };
 }

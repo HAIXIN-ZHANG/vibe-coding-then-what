@@ -1,4 +1,6 @@
+import { englishEditions } from '../content/english-edition.ts';
 import type { AccentPreference } from '../theme/runtime.ts';
+import { bookCatalog } from './books.ts';
 
 export const defaultLocale = 'en';
 
@@ -11,6 +13,9 @@ type Messages = {
   description: string;
   home: string;
   contents: string;
+  books: string;
+  editionLabel: string;
+  chineseEdition: string;
   navigation: string;
   skip: string;
   feedback: string;
@@ -38,25 +43,27 @@ type Messages = {
   currentAppearance: string;
   systemAppearanceHint: string;
   explicitAppearanceHint: string;
-  editionLabel: string;
   availableNotice: (count: number) => string;
   englishUnavailable: string;
-  chineseEdition: string;
+  chapterAvailability: string;
+  readOriginal: string;
+  pagination: { label: string; previous: string; next: string; last: string; directory: string };
   chapterLabels: Readonly<Record<string, string>>;
   startReading: string;
   chapterBenefits: Readonly<Record<string, string>>;
-  directory: { title: string; available: string; planned: string; openChinese: string };
-  continueReading: { title: string; destination: string; lastRead: string; return: string; local: string; shared: string; fallback: string };
+  directory: { title: string; available: string; planned: string; rowAction: string };
+  continueReading: { title: string; lastRead: string; return: string; resume: string; restart: string; local: string; shared: string; fallback: string };
 };
 
 const messages = {
   en: {
     lang: 'en',
-    title: 'Vibe Coding, Then What?',
+    title: bookCatalog.work.editions.en.title,
     titleLines: ['Vibe Coding,', 'Then What?'],
-    description: 'Understanding the Systems We Build, and Learning to Live with What We Can’t Fully Control',
+    description: bookCatalog.work.editions.en.description,
     home: 'Home',
     contents: 'Chapters',
+    books: 'Books', editionLabel: 'Chinese edition with selected chapters in English', chineseEdition: 'Chinese edition',
     navigation: 'Main navigation',
     skip: 'Skip to content',
     feedback: 'Questions & corrections',
@@ -73,8 +80,8 @@ const messages = {
     missing: 'Page not found',
     missingDescription: 'The link may be incorrect, or the page may have moved.',
     back: 'Back to home',
-    switchLabel: 'Switch to Chinese',
-    switchText: '中文',
+    switchLabel: 'Switch to Simplified Chinese',
+    switchText: 'Simplified Chinese',
     appearance: 'Appearance',
     accentColor: 'Accent colour',
     accentNames: { blue: 'Blue', green: 'Green', purple: 'Purple', orange: 'Orange', rose: 'Rose', graphite: 'Graphite' },
@@ -84,35 +91,41 @@ const messages = {
     currentAppearance: 'Current appearance',
     systemAppearanceHint: 'Follow device appearance.',
     explicitAppearanceHint: 'This site uses your selected appearance instead of the device setting.',
-    editionLabel: 'Complete Chinese edition',
-    availableNotice: count => `Read the complete Chinese edition in ${count} entries.`,
-    englishUnavailable: 'English chapters are not available yet. The links below open the Chinese originals.',
-    chineseEdition: 'Chinese · Complete edition',
+    availableNotice: bookCatalog.work.editions.en.availability,
+    englishUnavailable: 'Full English chapters are marked below. Other English entries introduce the Chinese originals.',
+    chapterAvailability: 'English translation pending',
+    readOriginal: 'Read the Chinese original',
+    pagination: { label: 'Chapter navigation', previous: 'Previous chapter', next: 'Next chapter', last: 'Last available chapter', directory: 'Browse chapters' },
     chapterLabels: {
       opening: 'Before We Start: It Runs. Then What?',
       G01: 'A Page and the System Behind It',
       F01: 'How the Browser Builds a Page',
+      P810: 'What Do We Do After AI Finishes Writing the Code?',
     },
-    startReading: 'Start reading in Chinese',
-    directory: { title: 'Explore the chapters', available: 'Available in Chinese', planned: 'Coming in the book', openChinese: 'Chinese' },
+    startReading: 'Start reading',
+    directory: { title: 'Explore the chapters', available: 'English chapters and overviews', planned: 'Coming in the book', rowAction: 'Overview' },
     continueReading: {
-      title: 'Continue reading', destination: 'Chinese original', lastRead: 'Last read:', return: 'Return to your place',
-      local: 'Progress is saved in this browser only.', shared: 'Shared links take priority. Missing positions open the chapter start.',
-      fallback: 'This chapter or section has changed. Continue from the chapter start.',
+      title: 'Continue reading', lastRead: 'Last read:', return: 'Return to your chapter',
+      resume: 'Continue reading', restart: 'Open chapter start',
+      local: 'Your place in the Chinese original stays saved in this browser.',
+      shared: 'Shared links take priority.',
+      fallback: 'This chapter or section has changed. Start at the top of the chapter.',
     },
     chapterBenefits: {
       opening: 'Why a working AI-built product is the start of the engineering conversation.',
       G01: 'Follow one feature through the interface, service and database—and the failures between them.',
       F01: 'Separate resource waits, code execution and visual updates to understand why a visible page can still respond late.',
+      P810: 'Trace one enrolment through AI-written code and decide what to check before calling it done.',
     },
   },
   zh: {
     lang: 'zh-CN',
-    title: '用 AI 写代码：能跑，然后呢？',
+    title: bookCatalog.work.editions.zh.title,
     titleLines: ['用 AI 写代码：', '能跑，然后呢？'],
-    description: '看懂我们构建的系统，也学着与无法完全掌控的事相处。',
+    description: bookCatalog.work.editions.zh.description,
     home: '首页',
     contents: '章节目录',
+    books: '选书', editionLabel: '中文完整版', chineseEdition: '中文 · 完整版',
     navigation: '主导航',
     skip: '跳到正文',
     feedback: '提问与纠错',
@@ -129,8 +142,8 @@ const messages = {
     missing: '这一页还没找到',
     missingDescription: '链接可能有误，或者页面已移动。',
     back: '返回首页',
-    switchLabel: 'Switch to English',
-    switchText: 'English',
+    switchLabel: '切换至英语',
+    switchText: '英语',
     appearance: '外观',
     accentColor: '强调色',
     accentNames: { blue: '蓝色', green: '绿色', purple: '紫色', orange: '橙色', rose: '玫红', graphite: '石墨' },
@@ -140,15 +153,17 @@ const messages = {
     currentAppearance: '当前外观',
     systemAppearanceHint: '跟随设备的外观设置。',
     explicitAppearanceHint: '本网站使用所选外观，不再跟随系统。',
-    editionLabel: '中文完整版',
-    availableNotice: count => `中文完整版 · 共 ${count} 篇可阅读`,
-    englishUnavailable: '英文正文尚未提供，下方链接可阅读中文原文。',
-    chineseEdition: '中文 · 完整版',
+    availableNotice: bookCatalog.work.editions.zh.availability,
+    englishUnavailable: '部分章节另有英文版。',
+    chapterAvailability: '中文 · 已审阅草稿',
+    readOriginal: '阅读中文原稿',
+    pagination: { label: '前后章节', previous: '上一章', next: '下一章', last: '已到当前最后一章', directory: '返回可阅读章节' },
     chapterLabels: {},
     startReading: '从这里开始读',
-    directory: { title: '浏览章节', available: '可阅读的中文章节', planned: '后续主题', openChinese: '中文' },
+    directory: { title: '浏览章节', available: '可阅读的中文章节', planned: '后续主题', rowAction: '中文' },
     continueReading: {
-      title: '继续上次阅读', destination: '中文原稿', lastRead: '上次读到：', return: '回到上次位置',
+      title: '继续上次阅读', lastRead: '上次读到：', return: '回到上次位置',
+      resume: '继续上次阅读', restart: '从本章开头读起',
       local: '进度仅保存在此浏览器。', shared: '位置失效时进入章节开头；外部分享链接优先。',
       fallback: '章节或小节内容已更新，将从章节开头继续阅读。',
     },
@@ -156,6 +171,7 @@ const messages = {
       opening: '为什么产品能跑起来之后，我们还需要理解它背后的系统。',
       G01: '顺着一个功能，串起界面、服务、数据库，以及它们之间的问题。',
       F01: '分清资源等待、代码执行和画面更新，理解页面为什么看得见却还不一定能及时响应。',
+      P810: '顺着一条报名记录读懂 AI 写的代码，看看交付前还要亲自确认什么。',
     },
   },
 } satisfies Record<Locale, Messages>;
@@ -170,14 +186,23 @@ export function localePath(locale: Locale, suffix: string = ''): string {
   return `${locale === 'zh' ? '/zh' : ''}/${suffix}`;
 }
 
-export function alternateLocalePath(pathname: string, locale: Locale, basePath: string = ''): string {
-  getMessages(locale);
+export function bookSelectionPath(locale: Locale): string {
+  return `${bookCatalog.work.editions[locale].home}#books`;
+}
+
+export function languageSwitchTarget(pathname: string, locale: Locale, basePath: string = '') {
+  const messages = getMessages(locale);
   const path = basePath && (pathname === basePath || pathname.startsWith(`${basePath}/`))
     ? pathname.slice(basePath.length) || '/'
     : pathname;
-  if (locale === 'zh') {
-    if (/^\/zh\/read\/[^/]+\/?$/.test(path)) return '/read/';
-    return path.replace(/^\/zh(?=\/|$)/, '') || '/';
+  const slug = locale === 'zh' && /^\/zh\/read\/([^/]+)\/?$/.exec(path)?.[1];
+  if (slug && !Object.values(englishEditions).some(entry => entry.slug === slug)) {
+    return { href: '/read/', text: messages.switchText, ariaLabel: messages.switchLabel };
   }
-  return `/zh${path === '/' ? '/' : path}`;
+  const href = locale === 'zh' ? path.replace(/^\/zh(?=\/|$)/, '') || '/' : `/zh${path === '/' ? '/' : path}`;
+  return { href, text: messages.switchText, ariaLabel: messages.switchLabel };
+}
+
+export function alternateLocalePath(pathname: string, locale: Locale, basePath: string = ''): string {
+  return languageSwitchTarget(pathname, locale, basePath).href;
 }

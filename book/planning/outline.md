@@ -6,6 +6,17 @@ Book/project: **Vibe Coding, Then What?** — **Understanding the Systems We Bui
 
 [Vision](../../docs/project-vision.md) · [Editorial baseline](editorial-brief.md) · [Writing gates](tasks.md) · [Current task/holds](../../docs/coordination.md)
 
+## Two-book series
+
+The author has chosen a two-book frame. The proposed series name is **“AI，然后呢？”两部曲**. Volume one keeps its approved Chinese and English titles. The series label remains a working name. The confirmed companion titles are 《省下来的时间，去哪儿了？》 and *Where Does the Saved Time Go?*.
+
+| Volume | Reader and question | Material |
+| --- | --- | --- |
+| 1 · 《用 AI 写代码：能跑，然后呢？》 | A Full-stack AI Engineer follows one feature from the first question to evidence after release. Did the reader actually get what they came for? | Follow one enrolment through interface, service, data and human acceptance. Put the media editing and test-review parallel where it helps the reader judge an outcome. Keep the imagined rereading of the first edition and the float on the water as the personal close. |
+| 2 · 《省下来的时间，去哪儿了？》 | Readers encountering AI at home, at work or on the receiving end of a service. What becomes easier, who benefits, and how can a person judge what to try or keep doing for themselves? | Start with an ordinary letter. Follow quicker drafting into verification, access to services, changing jobs and choices about attention. See the [chapter plan and transfer map](volume-two-outline.md). |
+
+Volume 1 leans toward work and Volume 2 toward life. Their seam is deliberately porous: the second book may retell the fishing moment or a line from the first closing, in enough detail for a new reader to feel it. The first follows a programmer learning to call it a day; the second picks up what happens with that free afternoon. The author story map locates personal material across both books. The shared product example is a missing enrolment. In volume one, the developer checks the record. In volume two, someone outside the system needs a useful answer. Each volume supplies enough context to read it first.
+
 ## Reading model and evidence boundaries
 
 A “page” below is an independently readable teaching unit, not a printed page, finished Markdown file or URL. The 48 working labels organize the explanation; their count is not a target or limit. Do not create a new file for every label in this planning task. Chinese prose remains Chinese-first, with separately authorized English adaptation.

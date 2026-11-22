@@ -14,7 +14,7 @@ export function ChapterHeaderMenu({ label, children }: { label: string; children
     if (!element) return;
     function reconcile() {
       if (!element) return;
-      const compact = window.innerWidth < 900 && !!document.querySelector('.chapter-layout, .home-layout');
+      const compact = window.innerWidth < 900 && !!document.querySelector('.chapter-layout, .home-layout, .english-reading, .chapter-overview');
       if ((element.dataset.compact === 'true') === compact) return;
       const active = document.activeElement;
       element.dataset.compact = String(compact); element.open = !compact;

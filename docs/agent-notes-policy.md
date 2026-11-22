@@ -10,6 +10,7 @@ Store formal sources in the repository and use the [collaboration workflow](coll
 - Developer owns assigned website/tooling and technical/process explanations. `site/IMPLEMENTATION.md` preserves a proposal; `site/DEVELOPMENT.md` describes implemented commands/behavior.
 - Executors begin one task brief/handoff under `docs/handoffs/<role>/` at assignment and append execution, revisions and recovery there.
 - Coordinator decides shared contracts/scope/status and writes actual judgments under `docs/reviews/`. Assigned executors record accepted explanations without deciding their own acceptance.
+- Product & Design Lead · Reader Experience owns reader-experience findings. Coordinator records the attributed product verdict alongside the technical judgment in the stage review.
 - The board owns live assignments/holds/workspaces; stable role guides describe responsibility; history/archive preserves past evidence. Link these sources rather than maintaining duplicate queues.
 
 Formal sources can contain clearly labelled proposals, unresolved questions and accepted decisions. Formal technical/product/process explanations and active comments are English-first; temporary/secondary handoffs may be Chinese. The bilingual manuscript sequence remains separate.

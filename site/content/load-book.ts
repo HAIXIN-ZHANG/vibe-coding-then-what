@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { readFile, realpath } from 'node:fs/promises';
 import path from 'node:path';
+import type { BookId } from '../config/books.ts';
 import type { ChapterEntry } from './manifest.ts';
 import type { ParsedMarkdown } from './markdown.ts';
 import { chapterManifest, legacyHeadingAliases, validateManifest } from './manifest.ts';
@@ -8,6 +9,10 @@ import { applyLegacyHeadingAlias, parseMarkdown, walkMarkdown } from './markdown
 import { resolveChapterLink } from './links.ts';
 
 export type LoadedChapter = ParsedMarkdown & { entry: ChapterEntry };
+
+export function loadedChaptersForBook(chapters: readonly LoadedChapter[], bookId: BookId): LoadedChapter[] {
+  return chapters.filter(chapter => chapter.entry.bookId === bookId);
+}
 
 export async function loadBook(root: string = process.cwd(), entries: readonly ChapterEntry[] = chapterManifest): Promise<LoadedChapter[]> {
   validateManifest(entries);

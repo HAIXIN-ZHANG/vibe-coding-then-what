@@ -1,20 +1,37 @@
 # Agent collaboration workflow
 
-This is the sole detailed workflow for three agent roles. Jason Zhang, the human author, sets reader needs, goals, material trade-offs and authorization, and remains the final authority. AI assists research, drafting, design, implementation and verification. [AGENTS](../AGENTS.md) is the short entry; role guides explain responsibilities; the [board](coordination.md) owns current assignments/holds/workspaces; handoffs own task/execution evidence; reviews own exact-revision judgments. History and archives preserve context, not active instructions.
+This is the sole detailed workflow for four project roles. Jason Zhang, the human author, sets reader needs, goals, material trade-offs and authorization, and remains the final authority. AI assists research, drafting, design, implementation and verification. [AGENTS](../AGENTS.md) is the short entry; role guides explain responsibilities; the [board](coordination.md) owns current assignments/holds/workspaces; handoffs own task/execution evidence; reviews own exact-revision judgments. History and archives preserve context, not active instructions.
 
 ## Roles and ownership
 
 | Role | Responsibility | Boundary |
 | --- | --- | --- |
-| Coordinator/Reviewer | Architecture/contracts, assignments, inspection, feedback, status and Git integration | Does not substitute product code, prose or executor implementation explanations |
+| Product & Design Lead · Reader Experience | Product decisions, editorial reading experience, design and product desk checks | Advises the author and reviews the experience; Coordinator manages executors |
+| Delivery Lead (Coordinator/Reviewer) | Architecture/contracts, assignments, inspection, feedback, status and Git integration | Does not substitute product code, prose or executor implementation explanations |
 | Writer | Assigned research/outline, prose, examples, teaching diagrams and product/editorial explanations | Does not implement the website or self-accept manuscripts |
 | Developer | Assigned website/tooling/tests and technical/process explanations | Does not rewrite Writer meaning/prose or self-accept implementation |
 
-There is no fourth standing Reviewer/Fact checker, paid AI review service or unattended agent engine. Coordinator handles technical/source review. The implementer does not approve or merge its own deliverable.
+The product/design role combines PM and designer responsibilities. Coordinator acts as engineering manager for Writer and Developer and coordinates the integrated revision. Coordinator handles technical/source review. The implementer does not approve or merge its own deliverable.
 
 Writer normally owns `book/` and teaching assets; Developer normally owns assigned `site/`, root tooling, `panda/`, `scripts/`, `tests/` and `.github/` files. Shared entry/design/contract/process documents require explicit file assignment; delegating writing does not delegate decision authority. Coordinator owns actual `docs/reviews/` records. Each executor owns its `docs/handoffs/<role>/` reports. Preserve existing ownership/changes; reading another owner's work is not permission to edit it. Return corrections to the original owner.
 
 Concurrent work uses assigned workspaces with disjoint allowed files. A chat's default cwd does not follow assignments automatically: verify directory, branch, HEAD, status and relation to the assigned main baseline before editing. Do not switch/reset/stage to hide a mismatch. Worktrees separate working areas, not account permissions/confidentiality. Coordinator coordinates all Git writes; executors do not stage, commit, push or merge.
+
+## Team startup
+
+On the explicit team-start request in [AGENTS](../AGENTS.md), use the current chat as Coordinator. Inspect the accessible project chats for this repository and verify their actual roles. Reuse matching chats; create only the missing Product & Design Lead · Reader Experience, Writer and Developer chats. Do not create a second Coordinator. A resumed named-role chat keeps its own identity and does not recursively start another team.
+
+Give each role the actual checkout, its role guide, the current board, its active brief or next review trigger, and its allowed scope. Confirm receipt and verified revision before marking a role active. Start the work already authorized on the board immediately. Roles without an actionable assignment report ready once. If the previous account or another checkout may still own the same task, verify the handoff before a second writer changes the same files. Check for locally referenced documents, uncommitted inputs and preview availability in the new checkout. Report exact missing inputs and continue independent authorized work.
+
+If the client exposes only delegated agents, reuse the Coordinator plus three named agents for the active session and disclose their lifetime. If chat creation or delegation is unavailable, report which roles could actually be started. Keep account-specific IDs out of the repository. Opening a checkout supplies instructions to a running session; it does not start a background service.
+
+## Product desk check
+
+Review when a complete reader journey becomes usable and once end to end at milestone close. Bring forward a check when a single change affects edition switching, saved position, access to the text or claims about available content. Bundle documentation and internal housekeeping into the next update. If the last journey check covers the complete milestone on the same revision, reuse its evidence.
+
+1. Writer and Developer update their existing handoffs. Delivery Lead sends **one** request to the existing Product & Design Lead · Reader Experience chat with the reader outcome, preview and exact revision, main journey, edge case, completed checks and untested environments. Include the Figma frame when the design changed.
+2. Product & Design Lead · Reader Experience tries the paths as a reader and returns **Pass**, **Pass with follow-ups**, or **Fix and recheck**. If the preview is missing or different, record **Pending evidence** and the needed input. Capture the screen or step, impact, expected experience and whether it blocks acceptance. Put optional improvements on the roadmap for consideration.
+3. Coordinator records the product verdict separately from technical acceptance in the existing review, routes fixes to their original owner and requests a focused product recheck. A reader-visible slice closes after both relevant judgments are recorded. Unrelated authorized work can continue. Keep the human reader trial separate.
 
 ## Workflow overview
 
@@ -29,7 +46,11 @@ flowchart TD
     review --> accepted{"Accept this revision?"}
     accepted -->|Changes required| feedback["Return findings to the original owner"]
     feedback --> execute
-    accepted -->|Accepted| pr["Coordinator creates a scoped PR"]
+    accepted -->|Accepted| journey{"Product checkpoint due?"}
+    journey -->|Yes| desk["PM and Designer try the reader journey"]
+    desk -->|Fix and recheck| feedback
+    desk -->|Pass or pass with follow-ups| pr["Coordinator creates a scoped PR when authorized"]
+    journey -->|No| pr
     pr --> ci["GitHub events run ordinary CI"]
     ci -->|Failure or changed revision| feedback
     ci -->|Pass at reviewed head| merge["Coordinator merges the exact reviewed head"]
@@ -66,7 +87,7 @@ Formal technical/product/process explanations and active code/design comments ar
 
 ## Messages, records and recovery
 
-The user authorizes direct assignment/handoff/feedback/revision messages among existing Coordinator, Writer and Developer chats. Send paths and useful summaries; no user relay or repeated receipt loop is needed. Chats do not automatically share histories or continuously monitor files. Report failed delivery. Receipt, acknowledgment, silence and timing are not approval.
+The user authorizes direct assignment/handoff/feedback/revision messages among the existing four project-role chats for authorized work. Send paths and useful summaries; no user relay or repeated receipt loop is needed. Chats do not automatically share histories or continuously monitor files. Report failed delivery. Receipt, acknowledgment, silence and timing are not approval.
 
 Use readable outcome names with legacy IDs for traceability. Keep one handoff per meaningful stage, not per feedback paragraph. The board is the only live state summary; do not duplicate its queue/workspaces in stable guides. Reviews record judgment rather than copying full task briefs. Accepted decisions belong in formal sources; private transcripts, conversation identifiers, credentials and unnecessary personal details stay out of this public repository.
 

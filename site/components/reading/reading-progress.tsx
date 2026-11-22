@@ -2,10 +2,10 @@
 
 import { useEffect } from 'react';
 import type { ReadingLocator, ReadingPosition } from '../../reading-progress/model.ts';
-import { subscribeExternalReadingChange, writeReadingPosition } from '../../reading-progress/store.ts';
+import { englishReadingKey, subscribeExternalReadingChange, writeEnglishReadingPosition, writeReadingPosition } from '../../reading-progress/store.ts';
 import { withBasePath } from '../../config/deployment.ts';
 
-export function ReadingProgress({ chapter }: { chapter: ReadingLocator }) {
+export function ReadingProgress({ chapter, locale = 'zh' }: { chapter: ReadingLocator; locale?: 'en' | 'zh' }) {
   useEffect(() => {
     const article = document.querySelector<HTMLElement>(`article[data-chapter-id="${CSS.escape(chapter.chapterId)}"]`);
     if (!article) return;
@@ -21,7 +21,7 @@ export function ReadingProgress({ chapter }: { chapter: ReadingLocator }) {
       if (!pending || failed || suspended()) { pending = null; return; }
       const current = pending; pending = null; lastAttempt = window.performance.now();
       // A blocked/quota-limited recorder stays disabled until this chapter mounts again.
-      failed = !writeReadingPosition(current);
+      failed = !(locale === 'en' ? writeEnglishReadingPosition : writeReadingPosition)(current);
     };
     const stage = (headingId: string | null) => {
       if (failed || suspended()) return;
@@ -35,7 +35,7 @@ export function ReadingProgress({ chapter }: { chapter: ReadingLocator }) {
       disarm(); pending = null; window.clearTimeout(timer); timer = 0;
       window.cancelAnimationFrame(frame); frame = 0;
     };
-    const external = subscribeExternalReadingChange(cancelPending);
+    const external = subscribeExternalReadingChange(cancelPending, locale === 'en' ? englishReadingKey : undefined);
     const arm = (event: Event) => {
       if (!event.isTrusted || failed || suspended() || !(event.target instanceof Element)) return;
       if (event.target.closest('input, textarea, select, [contenteditable], button, summary, [role="separator"]')) return;
@@ -106,6 +106,6 @@ export function ReadingProgress({ chapter }: { chapter: ReadingLocator }) {
     return () => {
       controller.abort(); external(); window.clearTimeout(timer); window.cancelAnimationFrame(frame);
     };
-  }, [chapter]);
+  }, [chapter, locale]);
   return null;
 }

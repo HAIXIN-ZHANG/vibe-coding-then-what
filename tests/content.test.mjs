@@ -1,3 +1,10 @@
+import { resolveReadingPosition } from '../site/reading-progress/model.ts';
+import { readingLocator } from '../site/content/reading-locator.ts';
+import { buildSearchIndex } from '../site/content/build-search-index.ts';
+import { readSearchIndex } from '../site/content/search.ts';
+import { chapterNeighbors, chaptersForBook } from '../site/content/manifest.ts';
+import { loadedChaptersForBook } from '../site/content/load-book.ts';
+import { hasEnglishEdition } from '../site/content/english-edition.ts';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { createHash } from 'node:crypto';
@@ -164,7 +171,7 @@ test('dangerous and obfuscated schemes are rejected after Markdown entity decodi
 
 test('untranslated chapter switches to the English index once under both deployment prefixes', () => {
   for (const prefix of ['', '/vibe-coding-then-what']) for (const chapter of chapterManifest) {
-    assert.equal(alternateLocalePath(prefix + chapterPath(chapter), 'zh', prefix), '/read/');
+    assert.equal(alternateLocalePath(prefix + chapterPath(chapter), 'zh', prefix), hasEnglishEdition(chapter.id) ? chapterPath(chapter, 'en') : '/read/');
   }
 });
 
@@ -184,4 +191,30 @@ test('legacy public and preview fragments resolve without entering canonical hea
   applyLegacyHeadingAlias(parsed, 'old', 'section');
   assert.throws(() => applyLegacyHeadingAlias(parsed, 'old', 'other'), /collides/);
   assert.doesNotThrow(() => applyLegacyHeadingAlias(parsed, 'another', 'section'));
+});
+
+test('a fixture-only Volume II chapter cannot enter Volume I directory, search, pagination or Continue', async () => {
+  const work = await loadBook();
+  const title = 'Volume II fixture';
+  const entry = { ...chapterManifest[0], bookId: 'life', id: 'fixture-life', source: 'book/fixture-life.md', title };
+  const life = { entry, ...parseMarkdown(`# ${title}\n\n## Separate topic\n\nFixture-only phrase.\n`) };
+  const mixed = [work[0], life, ...work.slice(1)];
+  assert.doesNotThrow(() => validateManifest(mixed.map(chapter => chapter.entry)));
+  assert.deepEqual(loadedChaptersForBook(mixed, 'work'), work);
+  assert.deepEqual(loadedChaptersForBook(mixed, 'life'), [life]);
+  assert.deepEqual(buildSearchIndex(mixed, 'zh'), buildSearchIndex(work, 'zh'));
+  const lifeIndex = buildSearchIndex(mixed, 'zh', 'life');
+  assert.equal(lifeIndex.entries.length, 2);
+  assert.equal(readSearchIndex(lifeIndex, 'zh', 'life'), lifeIndex);
+  assert.throws(() => readSearchIndex(lifeIndex, 'zh', 'work'));
+  assert.deepEqual(chaptersForBook(mixed.map(item => item.entry), 'work'), work.map(item => item.entry));
+  assert.ok(lifeIndex.entries.every(item => item.chapterId === entry.id && item.href.startsWith('/zh/books/everyday-life/read/')));
+  assert.deepEqual(buildSearchIndex(mixed, 'en', 'life').entries, []);
+  const entries = mixed.map(chapter => chapter.entry);
+  assert.deepEqual(chapterNeighbors(entries, entry), { previous: undefined, next: undefined });
+  assert.equal(chapterNeighbors(entries, work[0].entry).next, work[1].entry);
+  assert.equal(chapterPath(entry, 'en'), '/books/everyday-life/read/before-we-start/');
+  const saved = JSON.stringify({ version: 1, chapterId: work[0].entry.id, headingId: null, sourceHash: work[0].entry.sha256 });
+  assert.equal(resolveReadingPosition(saved, loadedChaptersForBook(mixed, 'work').map(readingLocator)).href, '/zh/read/before-we-start/');
+  assert.equal(resolveReadingPosition(saved, loadedChaptersForBook(mixed, 'life').map(readingLocator)), null);
 });

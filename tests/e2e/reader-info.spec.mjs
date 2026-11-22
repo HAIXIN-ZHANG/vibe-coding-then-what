@@ -129,7 +129,8 @@ for(const javaScriptEnabled of [true,false]) test(`mobile chapter disclosure kee
 test('English directory retains its footer and opens the actual Chinese reader dock',async({page})=>{
   await page.setViewportSize({width:320,height:844});await page.goto(at('/read/'));
   await expect(page.getByRole('contentinfo').locator('.footer-byline')).toHaveText('Author: Jar & Prince Explore the World');
-  await page.locator(`.available-chapters a[href="${at(chapter)}"]`).click();
+  await page.locator(`.available-chapters a[href="${at(chapter.replace('/zh/', '/'))}"]`).click();
+  await page.getByRole('link', { name: 'Read the Chinese original', exact: true }).click();
   await expect.poll(()=>new URL(page.url()).pathname).toBe(at(chapter));
   await page.locator('.mobile-book-navigation summary').click();await info(page);
 });

@@ -20,7 +20,6 @@ export function SearchControl({ locale }: { locale: Locale }) {
   const [index, setIndex] = useState<SearchIndex | null>(null);
   const [status, setStatus] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle');
   const loadIndex = useCallback(async () => {
-    if (locale === 'en') return;
     setStatus('loading');
     try {
       const response = await fetch(withBasePath(`/search-index/${locale}.json`, process.env.NEXT_PUBLIC_BASE_PATH), { cache: 'no-store' });
@@ -86,7 +85,8 @@ export function SearchControl({ locale }: { locale: Locale }) {
     }
   }
   const hasQuery = !!normalizeSearch(query);
-  const headline = locale === 'en' ? m.unavailable : status === 'loading' ? m.loading : status === 'error' ? m.failed
+  const emptyCorpus = status === 'ready' && !index?.entries.length;
+  const headline = emptyCorpus ? m.unavailable : status === 'loading' ? m.loading : status === 'error' ? m.failed
     : !hasQuery || composing ? m.ready : matches.length ? `${matches.length} ${m.results}` : m.empty;
   return <>
     <Button visual="search" className="search-trigger" aria-label={m.title} aria-haspopup="dialog" aria-controls={id} onClick={open}>
@@ -127,10 +127,10 @@ export function SearchControl({ locale }: { locale: Locale }) {
       <p className="search-scope" id={`${id}-scope`}>{m.scope}</p>
       <section className="search-feedback" aria-busy={status === 'loading'}>
         <p className="search-status" role="status">{headline}</p>
-        {locale === 'en' ? <Link href="/zh/read/" onClick={closeForNavigation}>{m.chinese} →</Link>
+        {emptyCorpus || (status === 'ready' && hasQuery && !matches.length) ? <Link href={localePath(locale, 'read/')} onClick={closeForNavigation}>{m.browse} →</Link>
           : status === 'error' ? <><p>{m.retryHint}</p><Button visual="quiet" onClick={() => void loadIndex()}>{m.retry}</Button></>
             : status !== 'loading' && (!hasQuery || composing || !matches.length) ? <p>{hasQuery && !composing ? m.fewer : m.hint}</p> : null}
-        {locale === 'zh' && status === 'ready' && !!matches.length ? <ol ref={results} className="search-results">{matches.map(({ entry, kind, href, excerpt }) => {
+        {status === 'ready' && !!matches.length ? <ol ref={results} className="search-results">{matches.map(({ entry, kind, href, excerpt }) => {
           const label = <><span>{kind === 'chapter' ? m.chapterResult : <>{m.sectionResult}{normalizeSearch(entry.headingTitle) !== normalizeSearch(entry.chapterTitle) ? <> · {highlight(entry.chapterTitle)}</> : null}</>}</span>
             <strong>{highlight(kind === 'chapter' ? entry.chapterTitle : entry.headingTitle)}</strong></>;
           return <li key={href} data-search-kind={kind}>

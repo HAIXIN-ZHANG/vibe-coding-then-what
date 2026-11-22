@@ -6,10 +6,14 @@ import path from 'node:path';
 import vm from 'node:vm';
 import { parseBasePath } from '../site/config/deployment.ts';
 import { homeContent } from '../site/components/home-content.ts';
-import { getMessages } from '../site/config/i18n.ts';
+import { alternateLocalePath, getMessages } from '../site/config/i18n.ts';
 import { themeStorageKey } from '../site/theme/runtime.ts';
+import { bookCatalog } from '../site/config/books.ts';
+import { hasEnglishEdition } from '../site/content/english-edition.ts';
+import { loadEnglishBook } from '../site/content/load-english.ts';
 import { loadBook } from '../site/content/load-book.ts';
 import { chapterPath, legacyHeadingAliases } from '../site/content/manifest.ts';
+import printEdition from '../book/print/volume-one/edition.json' with { type: 'json' };
 import { volumeOnePdf } from '../site/content/downloads.ts';
 import { readingParts } from '../site/content/reading-parts.ts';
 import { walkMarkdown } from '../site/content/markdown.ts';
@@ -23,14 +27,22 @@ const pages = [
   ['read/index.html', 'en', 'Chapters | Vibe Coding, Then What?', '/zh/read/'],
   ['zh/index.html', 'zh-CN', '用 AI 写代码：能跑，然后呢？', '/'],
   ['zh/read/index.html', 'zh-CN', '章节目录 | 用 AI 写代码：能跑，然后呢？', '/read/'],
-  ['404.html', 'en', 'Page not found | Vibe Coding, Then What?', '/zh/'],
+  ['404.html', 'en', 'Page not found | Books by Jar & Prince Explore the World', '/zh/'],
 ];
 const chapters = await loadBook();
+const english = chapters.filter(chapter => hasEnglishEdition(chapter.entry.id));
+const translations = await loadEnglishBook(chapters);
+for (const [lang, edition] of Object.entries(bookCatalog.life.editions)) pages.push([
+  edition.home.slice(1) + 'index.html', getMessages(lang).lang, edition.title, alternateLocalePath(edition.home, lang),
+]);
+for (const { entry } of english) pages.push([chapterPath(entry, 'en').slice(1) + 'index.html', 'en',
+  getMessages('en').chapterLabels[entry.id] + ' | ' + getMessages('en').title, chapterPath(entry)]);
+
 const pdf = await readFile(path.join(output, volumeOnePdf.path.slice(1)));
 assert.equal(pdf.subarray(0, 5).toString(), '%PDF-', 'Download must be a real PDF');
-assert.equal(createHash('sha256').update(pdf).digest('hex'), volumeOnePdf.sha256, 'Download differs from the approved A5');
+assert.equal(createHash('sha256').update(pdf).digest('hex'), printEdition.approvedPdfSha256, 'Download differs from the approved A5');
 pages.push(...chapters.map(chapter => [
-  `${chapterPath(chapter.entry).slice(1)}index.html`, 'zh-CN', `${chapter.title} | 用 AI 写代码：能跑，然后呢？`, '/read/',
+  `${chapterPath(chapter.entry).slice(1)}index.html`, 'zh-CN', `${chapter.title} | 用 AI 写代码：能跑，然后呢？`, alternateLocalePath(chapterPath(chapter.entry), 'zh'),
 ]));
 const frameworkPages = ['404/index.html', '_not-found/index.html'];
 const actualPages = (await readdir(output, { recursive: true })).filter(file => file.endsWith('.html'));
@@ -53,12 +65,13 @@ for (const [page, language, title, alternatePath] of pages) {
   assert.ok(html.includes(`<title>${escapeHtml(title)}</title>`), `${page}: incorrect page title`);
   assert.match(html, /id="main"/, `${page}: missing skip-link target`);
   assert.match(html, /vibe-coding-then-what\/issues/, `${page}: outdated issue URL`);
-  assert.ok(html.includes('class="search-dialog"') && html.includes('aria-haspopup="dialog"'), `${page}: missing search dialog or trigger`);
+  const companion = page.includes('books/everyday-life/');
+  if (!companion) assert.ok(html.includes('class="search-dialog"') && html.includes('aria-haspopup="dialog"'), `${page}: missing search dialog or trigger`);
   const messages = getMessages(language === 'en' ? 'en' : 'zh');
   const footers = [...html.matchAll(/<footer\b([^>]*)>([\s\S]*?)<\/footer>/g)]
     .filter(([, tag]) => attributes(tag).class?.split(/\s+/).includes('site-footer'));
   assert.equal(footers.length, 1, `${page}: expected one site footer`);
-  assert.ok(footers[0][2].includes(escapeHtml(messages.editionLabel)), `${page}: missing footer edition`);
+  assert.ok(footers[0][2].includes(escapeHtml(companion ? bookCatalog.life.editions[language === 'en' ? 'en' : 'zh'].status : messages.editionLabel)), `${page}: missing footer edition`);
   const bylines = [...footers[0][2].matchAll(/<p\b([^>]*)>([\s\S]*?)<\/p>/g)]
     .filter(([, tag]) => attributes(tag).class?.split(/\s+/).includes('footer-byline'));
   assert.equal(bylines.length, 1, `${page}: expected one footer author line`);
@@ -90,7 +103,7 @@ for (const [page, language, title, alternatePath] of pages) {
     assert.ok(links.some(link => link.href === basePath + volumeOnePdf.path && Object.hasOwn(link, 'download')),
       `${page}: missing prefixed A5 download`);
   }
-  assert.ok(links.some(link => link.href === 'https://github.com/HAIXIN-ZHANG/vibe-coding-then-what'),
+  if (!companion) assert.ok(links.some(link => link.href === 'https://github.com/HAIXIN-ZHANG/vibe-coding-then-what'),
     `${page}: incorrect repository link`);
   assert.ok(links.some(link => link.href === 'https://github.com/HAIXIN-ZHANG/vibe-coding-then-what/issues'),
     `${page}: incorrect feedback link`);
@@ -180,7 +193,7 @@ for (const [page, language, title, alternatePath] of pages) {
     assert.equal((article.match(/<pre\b/g) || []).length, counts.code, `${page}: source code/diagrams missing`);
   }
   if (page === 'read/index.html' || page === 'zh/read/index.html') {
-    for (const part of readingParts(chapters.map(chapter => chapter.entry), language === 'en' ? 'en' : 'zh')) {
+    for (const part of readingParts((language === 'en' ? english : chapters).map(chapter => chapter.entry), language === 'en' ? 'en' : 'zh')) {
       assert.ok(html.includes(`id="${part.id}">${escapeHtml(part.title)}`), `${page}: reading part absent`);
     }
     if (language === 'zh-CN') {
@@ -188,10 +201,10 @@ for (const [page, language, title, alternatePath] of pages) {
       for (const heading of closing.headings) assert.ok(links.some(link =>
         link.href === basePath + chapterPath(closing.entry) + '#' + encodeURIComponent(heading.id)), `${page}: closing section link missing`);
     }
-    for (const item of chapters) assert.ok(links.some(link => link.href === `${basePath}${chapterPath(item.entry)}`), `${page}: available chapter absent`);
+    for (const item of language === 'en' ? english : chapters) assert.ok(links.some(link => link.href === `${basePath}${chapterPath(item.entry, language === 'en' ? 'en' : 'zh')}`), `${page}: available chapter absent`);
     if (page === 'read/index.html') {
-      assert.ok(html.includes(messages.englishUnavailable) && html.includes(messages.chineseEdition), `${page}: missing language availability explanation`);
-      assert.ok(!links.some(link => /^\/read\/[^/]+\//.test(link.href?.slice(basePath.length) || '')), `${page}: invented English article`);
+      assert.ok(html.includes(messages.englishUnavailable), `${page}: missing language availability explanation`);
+      for (const chapter of translations) assert.ok(links.some(link => link.href === basePath + chapterPath(chapter.entry)), 'Missing English adaptation');
     }
   }
 
@@ -206,7 +219,7 @@ for (const [page, language, title, alternatePath] of pages) {
       assert.ok(asset.startsWith('<svg') && asset.includes(`width="${width}"`) && asset.includes(`height="${height}"`), `${page}: approved SVG dimensions changed`);
     }
     assert.ok(!html.includes('figma.com/api/mcp/asset/'), `${page}: expiring design URL exposed`);
-    for (const chapter of chapters) assert.ok(links.some(link => link.href === `${basePath}${chapterPath(chapter.entry)}`), `${page}: real home chapter absent`);
+    for (const chapter of locale === 'en' ? english : chapters) assert.ok(links.some(link => link.href === `${basePath}${chapterPath(chapter.entry, locale)}`), `${page}: real home chapter absent`);
     if (locale === 'en') assert.ok(html.includes(messages.englishUnavailable), `${page}: English availability missing`);
   }
 
@@ -236,7 +249,7 @@ for (const [page, language, title, alternatePath] of pages) {
 const sectionCounts = {};
 for (const locale of ['en', 'zh']) {
   const index = readSearchIndex(JSON.parse(await readFile(path.join(output, `search-index/${locale}.json`), 'utf8')), locale);
-  assert.deepEqual(index, buildSearchIndex(chapters, locale), `${locale}: exported index differs from approved source nodes`);
+  assert.deepEqual(index, buildSearchIndex(locale === 'en' ? translations : chapters, locale), `${locale}: exported index differs from approved source nodes`);
   sectionCounts[locale] = index.entries.length;
   for (const entry of index.entries) {
     const [route, fragment] = entry.href.split('#');
