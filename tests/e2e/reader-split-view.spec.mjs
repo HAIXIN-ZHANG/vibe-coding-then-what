@@ -4,7 +4,7 @@ import { readingStorageKey } from '../../site/reading-progress/model.ts';
 
 const at = path => withBasePath(path, process.env.NEXT_PUBLIC_BASE_PATH);
 const sectionTitle = '从“有这个标题”到“标题在这里”';
-const sectionId = '从有这个标题到标题在这里';
+const diagramHeadingTitle = '标题怎样出现在屏幕上';
 const height = 834;
 
 function passagePosition(diagram) {
@@ -20,6 +20,18 @@ function passagePosition(diagram) {
       readingLine: stickyBottom + 0.43 * (window.innerHeight - stickyBottom),
     };
   });
+}
+
+async function readDiagram(page, diagram, heading, width) {
+  const position = await passagePosition(diagram);
+  const headingTop = await heading.evaluate(element => element.getBoundingClientRect().top);
+  // The 51-chapter edition places the diagram inside its own H3. On some font
+  // stacks centring only the diagram leaves that heading below the reading edge.
+  // Read into the subsection intentionally, while keeping the complete figure visible.
+  const centerFigure = (position.top + position.bottom) / 2 - position.readingLine;
+  const enterSubsection = headingTop - position.stickyBottom;
+  await page.mouse.move(width * 0.6, height * 0.64);
+  await page.mouse.wheel(0, Math.round(Math.max(centerFigure, enterSubsection)));
 }
 
 async function expectReadable(diagram, label) {
@@ -50,12 +62,13 @@ for (const [from, to] of [[1194, 375], [375, 1194]]) {
     const sectionUrl = page.url();
 
     const diagram = page.locator('.chapter-prose pre').filter({ hasText: '合成与呈现画面' });
-    const { top, bottom, readingLine } = await passagePosition(diagram);
-    await page.mouse.move(from * 0.6, height * 0.64);
-    await page.mouse.wheel(0, Math.round((top + bottom) / 2 - readingLine));
+    const diagramHeading = page.getByRole('heading', { level: 3, name: diagramHeadingTitle, exact: true });
+    const diagramUrl = await diagramHeading.getByRole('link').evaluate(link => link.href);
+    const diagramId = await diagramHeading.getAttribute('id');
+    await readDiagram(page, diagram, diagramHeading, from);
     await expectReadable(diagram, 'diagram and explanation are readable before narrowing or widening');
     const saved = () => page.evaluate(key => window.localStorage.getItem(key), readingStorageKey);
-    await expect.poll(async () => JSON.parse(await saved())?.headingId).toBe(sectionId);
+    await expect.poll(async () => JSON.parse(await saved())?.headingId).toBe(diagramId);
     const original = await saved();
 
     await page.setViewportSize({ width: to, height });
@@ -88,16 +101,14 @@ for (const [from, to] of [[1194, 375], [375, 1194]]) {
     });
 
     // Return to the same passage by wheel before leaving, so Continue should still point to this section.
-    const position = await passagePosition(diagram);
-    await page.mouse.move(to * 0.6, height * 0.64);
-    await page.mouse.wheel(0, Math.round((position.top + position.bottom) / 2 - position.readingLine));
+    await readDiagram(page, diagram, diagramHeading, to);
     await expectReadable(diagram, 'reader can return to the passage after keyboard scrolling');
-    await expect.poll(async () => JSON.parse(await saved())?.headingId).toBe(sectionId);
+    await expect.poll(async () => JSON.parse(await saved())?.headingId).toBe(diagramId);
     await page.locator('.site-header .wordmark').click();
     await page.getByRole('link', { name: '继续上次阅读', exact: true }).press('Enter');
-    await expect(page).toHaveURL(sectionUrl);
-    await expect(heading).toBeFocused();
-    await expect(heading).toBeInViewport({ ratio: 1 });
+    await expect(page).toHaveURL(diagramUrl);
+    await expect(diagramHeading).toBeFocused();
+    await expect(diagramHeading).toBeInViewport({ ratio: 1 });
   });
 }
 
