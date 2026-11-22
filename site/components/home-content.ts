@@ -11,7 +11,7 @@ export const homeContent = {
     stages: ['Submit', 'Check', 'Save', 'Confirm'],
   },
   zh: {
-    book: '本书', navigation: '全书导航', overview: '首页', read: '阅读中文原稿',
+    book: '本书', navigation: '全书导航', overview: '首页', read: '开始阅读',
     explore: '探索系统',
     example: '一个报名示例', exampleTitle: '点击报名之后，会发生什么？',
     exampleCaption: '图示：一次成功的报名',

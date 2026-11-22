@@ -10,21 +10,21 @@ import { applyLegacyHeadingAlias, parseMarkdown, nodeText, walkMarkdown } from '
 import { resolveChapterLink } from '../site/content/links.ts';
 import { alternateLocalePath } from '../site/config/i18n.ts';
 
-test('all 27 approved sources load with original titles, attribution, diagrams and citations', async () => {
+test('all 51 approved sources load with original titles, attribution, diagrams and citations', async () => {
   const chapters = await loadBook();
-  const indexPath = 'book/revisions/zh/volume-one-r2/README.md';
+  const indexPath = 'book/revisions/zh/volume-one-making-of/README.md';
   const bytes = await readFile(indexPath);
-  assert.equal(createHash('sha256').update(bytes).digest('hex'), 'b11f4142386b22546c551106aad594f34f991c0abc4fd3fb9351a8a945bf1da0');
+  assert.equal(createHash('sha256').update(bytes).digest('hex'), 'cea851dcbdda205357a4ead2519870d475619a8cab3af66ab62b0b64637d585a');
   const names = [...new Set([...bytes.toString().matchAll(/\]\(([^)#]+\.md)\)/g)].map(([, name]) => name))];
-  assert.equal(chapters.length, 27);
+  assert.equal(chapters.length, 51);
   assert.deepEqual(chapters.map(chapter => path.basename(chapter.entry.source)), names);
   assert.deepEqual(Array.from({ length: 10 }, (_, part) => chapters.filter(chapter => chapter.entry.part === part).length),
-    [1, 3, 6, 3, 2, 2, 2, 2, 5, 1]);
+    [1, 3, 8, 6, 6, 6, 6, 6, 8, 1]);
   const readingOrder = createHash('sha256');
   for (const file of [indexPath, ...chapters.map(chapter => chapter.entry.source)]) {
     readingOrder.update(file).update('\0').update(await readFile(file)).update('\0');
   }
-  assert.equal(readingOrder.digest('hex'), 'c1ddc94a791dd2de70b82a7cc1079698aae469852c049fe760ec5ecbfcd272c6');
+  assert.equal(readingOrder.digest('hex'), 'e03d1343bdee7e304e16240b1991dee6dd741ae5ae6b4a4f8d9a8418b8c7af2a');
   assert.equal(chapters[0].title, '写在前面：能跑，然后呢？');
   assert.match(nodeText(chapters[0].tree), /作者：缸子太子与世界/);
   assert.match(nodeText(chapters[0].tree), /这本书从资料整理、正文起草到反复修改，都有 AI 的帮助/);
@@ -38,11 +38,38 @@ test('all 27 approved sources load with original titles, attribution, diagrams a
   assert.doesNotMatch(nodeText(chapters[0].tree), /中文初稿 · 待 review/);
 });
 
+test('all 27 previously published identities, routes and heading targets survive the edition change', async () => {
+  const r2 = 'book/revisions/zh/volume-one-r2/';
+  const catalog = await readFile(r2 + 'README.md', 'utf8');
+  const names = [...new Set([...catalog.matchAll(/\]\(([^)#]+\.md)\)/g)].map(([, name]) => name))];
+  const special = {
+    '00-before-we-start.md': ['opening', 'before-we-start'],
+    '01-a-page-and-a-system.md': ['G01', 'a-page-and-a-system'],
+    '02-browser-foundations.md': ['F01', 'browser-foundations'],
+    '03-after-ai-finishes.md': ['P810', 'after-ai-finishes'],
+  };
+  assert.equal(names.length, 27);
+  const chapters = await loadBook();
+  for (const name of names) {
+    const slug = path.basename(name, '.md');
+    const [id, publicSlug] = special[name] ?? [slug, slug];
+    const chapter = chapters.find(item => item.entry.id === id);
+    assert.ok(chapter, name);
+    assert.equal(chapterPath(chapter.entry), `/zh/read/${publicSlug}/`);
+    const previous = parseMarkdown(await readFile(r2 + name, 'utf8'));
+    const available = new Set(chapter.headingIds);
+    walkMarkdown(chapter.tree, node => {
+      if (node.type === 'heading') for (const alias of node.data?.legacyIds ?? []) available.add(alias);
+    });
+    for (const id of previous.headingIds) assert.ok(available.has(id), `${name}#${id}`);
+  }
+});
+
 test('the approved browser chapter retains fenced illustrative HTML and its canonical link back to G01', async () => {
   const chapters = await loadBook();
   const browser = chapters.find(chapter => chapter.entry.id === 'F01');
   assert.equal(browser.title, '页面出现之前，浏览器在忙什么？');
-  assert.equal(browser.entry.sha256, '7d14124963eedef19c1bd56c56951e1f2001bea97b468cf2eeb566c977fb3065');
+  assert.equal(browser.entry.sha256, '833d20da8d946635221af05e264d506cc9e5d5692c24b75fccb2812cd57b854d');
   assert.equal(browser.tree.children.filter(node => node.type === 'code').length, 4);
   assert.equal(browser.tree.children.filter(node => node.type === 'table').length, 2);
   assert.equal(browser.tree.children.find(node => node.type === 'code').lang, 'html');
@@ -143,7 +170,7 @@ test('untranslated chapter switches to the English index once under both deploym
 
 test('legacy public and preview fragments resolve without entering canonical headings', async () => {
   const chapters = await loadBook();
-  assert.equal(legacyHeadingAliases.length, 5);
+  assert.equal(legacyHeadingAliases.length, 14);
   for (const { chapterId, legacyId, headingId } of legacyHeadingAliases) {
     const chapter = chapters.find(item => item.entry.id === chapterId);
     const target = chapter.tree.children.find(node => node.type === 'heading' && node.data.id === headingId);

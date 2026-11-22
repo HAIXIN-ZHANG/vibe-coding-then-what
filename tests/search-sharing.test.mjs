@@ -12,7 +12,7 @@ const english = buildSearchIndex(chapters, 'en');
 test('static indexes contain only approved public sections, real IDs and source revisions', () => {
   assert.equal(chinese.entries.length, chapters.reduce((count, chapter) => count + chapter.headingIds.length, 0));
   assert.deepEqual(new Set(chinese.entries.map(entry => entry.chapterId)), new Set(chapters.map(chapter => chapter.entry.id)));
-  assert.equal(chinese.entries.length, 108);
+  assert.equal(chinese.entries.length, 221);
   assert.ok(!chinese.entries.some(entry => entry.headingId === '关于本书的-ai-协作'));
   assert.deepEqual(english.entries, []);
   for (const entry of chinese.entries) {
@@ -38,6 +38,9 @@ test('Chinese literal matching ranks the actual heading above incidental body me
   const fullHeading = '时间：先发生什么，用户要等到哪里？';
   assert.equal(searchEntries(chinese, fullHeading, 'zh')[0].entry.headingTitle, fullHeading);
   assert.ok(searchEntries(chinese, '报名 数据库', 'zh').length);
+  const [story] = searchEntries(chinese, '光秃秃只印一个页码', 'zh');
+  assert.equal(story.entry.chapterId, 'p8-return-to-reader');
+  assert.equal(story.entry.headingId, '第一百零六页老师怎么已经合上电脑了');
   assert.equal(searchEntries(chinese, '不存在的词语', 'zh').length, 0);
 });
 
@@ -72,7 +75,7 @@ test('ranking ties are stable and excerpts stay bounded near a real body match',
 
 test('all matching sections remain reachable beyond the former twelve-result limit', () => {
   const expected = chinese.entries.filter(entry => normalizeSearch(`${entry.headingTitle} ${entry.chapterTitle} ${entry.text}`).includes('报名'));
-  assert.equal(expected.length, 57);
+  assert.equal(expected.length, 112);
   const results = searchEntries(chinese, '报名', 'zh');
   assert.equal(results.length, expected.length);
   assert.deepEqual(new Set(results.map(result => result.entry.href)), new Set(expected.map(entry => entry.href)));
@@ -148,7 +151,7 @@ test('an exact real chapter title groups only inherited hits and retains the act
   const title = chapters.find(chapter => chapter.entry.id === 'F01').title;
   const original = JSON.stringify(chinese);
   const results = searchEntries(chinese, title, 'zh');
-  assert.equal(chinese.entries.filter(entry => entry.chapterId === 'F01').length, 9);
+  assert.equal(chinese.entries.filter(entry => entry.chapterId === 'F01').length, 10);
   assert.equal(results.length, 2);
   assert.deepEqual(results.map(result => result.kind), ['chapter', 'section']);
   assert.equal(results[0].href, '/zh/read/browser-foundations/');
@@ -159,7 +162,7 @@ test('an exact real chapter title groups only inherited hits and retains the act
   assert.equal(JSON.stringify(chinese), original, 'presentation grouping must not mutate the index/schema');
   assert.deepEqual(readSearchIndex(JSON.parse(original), 'zh'), chinese);
   const signup = searchEntries(chinese, '报名', 'zh');
-  assert.equal(signup.length, 57);
+  assert.equal(signup.length, 112);
   assert.ok(signup.every(result => result.kind === 'section' && result.href === result.entry.href));
 });
 

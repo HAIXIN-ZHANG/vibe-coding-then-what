@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { getMessages } from '../../../../../config/i18n.ts';
 import { getBook } from '../../../../../content/book.ts';
 import { ChapterReader } from '../../../../../components/reading/chapter-reader.tsx';
 
@@ -14,7 +15,7 @@ export async function generateMetadata({ params }: ChapterPageProps): Promise<Me
   const [{ slug }, chapters] = await Promise.all([params, getBook()]);
   const chapter = chapters.find(item => item.entry.slug === slug);
   if (!chapter) notFound();
-  return { title: chapter.title, description: `${chapter.title} · 中文第二稿。` };
+  return { title: chapter.title, description: `${chapter.title} · ${getMessages('zh').editionLabel}。` };
 }
 
 export default async function ChapterPage({ params }: ChapterPageProps) {

@@ -18,8 +18,8 @@ test('localized book identity and English catalog labels preserve the Chinese-on
 });
 
 test('availability reflects a public count without importing the source manifest into shared messages', () => {
-  assert.match(getMessages('en').availableNotice(chapterManifest.length), /complete Chinese second draft in 27 entries/);
-  assert.match(getMessages('zh').availableNotice(chapterManifest.length), /完整中文第二稿 · 共 27 篇可阅读/);
+  assert.match(getMessages('en').availableNotice(chapterManifest.length), /complete Chinese edition in 51 entries/);
+  assert.match(getMessages('zh').availableNotice(chapterManifest.length), /中文完整版 · 共 51 篇可阅读/);
   assert.equal(getMessages('en').chapterLabels.F01, 'How the Browser Builds a Page');
 });
 

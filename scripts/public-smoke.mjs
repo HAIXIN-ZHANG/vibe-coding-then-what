@@ -18,11 +18,15 @@ export async function smokePublicRelease({ url, commit } = {}) {
   const target = validatePublicTarget(url);
   const expected = createReleaseMetadata(commit, pagesBasePath);
   const deadline = globalThis.AbortSignal.timeout(90_000);
+  const routes = ['/', '/read/', '/zh/', '/zh/read/', ...expected.chapters.map(chapter => chapter.route)];
+  const assetLimit = 60;
+  // One metadata document, two search indexes and the missing-page probe.
+  const requestBudget = routes.length + assetLimit + 4;
   let requests = 0;
   async function get(route, status = 200, type = /text\/html/) {
     const destination = new URL(`${pagesBasePath}${route}`, target.origin);
     destination.searchParams.set('release-check', commit);
-    assert.ok(++requests <= 80, 'Public smoke request budget exceeded');
+    assert.ok(++requests <= requestBudget, 'Public smoke request budget exceeded');
     const response = await globalThis.fetch(destination, {
       redirect: 'error', cache: 'no-store', signal: globalThis.AbortSignal.any([deadline, globalThis.AbortSignal.timeout(10_000)]),
     });
@@ -34,7 +38,6 @@ export async function smokePublicRelease({ url, commit } = {}) {
   }
   verifyReleaseMetadata(JSON.parse(await get('/release.json', 200, /application\/json/)), commit);
   const assets = new Set();
-  const routes = ['/', '/read/', '/zh/', '/zh/read/', ...expected.chapters.map(chapter => chapter.route)];
   for (const route of routes) {
     const html = await get(route);
     const english = route === '/' || route === '/read/';
@@ -55,7 +58,7 @@ export async function smokePublicRelease({ url, commit } = {}) {
       assets.add(asset.pathname.slice(pagesBasePath.length) + asset.search);
     }
   }
-  assert.ok(assets.size > 0 && assets.size <= 60, 'Expected a bounded set of actual site assets');
+  assert.ok(assets.size > 0 && assets.size <= assetLimit, 'Expected a bounded set of actual site assets');
   for (const asset of assets) {
     const extension = new URL(asset, target.origin).pathname.split('.').at(-1);
     const type = extension === 'css' ? /text\/css/ : extension === 'js' ? /(?:javascript|ecmascript)/ : /image\//;

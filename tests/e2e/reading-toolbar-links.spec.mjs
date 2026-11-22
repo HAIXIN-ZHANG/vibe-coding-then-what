@@ -27,7 +27,7 @@ async function clearance(page,target,panel){
 test('nearby tools separate scrolling status, retain native disclosure focus and disappear when no action is visible',async({page},testInfo)=>{
   for(const {width,theme} of [{width:1188,theme:'light'},{width:390,theme:'dark'},{width:320,theme:'light'}]){
     await reader(page,width,theme);const status=page.locator('.chapter-context'),tools=page.locator('.reading-tools'),summary=page.locator('.mobile-outline summary');
-    await expect(status).toHaveText('中文 · 第二稿');expect(await status.evaluate(e=>e.closest('.reading-tools'))).toBeNull();
+    await expect(status).toHaveText('中文 · 完整版');expect(await status.evaluate(e=>e.closest('.reading-tools'))).toBeNull();
     await expect(summary).toHaveText('本章目录');expect((await summary.boundingBox()).height).toBeGreaterThanOrEqual(44);
     const position=await page.evaluate(()=>window.scrollY),top=await page.locator('article').evaluate(e=>e.getBoundingClientRect().top);
     await summary.focus();await summary.press('Enter');await expect(page.locator('.mobile-outline details')).toHaveAttribute('open','');
