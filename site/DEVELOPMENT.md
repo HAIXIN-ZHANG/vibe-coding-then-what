@@ -229,13 +229,13 @@ These are explicit release/design-stability review obligations, not results alre
 
 ## Continuous Integration and Merge Protection
 
-[CI](../.github/workflows/ci.yml) runs on `pull_request` and pushes to `main`, independently of Coordinator's actual local review. It does not deploy or invoke an AI reviewer.
+[CI](../.github/workflows/ci.yml) runs on `pull_request`, pushes to `main` and manual dispatch, independently of Coordinator's actual local review. It does not deploy or invoke an AI reviewer.
 
 | Required check name | Commands |
 | --- | --- |
 | `Quality` | `npm ci --no-fund`, then `npm run check` |
-| `Static export (root)` | Empty prefix, build, export verifier, matching Chromium install and `npm run test:e2e` |
-| `Static export (pages)` | `/vibe-coding-then-what`, Pages build, export verifier, matching Chromium install and `npm run test:e2e` |
+| `Static export (root)` | Empty prefix, build, export verifier, Chromium smoke (full on manual CI dispatch) |
+| `Static export (pages)` | `/vibe-coding-then-what`, Pages build, export verifier, Chromium smoke on PRs and full regression on main or manual CI dispatch |
 
 The export jobs wait for Quality, then run independently with fail-fast disabled. Each build/verify pair shares its environment, with root explicitly clearing inherited prefixes. New PR commits cancel older runs for the same PR. Reproduce all checks with:
 
@@ -259,9 +259,9 @@ The inspected Actions use Node24; checkout/setup-node's tagged runtime/docs spec
 
 Required checks were enabled only after successful cloud execution, with up-to-date branches required. Each revision still needs its own checks. See the [CI review](../docs/reviews/CI01.md) and [dated access baseline](../docs/security/access-policy.md); a local pass alone does not establish Linux/cloud success or saved server settings.
 
-## Manual Pages release
+## Pages release
 
-The separate [Pages workflow](../.github/workflows/pages.yml) is manual-only from this repository's `main`, checks out the immutable dispatch SHA, validates the Pages export and maintained browser suite, stamps public identity and uploads only `site/out`. Build permissions remain read-only; the environment-gated deploy job alone receives Pages/OIDC write permissions and runs no checkout/npm. Existing required CI is unchanged.
+The separate [Pages workflow](../.github/workflows/pages.yml) runs after successful push CI on this repository's `main` or by manual dispatch. It checks out the immutable event SHA, validates the rebuilt Pages export and runs core browser journeys (full suite on manual release), stamps public identity and uploads only `site/out`. Build permissions remain read-only; the environment-gated deploy job alone receives Pages/OIDC write permissions and runs no checkout/npm. Existing required CI is unchanged.
 
 The [release and recovery runbook](../docs/release.md) is the canonical operator guide for matching-head checks, deliberate dispatch, public HTTP/browser acceptance and all-job known-good recovery. `npm run release:metadata` requires `RELEASE_SHA` plus the Pages prefix and a fresh output; `npm run release:smoke -- URL SHA` checks exact public identity/routes/assets/search/404 with a loopback default. Neither command proves a successful cloud deployment or observed recovery. Coordinator owns those operations and evidence.
 

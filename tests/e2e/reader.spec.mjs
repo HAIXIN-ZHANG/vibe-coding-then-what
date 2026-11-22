@@ -331,7 +331,7 @@ test('enlarged header text wraps controls instead of overlapping intact book-tit
   }
 });
 
-test('entry, truthful availability, approved chapters, previous/next and static 404', async ({ page, request }) => {
+test('entry, truthful availability, approved chapters, previous/next and static 404', { tag: '@smoke' }, async ({ page, request }) => {
   await page.goto(at('/'));
   await expect(page).toHaveTitle('Vibe Coding, Then What?');
   await page.getByRole('link', { name: /Browse chapters/ }).click();
@@ -362,7 +362,7 @@ test('entry, truthful availability, approved chapters, previous/next and static 
   expect(body).toContain('Page not found'); expect(body).toContain('这一页还没找到');
 });
 
-test('Chinese search uses the real prefixed resource, native heading focus and Escape return', async ({ page, baseURL }) => {
+test('Chinese search uses the real prefixed resource, native heading focus and Escape return', { tag: '@smoke' }, async ({ page, baseURL }) => {
   await page.goto(at('/zh/read/'));
   const fetched = page.waitForResponse(response => response.url() === new URL(at('/search-index/zh.json'), baseURL).href);
   const dialog = await openSearch(page);
@@ -457,7 +457,7 @@ test('actual search failure/retry retains the query through loading and error', 
   } finally { release(); }
 });
 
-test('English search is honest and never fetches another-language corpus', async ({ page }) => {
+test('English search is honest and never fetches another-language corpus', { tag: '@smoke' }, async ({ page }) => {
   const resources = [];
   page.on('request', request => { if (request.url().includes('/search-index/')) resources.push(request.url()); });
   await page.goto(at('/read/'));
@@ -1126,7 +1126,7 @@ test('V2 real chapter remains readable across appearances, accents, widths and e
   await attachGeometry(testInfo, 'reader-widths', measurements);
 });
 
-test('V2 static navigation retains real chapters and headings without JavaScript', async ({ browser }) => {
+test('V2 static navigation retains real chapters and headings without JavaScript', { tag: '@smoke' }, async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const page = await context.newPage();
   try {
