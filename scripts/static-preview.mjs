@@ -8,12 +8,12 @@ const output = fileURLToPath(new URL('../site/out/', import.meta.url));
 const types = {
   '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8',
-  '.txt': 'text/plain; charset=utf-8', '.pdf': 'application/pdf', '.svg': 'image/svg+xml', '.png': 'image/png',
+  '.txt': 'text/plain; charset=utf-8', '.pdf': 'application/pdf', '.mp3': 'audio/mpeg', '.m4a': 'audio/mp4', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.png': 'image/png',
   '.ico': 'image/x-icon', '.woff': 'font/woff', '.woff2': 'font/woff2',
 };
 
 // Local test tooling only: never serve the repository, list directories or follow escaping symlinks.
-export async function createStaticPreview({ directory = output, basePath = '', port = 4179 } = {}) {
+export async function createStaticPreview({ directory = output, basePath = '', port = 4179, localOverlay } = {}) {
   const prefix = parseBasePath(basePath);
   const root = await realpath(directory);
   const inside = candidate => candidate.startsWith(`${root}${path.sep}`);
@@ -39,13 +39,18 @@ export async function createStaticPreview({ directory = output, basePath = '', p
     if (prefix && decoded === prefix) return send(308, fallback, types['.html'], { Location: `${prefix}/` });
     if (prefix && !decoded.startsWith(`${prefix}/`)) return send(404, fallback);
     const pathname = decoded.slice(prefix.length);
+    const virtual = localOverlay?.assets.get(pathname);
+    if (virtual) return send(200, virtual.body, virtual.contentType);
     let target = path.resolve(root, `.${pathname}`);
     if (!inside(target) && target !== root) return send(404, fallback);
     try {
       if ((await stat(target)).isDirectory()) target = path.join(target, 'index.html');
       target = await realpath(target);
       if (!inside(target) || !(await stat(target)).isFile()) return send(404, fallback);
-      return send(200, await readFile(target), types[path.extname(target)] || 'application/octet-stream');
+      const extension = path.extname(target);
+      const bytes = await readFile(target);
+      const body = extension === '.html' && localOverlay ? localOverlay.decorate(bytes) : bytes;
+      return send(200, body, types[extension] || 'application/octet-stream');
     } catch (error) {
       if (['ENOENT', 'ENOTDIR', 'EACCES'].includes(error.code)) return send(404, fallback);
       throw error;

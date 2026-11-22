@@ -1,4 +1,5 @@
 import type { Nodes, Root } from 'mdast';
+import { markPassages } from './passage-anchors.ts';
 import { fromMarkdown } from 'mdast-util-from-markdown';
 import { gfmTableFromMarkdown } from 'mdast-util-gfm-table';
 import { gfmTable } from 'micromark-extension-gfm-table';
@@ -61,6 +62,7 @@ export function parseMarkdown(source: string): ParsedMarkdown {
     source.slice(preamble.position?.start.offset, preamble.position?.end.offset) === '> 中文初稿 · 待 review') {
     tree.children.splice(1, 1);
   }
+  markPassages(tree, nodeText);
   return { tree, title, headings, headingIds };
 }
 

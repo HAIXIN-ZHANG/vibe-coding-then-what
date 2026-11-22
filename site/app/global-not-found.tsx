@@ -1,10 +1,10 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { DocumentLayout } from '../components/document-layout.tsx';
 import { NotFoundContent } from '../components/not-found-content.tsx';
 import { getMessages } from '../config/i18n.ts';
+import { missingMetadata } from '../config/page-metadata.ts';
 
-export const metadata: Metadata = { title: 'Page not found | Vibe Coding, Then What?' };
+export const metadata = missingMetadata();
 
 export default function GlobalNotFound() {
   const chinese = getMessages('zh');

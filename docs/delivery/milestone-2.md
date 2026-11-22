@@ -104,3 +104,8 @@ No Git writes or publication occurred; the last verified public edition remains 
 The [closeout review](../reviews/uncommitted-closeout-2026-11-17.md) separates accepted local work from Git integration/publication and unresolved V2 design. Existing quality/F01 outcomes are retained; there is no need to discard them or wait for a redesign to preserve a reviewed baseline. The old three-background palette is historical; no old palette, continuation or V2 UI coding should proceed from earlier recommendations.
 
 The next design gate uses the separate V2 page and neutral System/Light/Dark plus six independent accents. System resolves the light/dark appearance; it is not a third rendered background. Accent choices are not six background palettes. Exact shades, components/states, responsive behavior and final implementation slice remain to be reviewed. No Figma changes, code upgrade, Git write or deployment is performed by this closeout; the board owns live assignments.
+
+
+## Product desk checkpoints
+
+The Product & Design Lead reviews the Chinese reading journey, English navigation and book selection, and the assembled reader experience. The Delivery Lead supplies the URL and revision, an ordinary reading path, one edge case and the environments checked. Reader-visible changes to language switching, reading position, chapter availability or an edition promise return for affected review.

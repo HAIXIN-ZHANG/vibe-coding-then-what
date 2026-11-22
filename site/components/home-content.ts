@@ -3,7 +3,7 @@ import type { Locale } from '../config/i18n.ts';
 // Supplemental homepage UI only; the approved identity and chapter copy stay in i18n.ts.
 export const homeContent = {
   en: {
-    book: 'The book', navigation: 'Book navigation', overview: 'Overview', read: 'Read in Chinese',
+    book: 'The book', navigation: 'Book navigation', overview: 'Overview', read: 'Read the introduction in English',
     explore: 'Explore the systems',
     example: 'One enrolment example', exampleTitle: 'What happens after you click Enrol?',
     exampleCaption: 'Example shown: a successful enrolment',

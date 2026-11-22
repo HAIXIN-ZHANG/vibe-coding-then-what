@@ -1,2 +1,29 @@
 /* Foundation selectors now live in panda/global-styles.ts, using UI04 semantic roles. */
 @layer reset, base, tokens, recipes, utilities;
+
+.reader-size-settings label { display: flex; align-items: center; justify-content: space-between; gap: .5rem; min-height: 44px; }
+.reader-size-settings select, .passage-tools select, .chapter-audio select { max-width: 100%; min-height: 44px; color: inherit; background: var(--colors-bg-surface); }
+.reader-size-settings summary, .reader-size-settings button { cursor: pointer; min-height: 44px; align-content: center; }
+[data-reader-body] .chapter-prose { font-size: var(--reader-size-body, revert-layer); line-height: 1.76; }
+[data-reader-title] .chapter-prose h1 { font-size: var(--reader-size-title, revert-layer); line-height: 1.35; }
+[data-reader-heading] .chapter-prose :is(h2,h3,h4,h5,h6) { font-size: var(--reader-size-heading, revert-layer); line-height: 1.5; }
+[data-reader-code] .chapter-prose :is(pre,code) { font-size: var(--reader-size-code, revert-layer); line-height: 1.6; }
+[data-reader-notes] .chapter-prose :is(figcaption,caption,blockquote) { font-size: var(--reader-size-notes, revert-layer); line-height: 1.6; }
+.chapter-prose p[data-passage-section] { scroll-margin-top: calc(var(--reader-sticky-header) + var(--reading-tools-height, var(--reading-tools-fallback)) + 1rem); }
+.passage-tools { margin-block: .5rem; min-width: 0; }
+.passage-tools summary, .passage-tools button, .chapter-audio button { cursor: pointer; min-height: 44px; align-content: center; }
+.passage-tools label { display: block; }
+.passage-tools textarea { display: block; width: 100%; padding: .5rem; color: inherit; background: var(--colors-bg-surface); border: 1px solid currentColor; }
+.passage-actions, .chapter-audio { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.passage-actions button, .chapter-audio button { padding-inline: .5rem; text-decoration: underline; }
+.passage-tools blockquote { overflow-wrap: anywhere; max-height: 9rem; overflow: auto; }
+.chapter-audio { margin-block: .75rem; }
+.chapter-audio audio { max-width: 100%; }
+.chapter-audio audio[hidden] { display: none; }
+.case-index summary { cursor: pointer; min-height: 44px; align-content: center; }
+.case-index summary, .browser-short-reading h2 {
+  scroll-margin-top: calc(var(--reader-sticky-header) + var(--reading-tools-height, var(--reading-tools-fallback)) + 1rem);
+}
+.browser-short-reading { margin-block: 1.75rem; line-height: 1.65; }
+.browser-short-reading li p { margin-block-start: .25rem; }
+.case-index li { margin-block: .5rem; }

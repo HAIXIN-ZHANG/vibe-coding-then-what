@@ -1,8 +1,11 @@
 'use client';
 
+import { getMessages } from '../../config/i18n.ts';
+import { BooksLink } from '../books-link.tsx';
+import { takeBookReturn } from './book-return.ts';
+
 import { useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
-import { getMessages } from '../../config/i18n.ts';
 import { IconButton } from '../ui/icon-button.tsx';
 import { Button } from '../ui/button.tsx';
 import { ReadingTools } from './reading-tools.tsx';
@@ -106,24 +109,35 @@ export function ReaderLayout({ navigation, outline, bookInfo, children }: { navi
     const releaseViewport = preserveReadingViewport(layout);
     const header = document.querySelector<HTMLElement>('.site-header');
     const tools = layout.querySelector<HTMLElement>('.reading-tools');
-    let pendingHash = window.location.hash;
+    const returnTop = takeBookReturn();
+    let pendingHash = returnTop === undefined ? window.location.hash : '';
     let frame = 0;
+    let returnFrame = 0;
     const correctFragment = () => {
       frame = 0;
       if (!pendingHash || pendingHash !== window.location.hash) return;
-      try {
-        const target = document.getElementById(decodeURIComponent(pendingHash.slice(1)));
-        if (!target || !layout.contains(target) || document.activeElement !== target) return;
-        // Native hash navigation may precede responsive header reconciliation and its observers.
-        // Use both current measurements together before applying the real target's CSS clearance.
-        layout.style.setProperty('--reader-header-height', `${header?.getBoundingClientRect().height ?? 68}px`);
-        tools?.parentElement?.style.setProperty('--reading-tools-height', `${tools.getBoundingClientRect().height}px`);
-        const clearance = Number.parseFloat(getComputedStyle(target).scrollMarginTop);
-        if (Math.abs(target.getBoundingClientRect().top - clearance) > 1) target.scrollIntoView({ block: 'start', behavior: 'instant' });
-      } catch { /* Invalid URL escapes do not prevent reading. */ }
+      let target: HTMLElement | null = null;
+      try { target = document.getElementById(decodeURIComponent(pendingHash.slice(1))); }
+      catch { /* A malformed fragment has no target. */ }
+      if (!target) {
+        if (pendingHash.toLowerCase() === '#top' || /^#passage-[a-f0-9]{24}(?:-\d+)?$/.test(pendingHash)) return;
+        pendingHash = '';
+        const chapterStart = new URL(window.location.href);
+        chapterStart.hash = '';
+        window.history.replaceState(window.history.state, '', chapterStart);
+        layout.querySelector<HTMLElement>('.chapter-prose h1')?.focus({ preventScroll: true });
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        return;
+      }
+      if (!layout.contains(target) || document.activeElement !== target) return;
+      // Native fragment navigation can precede the measurement of the sticky tools.
+      layout.style.setProperty('--reader-header-height', `${header?.getBoundingClientRect().height ?? 68}px`);
+      tools?.parentElement?.style.setProperty('--reading-tools-height', `${tools.getBoundingClientRect().height}px`);
+      const clearance = Number.parseFloat(getComputedStyle(target).scrollMarginTop);
+      if (Math.abs(target.getBoundingClientRect().top - clearance) > 1) target.scrollIntoView({ block: 'start', behavior: 'instant' });
     };
     const schedule = () => { if (!frame && pendingHash) frame = window.requestAnimationFrame(correctFragment); };
-    const navigate = () => { pendingHash = window.location.hash; schedule(); };
+    const navigate = () => { if (!returnFrame) { pendingHash = window.location.hash; schedule(); } };
     const repeatFragment = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || !(event.target instanceof Element)) return;
       const link = event.target.closest('a[href]');
@@ -142,17 +156,23 @@ export function ReaderLayout({ navigation, outline, bookInfo, children }: { navi
       });
     };
     // A fragment owns its landing only until the reader deliberately scrolls or interacts again.
-    const relinquish = () => { pendingHash = ''; };
+    const relinquish = () => { pendingHash = ''; window.cancelAnimationFrame(returnFrame); returnFrame = 0; };
     const observer = new ResizeObserver(schedule);
     for (const element of [header, tools, layout.querySelector('.reader-body')]) if (element) observer.observe(element);
     window.addEventListener('hashchange', navigate);
     window.addEventListener('click', repeatFragment);
     const intents = ['pointerdown', 'wheel', 'touchstart', 'keydown'] as const;
     for (const type of intents) window.addEventListener(type, relinquish, { capture: true, passive: true });
-    schedule();
+    if (returnTop === undefined) schedule();
+    else returnFrame = window.requestAnimationFrame(() => {
+      returnFrame = 0;
+      window.scrollTo({ top: returnTop, behavior: 'instant' });
+      const bookLink = window.innerWidth < sidebarBreakpoint ? layout.querySelector<HTMLElement>('.mobile-books .books-link') : document.querySelector<HTMLElement>('.site-header .books-link');
+      bookLink?.focus({ preventScroll: true });
+    });
     return () => {
       releaseViewport();
-      window.cancelAnimationFrame(frame); observer.disconnect(); window.removeEventListener('hashchange', navigate);
+      window.cancelAnimationFrame(frame); window.cancelAnimationFrame(returnFrame); observer.disconnect(); window.removeEventListener('hashchange', navigate);
       window.removeEventListener('click', repeatFragment);
       for (const type of intents) window.removeEventListener(type, relinquish, true);
     };
@@ -216,6 +236,7 @@ export function ReaderLayout({ navigation, outline, bookInfo, children }: { navi
     <div className="reader-body">
       <div className="chapter-column">
         <ReadingTools>
+          <div className="mobile-books"><BooksLink locale="zh" /></div>
           <div className="desktop-reopen reader-js-controls"><IconButton visual="toolbar" label="显示章节栏" title="显示章节栏" data-reopen-sidebar onClick={() => mode('expanded')}><SidebarIcon kind="reopen" /></IconButton></div>
           <div className="mobile-book-navigation"><ReadingDisclosure label="章节导航" compactLabel="章节">{navigation}{bookInfo}</ReadingDisclosure></div>
           <div className="mobile-outline"><ReadingDisclosure label="本章目录">{outline}</ReadingDisclosure></div>

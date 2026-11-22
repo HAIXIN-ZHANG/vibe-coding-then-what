@@ -1,3 +1,4 @@
+import { bookCatalog, type BookId } from '../config/books.ts';
 import type { Locale } from '../config/i18n.ts';
 
 export type SearchEntry = {
@@ -95,14 +96,14 @@ export function searchEntries(index: SearchIndex, query: string, locale: Locale)
   }).sort((a, b) => Number(a.kind === 'section') - Number(b.kind === 'section') || b.score - a.score);
 }
 
-export function readSearchIndex(value: unknown, locale: Locale): SearchIndex {
+export function readSearchIndex(value: unknown, locale: Locale, bookId: BookId = 'work'): SearchIndex {
   if (!value || typeof value !== 'object' || !('version' in value) || value.version !== 1 ||
     !('locale' in value) || value.locale !== locale || !('entries' in value) || !Array.isArray(value.entries)) throw new Error('Invalid search index');
-  if (locale === 'en' && value.entries.length) throw new Error('No reviewed English corpus');
+  const prefix = bookCatalog[bookId].editions[locale].home + 'read/';
   for (const entry of value.entries) {
     if (!entry || typeof entry !== 'object' || ['chapterId', 'chapterTitle', 'headingId', 'headingTitle', 'sourceHash', 'href', 'text'].some(key => typeof entry[key] !== 'string') ||
       entry.locale !== locale || !/^[a-f0-9]{64}$/.test(entry.sourceHash) ||
-      !/^\/zh\/read\/[a-z0-9-]+\/#/.test(entry.href) || entry.href.split('#').length !== 2 ||
+      (!entry.href.startsWith(prefix) || !/^[a-z0-9-]+\/#/.test(entry.href.slice(prefix.length))) || entry.href.split('#').length !== 2 ||
       entry.href.split('#')[1] !== encodeURIComponent(entry.headingId)) throw new Error('Invalid search entry');
   }
   return value as SearchIndex;

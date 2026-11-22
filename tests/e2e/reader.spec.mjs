@@ -1,6 +1,7 @@
+import { englishEditions, englishStatus, hasEnglishEdition } from '../../site/content/english-edition.ts';
 import { test as base, expect } from '@playwright/test';
-import { mkdir, writeFile } from 'node:fs/promises';
 import { loadBook } from '../../site/content/load-book.ts';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { chapterManifest, chapterPath, legacyHeadingAliases } from '../../site/content/manifest.ts';
 import { withBasePath } from '../../site/config/deployment.ts';
 import { getMessages } from '../../site/config/i18n.ts';
@@ -9,7 +10,6 @@ import { homeContent } from '../../site/components/home-content.ts';
 
 const at = pathname => withBasePath(pathname, process.env.NEXT_PUBLIC_BASE_PATH);
 const [opening, g01, browserChapter] = chapterManifest;
-const closing = chapterManifest.at(-1);
 
 const test = base.extend({
   health: [async ({ page }, use, testInfo) => {
@@ -30,6 +30,24 @@ const test = base.extend({
     expect(unexpected, 'unexpected browser console errors').toEqual([]);
   }, { auto: true }],
 });
+
+function readableEdition(locale) {
+  return chapterManifest.filter(entry => entry.bookId === 'work' && (locale === 'zh' || hasEnglishEdition(entry.id)));
+}
+
+async function expectChapterDestination(page, entry, locale) {
+  await expect(page).toHaveURL(new URL(at(chapterPath(entry, locale)), page.url()).href);
+  await expect(page.locator('html')).toHaveAttribute('lang', getMessages(locale).lang);
+  const article = page.locator('article');
+  const source = locale === 'zh' ? entry.sha256 : englishEditions[entry.id]?.sha256;
+  if (source) {
+    await expect(article).toHaveAttribute('data-chapter-id', entry.id);
+    await expect(article).toHaveAttribute('data-source-sha256', source);
+  } else {
+    await expect(article).toHaveAttribute('data-chapter-overview', entry.id);
+    await expect(article.getByRole('link', { name: /Read the Chinese original/ })).toHaveAttribute('href', at(chapterPath(entry, 'zh')));
+  }
+}
 
 async function openSearch(page) {
   await page.getByRole('button', { name: '搜索章节', exact: true }).click();
@@ -105,19 +123,21 @@ test('mobile outline stays nearby without shifting position on opening or hiding
   }
 });
 
-test('both home locales show exactly the approved Chinese reading destinations and current availability', async ({ page }) => {
+test('both home editions preserve the reviewed reading order and distinguish full text from overviews', async ({ page }) => {
   for (const locale of ['en', 'zh']) {
     await page.goto(at(locale === 'en' ? '/' : '/zh/'));
     const links = page.locator('.home-chapters a');
-    await expect(links).toHaveCount(chapterManifest.length);
+    const entries = readableEdition(locale);
+    await expect(links).toHaveCount(entries.length);
     await expect(page.locator('.home-hero-copy > .availability-note')).toHaveText(getMessages(locale).availableNotice(chapterManifest.length));
-    for (const [index, chapter] of chapterManifest.entries()) {
-      await expect(links.nth(index)).toHaveAttribute('href', at(chapterPath(chapter)));
-      await expect(links.nth(index)).toHaveAttribute('hreflang', 'zh');
+    for (const [index, chapter] of entries.entries()) {
+      await expect(links.nth(index)).toHaveAttribute('href', at(chapterPath(chapter, locale)));
+      await expect(links.nth(index)).toHaveAttribute('hreflang', locale);
       await expect(links.nth(index).locator('.home-chapter-title')).toHaveText(getMessages(locale).chapterLabels[chapter.id] ?? chapter.title);
     }
-    if (locale === 'en') await expect(page.locator('.home-chapters')).toContainText('English chapters are not available yet.');
-    await links.last().click(); await expect(page.locator('article')).toHaveAttribute('data-source-sha256', closing.sha256);
+    if (locale === 'en') await expect(page.locator('.home-chapters')).toContainText(getMessages('en').englishUnavailable);
+    await links.last().click();
+    await expectChapterDestination(page, entries.at(-1), locale);
   }
 });
 
@@ -161,11 +181,12 @@ test('localized chrome and matching page roles remain coherent across languages 
       if (kind === 'index') {
         await expect(page.locator('.reading-index > .availability-note')).toHaveText(messages.availableNotice(chapterManifest.length));
         const links = page.locator('.available-chapters a');
-        await expect(links).toHaveCount(chapterManifest.length);
-        for (const [index, chapter] of chapterManifest.entries()) {
+        const entries = readableEdition(locale);
+        await expect(links).toHaveCount(entries.length);
+        for (const [index, chapter] of entries.entries()) {
           await expect(links.nth(index).locator('.directory-chapter-title')).toHaveText(messages.chapterLabels[chapter.id] ?? chapter.title);
-          await expect(links.nth(index)).toHaveAttribute('href', at(chapterPath(chapter)));
-          await expect(links.nth(index)).toHaveAttribute('hreflang', 'zh');
+          await expect(links.nth(index)).toHaveAttribute('href', at(chapterPath(chapter, locale)));
+          await expect(links.nth(index)).toHaveAttribute('hreflang', locale);
           if (!messages.chapterLabels[chapter.id]) await expect(links.nth(index).locator('.directory-chapter-title')).toHaveAttribute('lang', 'zh-CN');
         }
         if (locale === 'en') await expect(page.locator('.reading-index')).toContainText(messages.englishUnavailable);
@@ -288,11 +309,11 @@ test('approved browser chapter renders illustrative source safely and every inde
       await expect(page.locator(`[id="${entry.headingId}"]`)).toBeFocused();
     }
     if (width < 900) await page.locator('.chapter-header-menu > summary').click();
-    await page.getByRole('link', { name: 'Switch to English', exact: true }).click();
-    await expect(page).toHaveURL(new RegExp(`${at('/read/')}$`));
-    await expect(page.locator('.reading-index')).toContainText(getMessages('en').englishUnavailable);
-    const missingEnglish = await request.get(at('/read/browser-foundations/'));
-    expect(missingEnglish.status()).toBe(404);
+    await page.getByRole('link', { name: getMessages('zh').switchLabel, exact: true }).click();
+    await expect(page).toHaveURL(new RegExp(`${at('/read/')}[^/]+/$`));
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    const availableEnglish = await request.get(at('/read/browser-foundations/'));
+    expect(availableEnglish.status()).toBe(200);
   }
 });
 
@@ -338,8 +359,10 @@ test('entry, truthful availability, approved chapters, previous/next and static 
   await expect(page).toHaveTitle('Vibe Coding, Then What?');
   await page.getByRole('link', { name: /Browse chapters/ }).click();
   await expect(page).toHaveURL(new RegExp(`${at('/read/')}$`));
-  await expect(page.getByText('English chapters are not available yet.', { exact: false })).toBeVisible();
+  await expect(page.getByText(getMessages('en').englishUnavailable, { exact: false })).toBeVisible();
   await page.locator('.available-chapters').getByRole('link', { name: getMessages('en').chapterLabels[opening.id], exact: true }).click();
+  await expect(page.locator('article')).toHaveAttribute('data-source-sha256', englishEditions.opening.sha256);
+  await page.getByRole('link', { name: getMessages('en').readOriginal, exact: true }).click();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(opening.title);
   await expect(page.locator('article')).toHaveAttribute('data-source-sha256', opening.sha256);
   await expect(page.locator('article')).not.toContainText('中文初稿 · 待 review');
@@ -356,8 +379,8 @@ test('entry, truthful availability, approved chapters, previous/next and static 
   await expect(page).toHaveURL(new RegExp(`${at(chapterPath(g01))}$`));
   await page.locator('.chapter-pagination a[rel="prev"]').click();
   await expect(page).toHaveURL(new RegExp(`${at(chapterPath(opening))}$`));
-  await page.getByRole('link', { name: 'Switch to English', exact: true }).click();
-  await expect(page).toHaveURL(new RegExp(`${at('/read/')}$`));
+  await page.getByRole('link', { name: getMessages('zh').switchLabel, exact: true }).click();
+  await expect(page).toHaveURL(new RegExp(`${at(chapterPath(opening, 'en'))}$`));
   const missing = await request.get(at('/not-a-reviewed-chapter/'));
   expect(missing.status()).toBe(404);
   const body = await missing.text();
@@ -465,12 +488,21 @@ test('English search is honest and never fetches another-language corpus', { tag
   await page.goto(at('/read/'));
   await page.getByRole('button', { name: 'Search chapters', exact: true }).click();
   const dialog = page.getByRole('dialog');
-  await expect(dialog.getByRole('status')).toHaveText('No English chapters are available to search yet.');
+  await expect(dialog.getByRole('status')).toHaveText('Search published chapters');
+  await dialog.getByRole('searchbox').fill('browser');
+  const hits = dialog.locator('.search-results a');
+  await expect(hits.first()).toBeVisible();
+  const fullTexts = readableEdition('en').filter(entry => englishEditions[entry.id].source).map(entry => at(chapterPath(entry, 'en')));
+  expect(await hits.evaluateAll(links => links.map(link => link.pathname))).toEqual(expect.arrayContaining([at(chapterPath(browserChapter, 'en'))]));
+  for (const href of await hits.evaluateAll(links => links.map(link => link.pathname))) expect(fullTexts).toContain(href);
+  await dialog.getByRole('searchbox').fill('unfindable-zzzz');
+  await expect(dialog).toContainText('No matching published content');
   await expect(dialog.locator('.search-results a')).toHaveCount(0);
-  expect(resources).toEqual([]);
-  await dialog.getByRole('link', { name: /Browse Chinese chapters/ }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText(getMessages('zh').directory.title);
-  await expect(page).toHaveURL(new RegExp(`${at('/zh/read/')}$`));
+  expect(resources.length).toBeGreaterThan(0);
+  expect(resources.every(url => url.includes('/search-index/en.json'))).toBe(true);
+  await dialog.getByRole('link', { name: /Browse English chapters/ }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(getMessages('en').directory.title);
+  await expect(page).toHaveURL(new RegExp(`${at('/read/')}$`));
 });
 
 async function chooseAppearance(page, label) {
@@ -553,7 +585,7 @@ test('copy denial reveals a real manual URL and correction is deliberate preview
   await page.goto(`${at(chapterPath(g01))}?discard=private#old`);
   const actions = page.locator('.section-actions').nth(1);
   const headingId = await actions.getAttribute('data-heading-id');
-  await actions.locator('summary').click();
+  await actions.locator(':scope > summary').click();
   await actions.getByRole('button', { name: '复制本节链接', exact: true }).click();
   const expected = new URL(at(chapterPath(g01)), baseURL); expected.hash = encodeURIComponent(headingId);
   await expect(actions.getByRole('textbox', { name: '本节链接', exact: true })).toHaveValue(expected.href);
@@ -820,8 +852,8 @@ test('V2 accent bootstrap, refresh, OS, cross-tab and quota failures preserve in
   await expect(page.locator('html')).toHaveAttribute('data-theme-preference', 'system');
 });
 
-for (const javaScriptEnabled of [true, false]) test(`reviewed source identity and legacy section links work with JavaScript ${javaScriptEnabled ? 'on' : 'off'}`, async ({ browser }, testInfo) => {
-  const context = await browser.newContext({ javaScriptEnabled });
+for (const javaScriptEnabled of [true, false]) test(`reviewed source identity and legacy section links work with JavaScript ${javaScriptEnabled ? 'on' : 'off'}`, async ({ browser, baseURL }, testInfo) => {
+  const context = await browser.newContext({ baseURL, javaScriptEnabled });
   const page = await context.newPage();
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -868,7 +900,7 @@ for (const javaScriptEnabled of [true, false]) test(`reviewed source identity an
     for (const width of [1440, 390, 320]) {
       await page.setViewportSize({ width, height: 844 });
       for (const id of [legacyId, canonicalId]) {
-        await page.goto(`http://127.0.0.1:4179${at(chapterPath(opening))}#${encodeURIComponent(id)}`);
+        await page.goto(`${at(chapterPath(opening))}#${encodeURIComponent(id)}`);
         const target = page.locator(`[id="${id}"]`);
         await expect(target).toBeFocused();
         await expect(page.locator('article')).toHaveAttribute('data-source-sha256', opening.sha256);
@@ -897,13 +929,13 @@ for (const javaScriptEnabled of [true, false]) test(`reviewed source identity an
     if (javaScriptEnabled) {
       for (const width of [390, 320]) {
         await page.setViewportSize({ width: 1440, height: 844 });
-        await page.goto(`http://127.0.0.1:4179${at(chapterPath(opening))}#${encodeURIComponent(canonicalId)}`);
+        await page.goto(`${at(chapterPath(opening))}#${encodeURIComponent(canonicalId)}`);
         await expect(page.locator('.chapter-layout')).toHaveAttribute('data-enhanced', 'true');
         await expect(page.locator('.chapter-header-menu')).toHaveAttribute('data-compact', 'false');
         await assertFragmentLanding(canonicalId);
         await page.evaluate(() => { window.__holdFragmentResize = true; });
         await page.setViewportSize({ width, height: 844 });
-        await page.goto(`http://127.0.0.1:4179${at(chapterPath(opening))}#${encodeURIComponent(legacyId)}`);
+        await page.goto(`${at(chapterPath(opening))}#${encodeURIComponent(legacyId)}`);
         const beforeRelease = await fragmentGeometry(legacyId);
         await page.evaluate(() => {
           window.__holdFragmentResize = false;
@@ -926,16 +958,16 @@ for (const javaScriptEnabled of [true, false]) test(`reviewed source identity an
       await page.evaluate(() => new Promise(resolve => new window.ResizeObserver((_, observer) => { observer.disconnect(); window.requestAnimationFrame(resolve); }).observe(window.document.querySelector('.reading-tools'))));
       expect(await page.evaluate(() => window.__fragmentScrollCalls)).toBe(0);
     }
-    const response = await page.request.get(`http://127.0.0.1:4179${at('/search-index/zh.json')}`);
+    const response = await page.request.get(`${at('/search-index/zh.json')}`);
     const index = await response.json();
-    expect(index.entries).toHaveLength((await loadBook()).reduce((total, chapter) => total + chapter.headingIds.length, 0));
+    expect(index.entries).toHaveLength(221);
     expect(index.entries.some(entry => entry.headingId === legacyId)).toBe(false);
     for (const entry of chapterManifest) {
       expect(index.entries.filter(item => item.chapterId === entry.id).every(item => item.sourceHash === entry.sha256)).toBe(true);
     }
     for (const locale of ['en', 'zh']) {
       const messages = getMessages(locale);
-      await page.goto(`http://127.0.0.1:4179${at(locale === 'en' ? '/' : '/zh/')}`);
+      await page.goto(`${at(locale === 'en' ? '/' : '/zh/')}`);
       await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', messages.description);
       await expect(page.locator('h1')).toHaveText(messages.titleLines.join(''));
     }
@@ -1069,9 +1101,9 @@ test('V2 nearby navigation closes without scrolling, coordinates overlays and re
     await summary.focus(); await summary.press('Enter');
     await expect(page.locator('.appearance-panel')).not.toBeVisible(); await expect(book).toHaveAttribute('open', '');
     await summary.press('Escape');
-    await menuSummary.click(); await menu.getByRole('link', { name: 'Switch to English', exact: true }).click();
-    await expect(page).toHaveURL(new RegExp(`${at('/read/')}$`));
-    await page.locator('.available-chapters a').nth(1).click();
+    await menuSummary.click(); await menu.getByRole('link', { name: getMessages('zh').switchLabel, exact: true }).click();
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    await page.getByRole('link', { name: getMessages('en').readOriginal, exact: true }).click();
     await expect(page.locator('article')).toHaveAttribute('data-chapter-id', g01.id);
     await expect(page.locator('.chapter-header-menu')).toHaveAttribute('data-compact', 'true');
   }
@@ -1128,11 +1160,11 @@ test('V2 real chapter remains readable across appearances, accents, widths and e
   await attachGeometry(testInfo, 'reader-widths', measurements);
 });
 
-test('V2 static navigation retains real chapters and headings without JavaScript', { tag: '@smoke' }, async ({ browser }) => {
-  const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+test('V2 static navigation retains real chapters and headings without JavaScript', { tag: '@smoke' }, async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ baseURL, javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const page = await context.newPage();
   try {
-    await page.goto(`http://127.0.0.1:4179${at(chapterPath(opening))}`);
+    await page.goto(`${at(chapterPath(opening))}`);
     await page.locator('.mobile-book-navigation summary').click();
     await page.locator('.mobile-book-navigation').getByRole('link', { name: new RegExp(g01.title) }).click();
     await expect(page.locator('article h1')).toHaveText(g01.title);
@@ -1165,6 +1197,8 @@ test('V2 breakpoint focus does not override a deliberate click away from the des
 test('V2 home uses approved local art and real localized reading rows across viewports and appearance', async ({ page }, testInfo) => {
   const observations = [];
   for (const locale of ['en', 'zh']) for (const [width, mode] of [[1440,'light'],[390,'dark'],[320,'light']]) {
+    const entries = readableEdition(locale);
+    const parts = readingParts(entries, locale).filter(part => !['part-0', 'part-9'].includes(part.id));
     const m = getMessages(locale), copy = homeContent[locale];
     await page.setViewportSize({ width, height: 1000 });
     await page.goto(at(locale === 'en' ? '/' : '/zh/'));
@@ -1175,13 +1209,13 @@ test('V2 home uses approved local art and real localized reading rows across vie
     await expect(page.locator('h1')).toHaveCount(1);
     await expect(page.locator('h1')).toHaveText(m.titleLines.join(''));
     await expect(page.locator('.home-hero-copy .intro')).toHaveText(m.description);
-    await expect(page.locator('.home-chapters a')).toHaveCount(chapterManifest.length);
+    await expect(page.locator('.home-chapters a')).toHaveCount(entries.length);
     await expect(page.locator('.home-hero-copy .eyebrow')).toHaveCount(0);
-    await expect(page.locator('.home-chapters li')).toHaveCount(chapterManifest.length);
+    await expect(page.locator('.home-chapters li')).toHaveCount(entries.length);
     await expect(page.locator('.home-chapters li > div > span, .home-sidebar .reading-nav__availability')).toHaveCount(0);
     await expect(page.locator('.home-topics li p')).toHaveCount(0);
-    await expect(page.locator('.home-topics li')).toHaveCount(8);
-    await expect(page.locator('.home-topics a')).toHaveCount(8);
+    await expect(page.locator('.home-topics li')).toHaveCount(parts.length);
+    await expect(page.locator('.home-topics a')).toHaveCount(parts.length);
     const image = page.getByRole('img', { name: copy.illustrationAlt, exact: true });
     await image.scrollIntoViewIfNeeded(); await image.evaluate(element => element.decode());
     const geometry = await image.evaluate(element => {
@@ -1250,13 +1284,24 @@ test('V2 home keyboard navigation, real search, language menu and enlarged text 
 });
 
 
-test('V2 homepage keeps native art, chapter links and desktop collapse available without JavaScript', async ({ browser }) => {
-  const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+test('V2 homepage keeps native art, chapter links and desktop collapse available without JavaScript', async ({ browser, baseURL }) => {
+  const context = await browser.newContext({ baseURL, javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const page = await context.newPage();
   try {
     for (const locale of ['en', 'zh']) {
-      await page.setViewportSize({ width: 390, height: 844 }); await page.goto(`http://127.0.0.1:4179${at(locale === 'en' ? '/' : '/zh/')}`);
-      await expect(page.locator('.home-chapters a')).toHaveCount(chapterManifest.length);
+      await page.setViewportSize({ width: 390, height: 844 }); await page.goto(`${at(locale === 'en' ? '/' : '/zh/')}`);
+      const entries = readableEdition(locale);
+      await expect(page.locator('.home-chapters a')).toHaveCount(entries.length);
+      const shelf = page.locator('#books');
+      const home = at(locale === 'en' ? '/' : '/zh/');
+      const companion = at(locale === 'en' ? '/books/everyday-life/' : '/zh/books/everyday-life/');
+      await expect(shelf.locator('a')).toHaveCount(2);
+      await expect(shelf.locator('a[aria-current="page"]')).toHaveAttribute('href', home);
+      await shelf.locator(`a[href="${companion}"]`).click();
+      await expect(page).toHaveURL(new URL(companion, baseURL).href);
+      await expect(page.locator('html')).toHaveAttribute('lang', getMessages(locale).lang);
+      await page.goBack();
+      await expect(shelf).toBeAttached();
       await expect(page.getByRole('img', { name: homeContent[locale].illustrationAlt })).toBeVisible();
       const switchLink = page.getByRole('link', { name: getMessages(locale).switchLabel, exact: true });
       await expect(switchLink).toBeVisible();
@@ -1266,7 +1311,7 @@ test('V2 homepage keeps native art, chapter links and desktop collapse available
       await expect(page.locator('.home-navigation')).not.toHaveAttribute('open', '');
       await page.locator('.home-navigation > summary').click();
       await page.locator('.home-chapters a').last().click();
-      await expect(page.locator('article')).toHaveAttribute('data-source-sha256', closing.sha256);
+      await expectChapterDestination(page, entries.at(-1), locale);
     }
   } finally { await context.close(); }
 });
@@ -1366,18 +1411,19 @@ test('V2 directory shows only real localized Chinese reading rows across viewpor
     await expect(page.locator('#contents-title')).toHaveText(m.directory.title);
     await expect(page.locator('.reading-index > .availability-note')).toHaveText(m.availableNotice(chapterManifest.length));
     await expect(page.locator('#directory-available')).toHaveText(m.directory.available);
+    const entries = readableEdition(locale);
     const links = page.locator('.available-chapters a');
-    await expect(links).toHaveCount(chapterManifest.length);
-    for (const [index, chapter] of chapterManifest.entries()) {
-      await expect(links.nth(index)).toHaveAttribute('href', at(chapterPath(chapter)));
-      await expect(links.nth(index)).toHaveAttribute('hreflang', 'zh');
+    await expect(links).toHaveCount(entries.length);
+    for (const [index, chapter] of entries.entries()) {
+      await expect(links.nth(index)).toHaveAttribute('href', at(chapterPath(chapter, locale)));
+      await expect(links.nth(index)).toHaveAttribute('hreflang', locale);
       await expect(links.nth(index)).toHaveAccessibleName(m.chapterLabels[chapter.id] ?? chapter.title);
-      await expect(links.nth(index)).toHaveAccessibleDescription(m.chineseEdition);
-      await expect(links.nth(index).locator('.directory-chapter-language')).toHaveText(`${m.directory.openChinese} →`);
+      await expect(links.nth(index)).toHaveAccessibleDescription(locale === 'en' ? 'English editions' : m.chineseEdition);
+      await expect(links.nth(index).locator('.directory-chapter-language')).toHaveText(`${locale === 'en' ? englishStatus(chapter.id) : '中文'} →`);
       if (m.chapterBenefits[chapter.id]) await expect(page.locator('.available-chapters li').nth(index).locator('p')).toHaveText(m.chapterBenefits[chapter.id]);
       expect((await links.nth(index).boundingBox()).height).toBeGreaterThanOrEqual(44);
     }
-    await expect(page.locator('.directory-chapters h3')).toHaveText(readingParts(chapterManifest, locale).map(part => part.title));
+    await expect(page.locator('.directory-chapters h3')).toHaveText(readingParts(entries, locale).map(part => part.title));
     if (locale === 'en') await expect(page.locator('.reading-index')).toContainText(m.englishUnavailable);
     const sidebar = page.locator('.directory-sidebar');
     if (width === 1440) {
@@ -1402,15 +1448,20 @@ test('V2 directory keyboard links, locale changes, search, appearance and enlarg
   for (const locale of ['en', 'zh']) {
     const m = getMessages(locale), route = at(locale === 'en' ? '/read/' : '/zh/read/');
     await page.setViewportSize({ width: 1440, height: 950 });
-    // The export check covers every destination. Exercise keyboard activation at the
-    // beginning, middle and end without making the browser timeout depend on book length.
-    for (const index of new Set([0, Math.floor(chapterManifest.length / 2), chapterManifest.length - 1])) {
-      const chapter = chapterManifest[index];
+    const entries = readableEdition(locale);
+    // Full link coverage lives in the export check. Exercise keyboard navigation at
+    // the start, middle and end so the interaction test stays bounded as the book grows.
+    for (const index of new Set([0, Math.floor(entries.length / 2), entries.length - 1])) {
+      const chapter = entries[index];
       await page.goto(route);
       const link = page.locator('.available-chapters a').nth(index);
       await link.focus(); await expect(link).toBeFocused(); await link.press('Enter');
-      await expect(page).toHaveURL(new URL(at(chapterPath(chapter)), page.url()).href);
-      await expect(page.locator('article')).toHaveAttribute('data-source-sha256', chapter.sha256);
+      await expectChapterDestination(page, chapter, locale);
+      for (const [rel, neighbor] of [['prev', entries[index - 1]], ['next', entries[index + 1]]]) {
+        const pager = page.locator(`.chapter-pagination a[rel="${rel}"]`);
+        if (neighbor) await expect(pager).toHaveAttribute('href', at(chapterPath(neighbor, locale)));
+        else await expect(pager).toHaveCount(0);
+      }
     }
     await page.goto(route);
     await page.getByRole('button', { name: locale === 'en' ? 'Search chapters' : '搜索章节', exact: true }).click();
@@ -1455,8 +1506,10 @@ test('V2 directory retains real chapter routes and bilingual 404 without JavaScr
     for (const locale of ['en', 'zh']) {
       await page.goto(at(locale === 'en' ? '/read/' : '/zh/read/'));
       await expect(page.locator('#contents-title')).toHaveText(getMessages(locale).directory.title);
-      const links = page.locator('.available-chapters a'); await expect(links).toHaveCount(chapterManifest.length);
-      await links.last().click(); await expect(page.locator('article')).toHaveAttribute('data-source-sha256', closing.sha256);
+      const entries = readableEdition(locale);
+      const links = page.locator('.available-chapters a'); await expect(links).toHaveCount(entries.length);
+      await links.last().click();
+      await expectChapterDestination(page, entries.at(-1), locale);
       await page.setViewportSize({ width: 1440, height: 950 });
       await page.goto(at(locale === 'en' ? '/read/' : '/zh/read/'));
       await page.locator('.directory-sidebar a').first().click();

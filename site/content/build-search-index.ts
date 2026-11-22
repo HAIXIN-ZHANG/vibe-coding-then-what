@@ -1,6 +1,7 @@
 import type { Nodes } from 'mdast';
+import type { BookId } from '../config/books.ts';
 import type { Locale } from '../config/i18n.ts';
-import type { LoadedChapter } from './load-book.ts';
+import { loadedChaptersForBook, type LoadedChapter } from './load-book.ts';
 import type { SearchEntry, SearchIndex } from './search.ts';
 import { chapterPath } from './manifest.ts';
 import { nodeText } from './markdown.ts';
@@ -11,9 +12,9 @@ function publicText(node: Nodes): string {
   return node.type === 'break' ? ' ' : '';
 }
 
-export function buildSearchIndex(chapters: readonly LoadedChapter[], locale: Locale): SearchIndex {
+export function buildSearchIndex(chapters: readonly LoadedChapter[], locale: Locale, bookId: BookId = 'work'): SearchIndex {
   const entries: SearchEntry[] = [];
-  for (const chapter of chapters.filter(item => item.entry.locale === locale)) {
+  for (const chapter of loadedChaptersForBook(chapters, bookId).filter(item => item.entry.locale === locale)) {
     let current: SearchEntry | undefined;
     for (const node of chapter.tree.children) {
       if (node.type === 'heading') {

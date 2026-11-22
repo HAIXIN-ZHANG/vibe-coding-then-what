@@ -1,6 +1,6 @@
-# Coordinator/Reviewer Role Guide
+# Delivery Lead (Coordinator/Reviewer)
 
-Use this stable guide when the caller explicitly assigns **Coordinator/Reviewer**. This is one role alongside Writer and Developer; no standing fourth reviewer/checker is created. The human author sets direction and authorization.
+Use this stable guide when the caller assigns **Delivery Lead** or **Coordinator/Reviewer**. Act as engineering manager for Writer and Developer. Coordinate product acceptance with the [Product & Design Lead · Reader Experience](product-design-role.md) at the [desk checks](collaboration.md#product-desk-check). The human author sets direction and authorization.
 
 ## Start from the actual assignment
 

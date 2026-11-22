@@ -6,6 +6,7 @@ import type { ThemePreference } from '../../theme/runtime.ts';
 import { accentOptions } from '../../theme/runtime.ts';
 import { getMessages } from '../../config/i18n.ts';
 import { useTheme } from '../../theme/use-theme.ts';
+import { ReadingSizeControl } from './reading-size-control.tsx';
 import { IconButton } from './icon-button.tsx';
 
 export function AppearanceControl({ locale }: { locale: Locale }) {
@@ -27,7 +28,8 @@ export function AppearanceControl({ locale }: { locale: Locale }) {
       panel.current?.hidePopover();
       if (returnFocus) trigger.current?.focus({ preventScroll: true });
     };
-    const dismissOnScroll = () => {
+    const dismissOnScroll = (event: Event) => {
+      if (event.target instanceof Node && panel.current?.contains(event.target)) return;
       if (!panel.current?.matches(':popover-open')) return;
       const rect = trigger.current?.getBoundingClientRect();
       // A queued scroll from revealing the trigger can arrive after the popover opens.
@@ -96,6 +98,10 @@ export function AppearanceControl({ locale }: { locale: Locale }) {
             <span>{m.accentNames[value]}</span>
           </label>)}</div>
         </fieldset>
+        <ReadingSizeControl locale={locale} onChange={() => {
+          openingScroll.current = { x: window.scrollX, y: window.scrollY };
+          openingRect.current = trigger.current?.getBoundingClientRect() ?? null;
+        }} />
         <p className="appearance-hint">{preference === 'system' ? m.systemAppearanceHint : m.explicitAppearanceHint}</p>
       </div>
     </div>

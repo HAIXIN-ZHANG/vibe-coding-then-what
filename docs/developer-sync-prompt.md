@@ -20,6 +20,8 @@ For interruption recovery, read the same handoff and actual review. Check done/n
 
 ## Deliver and revise
 
+For a reader-visible change, give the Delivery Lead the preview for the exact revision, one main path, an edge case and any untested environment. The Delivery Lead requests the [reader desk check](collaboration.md#product-desk-check).
+
 Start one [task brief/handoff](handoffs/TEMPLATE.md) at assignment; append evidence, limits and revisions there. Freeze reviewable files and directly send Coordinator its path, revision, scope, verification and open questions. No background watcher or repeated receipt loop is implied; report failed delivery.
 
 Findings return to Developer for scoped correction in the same report. Coordinator inspects actual revisions and records closure; delivery is not acceptance and changed work does not inherit old approval. Continue only to an explicitly authorized next step after acceptance. Coordinator manages Git operations and integration; Developer does not self-approve or merge. Release remains separate.

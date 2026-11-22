@@ -1,3 +1,4 @@
+import { loadEnglishBook } from '../site/content/load-english.ts';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { loadBook } from '../site/content/load-book.ts';
@@ -62,7 +63,7 @@ test('language boundaries never fall back to a different corpus', () => {
   assert.deepEqual(searchEntries(english, '状态', 'en'), []);
   assert.deepEqual(searchEntries({ ...chinese, entries: chinese.entries.map(entry => ({ ...entry, locale: 'en' })) }, '状态', 'zh'), []);
   assert.throws(() => readSearchIndex(chinese, 'en'));
-  assert.throws(() => readSearchIndex({ ...english, entries: [{ ...chinese.entries[0], locale: 'en' }] }, 'en'), /English corpus/);
+  assert.throws(() => readSearchIndex({ ...english, entries: [{ ...chinese.entries[0], locale: 'en' }] }, 'en'), /Invalid search entry/);
 });
 
 test('ranking ties are stable and excerpts stay bounded near a real body match', () => {
@@ -205,4 +206,15 @@ test('chapter result priority is independent of how many exact-title terms boost
   assert.equal(results[1].kind, 'section');
   assert.ok(results[1].score > results[0].score, 'section relevance must not defeat explicit chapter priority');
   assert.ok(searchEntries(index, 'alpha bravo', 'zh').every(result => result.kind === 'section'));
+});
+
+test('English search contains only reviewed English headings and links back to that edition', async () => {
+  const reviewed = await loadEnglishBook(await loadBook());
+  const index = readSearchIndex(buildSearchIndex(reviewed, 'en'), 'en');
+  assert.deepEqual([...new Set(index.entries.map(entry => entry.chapterId))], reviewed.map(chapter => chapter.entry.id));
+  for (const chapter of reviewed) {
+    const results = searchEntries(index, chapter.title, 'en');
+    assert.ok(results.length && results.every(result => !result.href.startsWith('/zh/')));
+  }
+  assert.deepEqual(searchEntries(index, '周日的名单', 'en'), []);
 });

@@ -1,3 +1,4 @@
+import { englishEditions } from '../../site/content/english-edition.ts';
 import { test as base, expect } from '@playwright/test';
 import { loadBook } from '../../site/content/load-book.ts';
 import { readingLocator } from '../../site/content/reading-locator.ts';
@@ -55,6 +56,14 @@ test('Continue starts absent, records a deliberate section and returns only by e
     await page.goto(at(locale === 'zh' ? '/zh/read/' : '/read/'));
     const copy = getMessages(locale).continueReading;
     await expect(panel(page).getByRole('heading', { name: copy.title })).toBeVisible();
+    if (locale === 'en') {
+      const link = panel(page).getByRole('link');
+      await expect(link).toHaveAttribute('href', at(chapter.href.replace('/zh/', '/')));
+      await link.click();
+      await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+      expect(await snapshot(page)).toBe(raw(saved(chapter, heading.id)));
+      continue;
+    }
     await expect(panel(page)).toContainText(chapter.title);
     await expect(panel(page)).toContainText(heading.title);
     const link = panel(page).getByRole('link');
@@ -200,16 +209,16 @@ test('Continue responds to real local-storage changes while ignoring unrelated s
   await page.goto(at('/read/'));
   const other = await context.newPage(); await other.goto(at('/zh/read/'));
   await seed(other, raw(saved()));
-  await expect(panel(page)).toContainText(chapter.title);
+  await expect(panel(page)).toContainText(getMessages('en').chapterLabels[chapter.chapterId]);
   // Same-origin iframe sessionStorage events must not be confused with localStorage.
   await page.evaluate(({ key, next }) => {
     window.localStorage.setItem(key, next);
     window.dispatchEvent(new window.StorageEvent('storage', { key, storageArea: window.sessionStorage, newValue: next }));
     window.dispatchEvent(new window.StorageEvent('storage', { key: 'btf.theme', storageArea: window.localStorage, newValue: 'dark' }));
   }, { key: readingStorageKey, next: raw(saved(opening)) });
-  await expect(panel(page)).toContainText(chapter.title);
+  await expect(panel(page)).toContainText(getMessages('en').chapterLabels[chapter.chapterId]);
   await seed(other, null); await expect(panel(page)).toHaveCount(0);
-  await seed(other, raw(saved())); await expect(panel(page)).toContainText(chapter.title);
+  await seed(other, raw(saved())); await expect(panel(page)).toContainText(getMessages('en').chapterLabels[chapter.chapterId]);
   await other.evaluate(() => window.localStorage.clear()); await expect(panel(page)).toHaveCount(0);
   await other.close();
 });
@@ -228,7 +237,7 @@ test('Continue remains readable and keyboard reachable across locales, themes an
     await expect(page).toHaveTitle(`${getMessages(locale).contents} | ${getMessages(locale).title}`);
     await expect(page.locator('html')).toHaveAttribute('data-theme', mode);
     await expect(panel(page)).toBeVisible();
-    await expect(panel(page).locator('.continue-chapter')).toHaveAttribute('lang', 'zh-CN');
+    await expect(panel(page).locator('.continue-chapter')).toHaveAttribute('lang', getMessages(locale).lang);
     const link = panel(page).getByRole('link'); await link.focus();
     await page.keyboard.press('Tab'); await page.keyboard.press('Shift+Tab');
     await expect(link).toBeFocused();
@@ -250,9 +259,9 @@ test('no-JS directory and shared chapter links remain static without a Continue 
   for (const locale of ['en', 'zh']) {
     await page.goto(at(locale === 'zh' ? '/zh/read/' : '/read/'));
     await expect(panel(page)).toHaveCount(0);
-    await expect(page.locator('.available-chapters a')).toHaveCount(chapters.length);
+    await expect(page.locator('.available-chapters a')).toHaveCount(locale === 'zh' ? chapters.length : Object.keys(englishEditions).length);
     await page.locator('.directory-chapters a').nth(1).click();
-    await expect(page.locator('article')).toHaveAttribute('data-chapter-id', chapter.chapterId);
+    await expect(page.locator('article')).toHaveAttribute(locale === 'en' ? 'data-chapter-overview' : 'data-chapter-id', chapter.chapterId);
   }
   const id = chapter.headings[2].id;
   await page.goto(at(`${chapter.href}#${encodeURIComponent(id)}`));
@@ -301,5 +310,5 @@ test('Chinese homepage offers the deliberate saved position and restarts a stale
   await expect(link).toHaveAttribute('href', at(chapter.href));
   await expect(link).toHaveAccessibleDescription(/从章节开头/);
   await page.goto(at('/'));
-  await expect(page.getByRole('link', { name: 'Read in Chinese', exact: true })).toHaveAttribute('href', at(opening.href));
+  await expect(page.locator('.home-reading-action a')).toHaveAttribute('href', at(chapter.href.replace('/zh/', '/')));
 });

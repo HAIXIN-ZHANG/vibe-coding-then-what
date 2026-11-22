@@ -10,7 +10,7 @@ const commit = 'd390f53420f88deda0627328d140be058a91feac';
 
 test('release metadata exposes only exact public identities, canonical routes and reviewed hashes', () => {
   const metadata = createReleaseMetadata(commit, pagesBasePath);
-  assert.deepEqual(Object.keys(metadata), ['version', 'commit', 'basePath', 'chapters']);
+  assert.deepEqual(Object.keys(metadata), ['version', 'commit', 'basePath', 'english', 'chapters']);
   assert.deepEqual(metadata.chapters.map(item => item.sha256), chapterManifest.map(item => item.sha256));
   for (const item of metadata.chapters) assert.deepEqual(Object.keys(item), ['id', 'locale', 'route', 'sha256']);
   verifyReleaseMetadata(JSON.parse(JSON.stringify(metadata)), commit);
@@ -21,6 +21,7 @@ test('release metadata exposes only exact public identities, canonical routes an
     value => { value.chapters[0].id = 'unreviewed'; },
     value => { value.chapters[0].route = '/read/invented/'; },
     value => { value.chapters.pop(); },
+    value => { value.english[0].kind = 'overview'; },
     value => { value.source = '/private/path'; },
   ]) {
     const invalid = globalThis.structuredClone(metadata); change(invalid);

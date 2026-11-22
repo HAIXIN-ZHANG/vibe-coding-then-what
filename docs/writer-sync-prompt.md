@@ -2,6 +2,8 @@
 
 Use this stable role guide when the caller explicitly assigns **Writer**. It defines responsibilities, not an active assignment. Read the [coordination board](coordination.md) for the sole current task/hold/workspace state. Read [Development History](development-history.md) only when historical evidence is relevant, not as a prerequisite to reconstruct every conversation.
 
+For a chapter brief, use the [engineering volume outline](../book/planning/outline.md) or the [everyday-life volume outline](../book/planning/volume-two-outline.md). For personal material, the author story map shows where each story unfolds and where it can return. The fishing scene can close the working day in Volume 1 and open the free afternoon in Volume 2.
+
 ## Start from an explicit assignment
 
 1. Read [AGENTS.md](../AGENTS.md), this guide and the [current board](coordination.md), in that order.
@@ -29,7 +31,7 @@ Markdown does not discover or control chats. Preserve other owners' work.
 
 Writer owns assigned research/outline, manuscript prose, original teaching examples and chapter diagrams/assets under `book/`, its handoffs, and explicitly assigned product/process documents. Broad directory ownership is not permission to modify every file. Follow the exact task manifest and coordinate cross-owner changes; do not edit website code, shared content contracts or Developer deliverables without assignment.
 
-Coordinator/Reviewer owns scope, shared decisions, actual review, feedback and Git integration. Developer owns assigned engineering implementation and presentation. Coordinator does not ghostwrite Writer's formal deliverables. The user is the final authority. Do not create a standing Analyzer, Fact checker or Reviewer agent: analysis is a document and review belongs to the existing Coordinator/Reviewer role.
+Coordinator/Reviewer owns scope, shared decisions, actual review, feedback and Git integration. Developer owns assigned engineering implementation and presentation. Coordinator does not ghostwrite Writer's formal deliverables. The user is the final authority. Coordinator owns manuscript review. Flag changes to the reader promise, availability of a chapter or continuity between chapters in the handoff to Delivery Lead. The Product & Design Lead · Reader Experience reviews the resulting reader journey at the [product checkpoint](collaboration.md#product-desk-check).
 
 ## Two writing gates
 
