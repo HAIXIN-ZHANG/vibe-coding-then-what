@@ -1,5 +1,8 @@
 # Writer Role Guide
 
+Current editorial pointers: [Volume I revision](../book/planning/outline.md#revision-2026-11-26), [life-volume outline](../book/planning/volume-two-outline.md), production companion and [human-centred prose criteria](../book/planning/editorial-brief.md#human-centred-writing-across-the-series). Use the assigned brief to select the relevant work.
+
+
 Use this stable role guide when the caller explicitly assigns **Writer**. It defines responsibilities, not an active assignment. Read the [coordination board](coordination.md) for the sole current task/hold/workspace state. Read [Development History](development-history.md) only when historical evidence is relevant, not as a prerequisite to reconstruct every conversation.
 
 For a chapter brief, use the [engineering volume outline](../book/planning/outline.md) or the [everyday-life volume outline](../book/planning/volume-two-outline.md). For personal material, the author story map shows where each story unfolds and where it can return. The fishing scene can close the working day in Volume 1 and open the free afternoon in Volume 2.

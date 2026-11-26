@@ -1,6 +1,6 @@
 # Editorial Baseline: Vibe Coding, Then What?
 
-Updated: 2026-11-18 (Australia/Perth). Owner: Writer. The author confirmed v1 positioning for Junior–Senior Full-stack + AI Product Engineers and an eight-part content direction. [Vision](../../docs/project-vision.md) owns shared positioning; [outline](outline.md) owns the detailed page map; [roadmap](../../docs/roadmap.md) owns future dependencies; the [board](../../docs/coordination.md) alone owns current task/hold state.
+Updated: 2026-11-26 (Australia/Perth). Owner: Writer. This brief covers Volume 1. For Volume 2 use the [companion outline](volume-two-outline.md). The author confirmed v1 positioning for Junior–Senior Full-stack + AI Product Engineers and an eight-part content direction. [Vision](../../docs/project-vision.md) owns shared positioning; [outline](outline.md) owns the detailed page map; [roadmap](../../docs/roadmap.md) owns future dependencies; the [board](../../docs/coordination.md) alone owns current task/hold state.
 
 The former W01 three-part/45-chapter proposal is historical, superseded as an organizing framework. Its 45 entries remain traceable in the outline's legacy map and original handoff/Git history. Confirmation of v1 direction does not accept every page's research, prose, implementation or publication.
 
@@ -8,9 +8,10 @@ The former W01 three-part/45-chapter proposal is historical, superseded as an or
 
 | Item | Confirmed name |
 | --- | --- |
-| Chinese book | 《Vibe Coding 之后：能跑，然后呢？》 |
+| Chinese book | 《用 AI 写代码：能跑，然后呢？》 |
 | English book/project | Vibe Coding, Then What? |
 | Subtitle | Understanding the Systems We Build, and Learning to Live with What We Can’t Fully Control |
+| Chinese subtitle | 理解我们构建的系统，学会与无法完全掌控的事物共处 |
 | Repository slug | `vibe-coding-then-what` |
 | Maintainer and provenance | Jason Zhang; real-name legal/license/history records remain unchanged |
 | Chosen English pen name | Jar & Prince Explore the World |
@@ -47,6 +48,8 @@ The author confirmed the following direction after the P8.10 reading draft was c
 - **Small closing section:** move from everyday AI-era work (news/tool selection, permitted meeting/message summaries, bounded AI tasks) toward rest, another interest and life away from the screen; the latter is the main destination, not another productivity assignment. Important summaries distinguish source facts/inference and need checks/permission; deep collaboration stays in P8.10. Fishing/float-notification humor and alternatives such as walking, cooking or music are optional seeds, not author-outing facts, health/cost guarantees, monetization duties or tracking targets. [Board inputs](../../docs/coordination.md#current-assignment--revised-author-introduction) retain the longer examples and limits. Keep one small closing within the existing structure, with working titles only; no automatic 49th unit or life/career handbook, and no closing prose is assigned by this baseline update.
 
 The identity table above remains active, including the approved long subtitle and chosen pen names. Later cover-side copy and the candidates “和 AI 一起写代码，把系统和产品想明白” / “Making Sense of What We Build with AI” are not final wording. Approval of the broad direction does not replace the title/subtitle, accept all new prose word for word or authorize Git/publication. Preserve completed P810M review and its exact manuscript identity; later prose changes need affected review by the original-owner workflow.
+
+**Closing direction · 21 November.** Follow the [closing sequence](outline.md#opening-recurring-scenes-and-closing-movement) and the Chinese voice study. The opening wishes the book three to five good years. In the closing, imagine the author picking up the first edition to see which judgments aged well and whether he still prefers paper. His experience with work and technology gives him a point of view, and another reader of the same age may see things differently. Leave room for both.
 
 ## Readers: one text, layered depth
 
@@ -131,7 +134,11 @@ Explain principles before representative frameworks: separation of concerns, inf
 
 Maintain authored Chinese/English manuscripts with Chinese explanation review first and separate English adaptation. Preserve facts, premises, reasoning, conditions and code behavior while allowing natural sentence/paragraph/humor/analogy changes. Software handles corresponding navigation/status, not on-open machine translation of official prose. The accepted initial opening/G01 contract stays intact; broader language/asset/schema extensions need coordination. Formal planning/process text is English; the only Chinese process overview is the stage summary.
 
-Use official/primary sections and access dates for technical claims; distinguish documented behavior, experiments, experience, teaching assumptions and recommendations. The [planning sources](outline.md#planning-source-checks-not-chapter-research-approval) were checked only for the stated boundaries, not as completed research for all pages. The [Jiangren inventory](../../docs/research/jr-academy-topic-map.md) remains a dated coverage input, not proof of correctness or adoption. Earlier references to Design Systems, Atomic Design, DDIA, data engineering, SRE and AI books are not claims of complete reading. Independently express mechanisms and check license/attribution for actual reuse.
+Record primary sources, sections and access dates for technical claims in the chapter analysis; distinguish documented behavior, experiments, experience, teaching assumptions and recommendations. The [planning sources](outline.md#planning-source-checks-not-chapter-research-approval) were checked only for the stated boundaries, not as completed research for all pages. The [Jiangren inventory](../../docs/research/jr-academy-topic-map.md) remains a dated coverage input, not proof of correctness or adoption. Earlier references to Design Systems, Atomic Design, DDIA, data engineering, SRE and AI books are not claims of complete reading. Independently express mechanisms and check license/attribution for actual reuse.
+
+**Reader references.** Tell the story from the author's experience or from an explicitly imagined scenario. Design the product decision, failure, evidence and outcome independently. Draw diagrams from that scenario. Check licenses and credit actual reused or adapted material, including source imagery supplied to an illustration tool. Changing the protagonist, translating a paragraph or redrawing an identifiable diagram does not establish independent authorship.
+
+Link once where a reader benefits from checking a precise claim or discovering the origin of a named method. Prefer the standard, project documentation or framework creator. If a personal essay supplied a distinctive insight, metaphor or incident that survives in the text, credit its author. If its origin or reuse terms are unclear, omit the borrowed material or build a genuinely independent example from verified facts. Keep access dates and research notes in the analysis; show a date or version in prose when it changes what the reader can conclude. Follow any attribution terms attached to material actually reused. For an example of this edit, see the G01 reading draft.
 
 The opening's historical book-name replacement and subsequent AI-assisted-product entry, reader guidance and eight-part orientation have separate acceptance evidence in the [opening review](../../docs/reviews/beta1-opening-alignment.md). Its current approved r2 source hash is recorded in the [content contract](../../docs/content-contract.md); G01 and accepted F01A analysis retain their existing boundaries. Placement does not expand reviewed scope, change chapter IDs/slugs or approve a new manuscript. Historical original-analysis hashes are not current translation hashes. Follow [two-gate writing](chapter-workflow.md), task scope and current board holds.
 
@@ -141,17 +148,41 @@ The opening's historical book-name replacement and subsequent AI-assisted-produc
 
 The author selected the English pen name **Jar & Prince Explore the World** and Chinese pen name **缸子太子与世界**, and requested a matched Chinese/English cover study. These are chosen presentation bylines; the recorded human author and AI-creation provenance above remain. This documentation update does not alter existing reviewed manuscript credits, notices or website metadata.
 
-The two new raster studies retain the preferred soft grey-white background, person and two cats. Their proposed wording is recorded below for evaluation, separately from the confirmed identity table above. The studies do not replace the two previously retained White and Soft grey-white cover colourways, and do not establish a Figma update, editable typography or print-ready artwork. Social-sharing mosaic previews are not book-cover sources.
+The two new raster studies retain the preferred soft grey-white background, person and two cats. Their proposed wording is recorded below for evaluation, separately from the confirmed identity table above. At the time, both the White and Soft grey-white colourways remained available. The studies were raster proofs. Social-sharing mosaic previews are not book-cover sources.
 
 | Study language | Title shown | Subtitle shown | Decision state |
 | --- | --- | --- | --- |
 | English | Vibe Coding, Then What? | Understanding What We Build and Learning to Live with the Unexpected | English title unchanged; this alternate subtitle remains proposed |
 | Chinese | 代码跑起来，然后呢？ | 理解我们创造的系统，与意料之外的事友好相处 | This Chinese title/subtitle pair remains proposed |
 
-Until an explicit wording decision, retain the previously approved formal long English subtitle and current Chinese title as the active identity. The pen names are confirmed independently of the proposed title/subtitle changes. Do not turn a generated image's embedded text into a naming approval.
+The two studies above document the 18 November exploration. On 21 November the author confirmed **《用 AI 写代码：能跑，然后呢？》** as the Chinese title across the later A/B/C studies and current editions. The English title is **Vibe Coding, Then What?**. The earlier subtitle proposals remain proposals. See the current A/B/C cover files; the two earlier colourways have been retired.
+
+### Route C proof and bilingual editorial direction — 2026-11-21
+
+Use **C · Route** provisionally for the PDF. Keep the person, two cats, system route and restrained paper colour. Typeset the approved names from the identity table as live text. A, B and C are artwork candidates. Use the author-confirmed Chinese title across all three. The choice of C is provisional for this PDF.
+
+The [approved Chinese sample](samples/zh/tomorrow-voice-reference.md) remains the voice reference. It earns its humour by following a familiar action all the way to an awkward consequence. Let the narrator admit what they cannot know. Read transitions aloud and join fragments when the same thought continues. Keep precise verbs at technical boundaries: a button becoming clickable, a request arriving and a record being saved are different events. Check Chinese characters, punctuation and referents in context. In English, translate the speaker's intention and the observed consequence first. “包工头” can become “the person who takes the job from the first brief to handover”; the joke may land better one sentence later. Preserve the uncertainty, and test whether a reader of English alone can follow why the line is funny. The new voice study and role handoff supplements the approved specimen.
 
 ### Other proposed public copy
 
 Book names, the formal long subtitle and the audience/editorial direction above are confirmed. Concise marketing copy still needs author review. A possible description: **Stories and clear explanations connecting full-stack systems, product decisions and the experience of building with AI.** A lighter opening line remains: **The code works. What should we look at next?**
 
 These are original copy proposals, not quotations or a new README/site assignment. Do not promise job level, productivity, reliability or completed content. Historical earlier descriptions remain in Git; accepted v1 positioning supersedes their narrower audience/scope.
+
+## Technical precision and translation · 26 November 2026
+
+Use the [eight-part revision map](outline.md#revision-2026-11-26) for the author's latest whole-book feedback. Each substantive chapter should explain a mechanism, its assumptions and a condition that could change the outcome. Supply a worked example, short code/data excerpt or original explanatory diagram when it makes that reasoning inspectable. An identifier such as R17 or A17 must have a nearby meaning and a reference to its source record, figure or table.
+
+Provide short chapter orientations and a whole-book orientation/system map, with varied prose structure. Preserve the approved literary rhythm and restrained humour while making technical claims precise. Choose portable scenarios and role names for bilingual adaptation; construct original examples of familiar problems and check primary sources. Treat changed names or wording as insufficient evidence that a borrowed narrative is original.
+
+Develop the closing off-duty material through practical choices about information, review, stopping and rest, with the author's uncertainty and personal preferences intact. The life volume and production companion use their own [outline](volume-two-outline.md) and six-chapter treatment. Typography, finished art and PDF clarity are M4 proof work; explanatory content is part of the current revision specification.
+
+## Human-centred writing across the series
+
+Author direction confirmed 26 November 2026. These criteria also apply to the life volume and the production companion, with each book's outline setting its own subject and depth.
+
+- Let a person want something, make a plausible choice and experience its consequences. Explain the mechanism clearly enough that a reader can reason about a changed condition. Check whether each character and detail helps understanding.
+- Use natural paragraph rhythms, restrained humour and the author's actual doubts. Keep experiences and dialogue grounded in their stated sources. Technical precision and a human voice must support each other.
+- Adapt the shape of a chapter to its material. Review recurring stock openings, perfectly symmetrical lists, forced lessons, generic encouragement and endings that repeat what the story already showed. Retain useful structure where readers need it.
+- At the prose review, ask a reader to describe what happened, explain why and identify where they lost the thread or wanted an example. Mark simulated feedback as such and use author or reader responses to revise the next draft.
+- Adapt English for its audience and context, including the humour. Use concrete actions that travel across languages. Keep the distinction between observation, explanation and personal opinion clear.

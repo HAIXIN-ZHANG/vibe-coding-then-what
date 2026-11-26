@@ -1,6 +1,6 @@
 # Roadmap: Vibe Coding, Then What?
 
-Updated: 2026-11-22 (Australia/Perth). This roadmap records product decisions and dependencies. The [English contents](https://haixin-zhang.github.io/vibe-coding-then-what/read/) and [Chinese contents](https://haixin-zhang.github.io/vibe-coding-then-what/zh/read/) show which chapters can be read today. The [first release ledger](delivery/milestone-1.md) preserves the original release checks.
+Updated: 2026-11-26 (Australia/Perth). This roadmap records product decisions and dependencies. The [English contents](https://haixin-zhang.github.io/vibe-coding-then-what/read/) and [Chinese contents](https://haixin-zhang.github.io/vibe-coding-then-what/zh/read/) show which chapters can be read today. The [first release ledger](delivery/milestone-1.md) preserves the original release checks.
 
 Project/book: **Vibe Coding, Then What?** Repository slug: `vibe-coding-then-what`. Subtitle: **Understanding the Systems We Build, and Learning to Live with What We Can’t Fully Control**. The AI-assisted-product entry positioning does not change the content framework or Delivery Milestone scopes; current execution permissions belong in the board.
 
@@ -15,6 +15,12 @@ The vision owns positioning; Writer's outline owns proposed chapter-level detail
 **M4 has two separately indexed books.** Produce the professional multi-agent guide (about 60 A5 pages) with its three-version design plates, archived source PNGs, optional private .fig snapshots, comparison page and QR codes. In parallel, develop Volume II, the life book, through research, treatments, trial chapters and separately reviewed writing batches. The four design exports already secured belong to M4 preparation.
 
 **M5.** Formally release the reviewed life volume and produce stable reflowable EPUB editions. Each book follows its own editorial and production schedule.
+
+## Author-approved closeout and editorial calibration · 26 November 2026
+
+The current assignment covers recovery and inventory of local work, review and integration of accepted changes, and two independent Chinese revision samples. The [revision map](../book/planning/outline.md#revision-2026-11-26) strengthens the technical explanations and their consequences while retaining the approved voice. Part 2 follows evidence into a prototype decision. Part 4 makes the last-seat transaction inspectable through stated database assumptions and worked data. Both samples pass concept, manuscript and product review before chapter admission.
+
+The V3.1 design candidate still needs paired language coverage and real-use verification. Bilingual design completion and the new reader implementation remain subsequent tasks. Further life-volume and professional-guide prose retains its own scheduling boundary.
 
 ## Current priorities after the reader review
 

@@ -1,12 +1,12 @@
 # Vibe Coding, Then What? — coordination board
 
-Updated: 2026-11-22 (Australia/Perth). This is the sole live assignment/hold/workspace record. Read [AGENTS](../AGENTS.md) → explicit role guide → this board → task brief/necessary inputs. [Collaboration](collaboration.md) owns detailed workflow; reviews own acceptance and handoffs execution/recovery evidence.
+Updated: 2026-11-26 (Australia/Perth). This is the sole live assignment/hold/workspace record. Read [AGENTS](../AGENTS.md) → explicit role guide → this board → task brief/necessary inputs. [Collaboration](collaboration.md) owns detailed workflow; reviews own acceptance and handoffs execution/recovery evidence.
 
-## Current delivery
+## Current delivery · 26 November 2026
 
-Delivery Lead owns integration of the reviewed Volume I and the reading platform. Writer reviews language adaptations against their frozen source. Developer validates reading routes and production exports at the root and Pages prefix. The Product & Design Lead checks the reader journey at the exact candidate revision. Use the [release record](https://haixin-zhang.github.io/vibe-coding-then-what/release.json) for the deployed version and the [roadmap](roadmap.md) for later milestones.
+Delivery Lead owns recovery, inventory and reviewed integration from the current public main. Developer reviews engineering differences, and Writer reviews manuscript dispositions and prepares two independent Chinese calibration samples against the 51-entry edition. Concept review precedes prose, followed by factual, language and continuity review and Product's reader check. The [revision map](../book/planning/outline.md#revision-2026-11-26) describes the samples. The [release record](https://haixin-zhang.github.io/vibe-coding-then-what/release.json) identifies the deployed revision.
 
-The [release record](delivery/milestone-3.md) distinguishes the signed-off manuscript, the web edition and the listening sample. Check the public release identity before reporting deployment.
+The authorised scope is tasks 1–3. Task 4, paired bilingual design completion, and task 5, new reader implementation, remain unstarted. V3.1 is a design candidate with outstanding QA. Further life-volume and companion writing requires its own assignment.
 
 ## Historical coordination records
 

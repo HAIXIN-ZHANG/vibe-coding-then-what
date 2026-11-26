@@ -1,28 +1,28 @@
-# Vibe Coding, Then What?
+# Books on AI, work and everyday life
 
-**Understanding the Systems We Build, and Learning to Live with What We Can’t Fully Control**
+What happens after AI helps you finish something? These two books follow that question from different sides of the same screen. You can start with either one as it becomes available.
 
-**《用 AI 写代码：能跑，然后呢？》**
+### Vibe Coding, Then What? · 用 AI 写代码：能跑，然后呢？
 
-AI can help you turn an idea into something that works. This book connects the systems behind it with the experience of building alongside AI: choosing what to delegate, what to understand and what evidence to trust, while learning to work with uncertainty.
+*Understanding the Systems We Build, and Learning to Live with What We Can’t Fully Control*
 
-## Read what exists today
+A course website says “You’re enrolled.” The button worked. Is your name on the list? Follow a single sign-up through the interface, API and database, then see how an engineer can check what AI helped build. For developers who want to understand what happens beyond their part of a system.
 
-Start with the [introduction](https://haixin-zhang.github.io/vibe-coding-then-what/zh/read/before-we-start/) for why the book exists and how to read it. Then follow a course signup across the interface, service and database in [一个页面，究竟连着什么？](https://haixin-zhang.github.io/vibe-coding-then-what/zh/read/a-page-and-a-system/), and see what the browser does before a page can respond in [页面出现之前，浏览器在忙什么？](https://haixin-zhang.github.io/vibe-coding-then-what/zh/read/browser-foundations/).
+**Start reading in Chinese.** Open the [introduction](https://haixin-zhang.github.io/vibe-coding-then-what/zh/read/before-we-start/), follow the [course sign-up](https://haixin-zhang.github.io/vibe-coding-then-what/zh/read/a-page-and-a-system/), or see [how the browser turns a response into a page](https://haixin-zhang.github.io/vibe-coding-then-what/zh/read/browser-foundations/). The complete Chinese reading order contains 51 pieces, with a [downloadable A5 edition](https://haixin-zhang.github.io/vibe-coding-then-what/downloads/volume-one-zh-a5.pdf). The [English contents](https://haixin-zhang.github.io/vibe-coding-then-what/read/) offers the preface and browser chapter in full, plus two chapter introductions linking to the Chinese originals.
 
-The engineering volume follows one weekend course from signup to release and recovery. Read the [Chinese edition online](https://haixin-zhang.github.io/vibe-coding-then-what/zh/read/), browse the [complete manuscript in reading order](book/revisions/zh/volume-one-making-of/README.md), or [download the 209-page A5 edition](https://haixin-zhang.github.io/vibe-coding-then-what/downloads/volume-one-zh-a5.pdf). For English, the [English contents](https://haixin-zhang.github.io/vibe-coding-then-what/read/) shows the reading options in that edition.
+We are revising the book with reader feedback, adding clearer technical explanations, worked examples and connections between chapters.
 
-## Who is this for?
+### Where Does the Saved Time Go? · 省下来的时间，去哪儿了？
 
-The book is for Full-stack + AI Product Engineers from junior to senior. If you’ve built a feature and wondered what happens beyond the part you know best, you’ll find familiar questions here. You can start from the frontend, backend or experience building with AI.
+This time you’re the person whose name is missing. AI helps you write the email in a minute. Who can actually check the list? The second book follows questions like this into everyday life, from changes at work to what you might do with a free afternoon. No programming background needed.
 
-The book connects product decisions and interface design to APIs, data, background work, delivery and recovery. It covers both how to build AI into a product and how to use AI while writing, reviewing and verifying code. Recurring examples give you a way to follow those decisions across layers.
+**In development.** The first book’s published chapters are available above while this one is being written.
 
 See the [reader roadmap](docs/reader-roadmap.md) for what we’re working toward.
 
 ## About the author
 
-The book is written under the pen name **Jar & Prince Explore the World / 缸子太子与世界**. **Jason Zhang** maintains the project; a brief acknowledgment of AI's role in writing appears in the [introduction](book/revisions/zh/volume-one-making-of/00-before-we-start.md). Open to engineering opportunities and collaboration. Find Jason on [GitHub](https://github.com/HAIXIN-ZHANG).
+The books are written under the pen name **Jar & Prince Explore the World / 缸子太子与世界**. **Jason Zhang** maintains the project; a brief acknowledgment of AI's role in writing appears in the [introduction](book/revisions/zh/volume-one-making-of/00-before-we-start.md). Open to engineering opportunities and collaboration. Find Jason on [GitHub](https://github.com/HAIXIN-ZHANG).
 
 Questions, corrections and relevant sources are welcome through [GitHub issues](https://github.com/HAIXIN-ZHANG/vibe-coding-then-what/issues). See [contributing](CONTRIBUTING.md) for the review process and contribution expectations.
 
