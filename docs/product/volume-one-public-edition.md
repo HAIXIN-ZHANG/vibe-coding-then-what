@@ -1,6 +1,6 @@
 # Volume I public edition · product requirements
 
-Status: draft for scope and feasibility review. Prepared 26 November 2026 by Product & Design Lead · Reader Experience. Source checkout: integrated main `c50854f`. This document specifies the next reader-facing edition; it does not certify the current release or authorise every implementation slice. The [board](../coordination.md) owns assignments and the [release ledger](../delivery/milestone-3.md) owns delivered evidence.
+Status: draft for scope and feasibility review. Prepared 26 November 2026 by Product & Design Lead · Reader Experience. Originally prepared against integrated main `c50854f`; the M4 scope amendment below uses main `9742626` and author direction confirmed on 26 November 2026. This document specifies the next reader-facing edition; it does not certify the current release or authorise every implementation slice. The [board](../coordination.md) owns assignments and the [release ledger](../delivery/milestone-3.md) owns delivered evidence.
 
 ## Reader and purpose
 
@@ -28,7 +28,15 @@ Writer and Developer supplied separate read-only scope/capability audits on 26 N
 
 The first volume and its core reading paths take priority. The life volume and professional production guide have separate outlines and are not release prerequisites. Keep the existing second-book overview accurate; no new second-book chapters are required for this edition.
 
-Content requirements below apply only to the manuscript scope selected in O06 and assigned through the board. They do not authorise rewriting all 51 pieces, adding a system map, or expanding the closing chapter. For a two-sample release, apply them to those samples and their immediate joins; broader editorial work needs a separately approved scope.
+### Confirmed M4 first batch
+
+On 26 November 2026 the author accepted a Chinese-first revision: assess all eight parts against the deeper explanatory standard, improve weak sections and their connections, and preserve sound material rather than rewrite all 51 pieces. This is the direction for the revision round; the board assigns its individual batches.
+
+The current batch refines the two reviewed calibration chapters into reference samples, adds only necessary explanatory diagrams/tables, and checks the database example against available execution facilities. In parallel, pair the existing reader designs in EN and ZH for home, reading, contents, text settings and note/figure return. Reuse the published bilingual browser chapter for paired reading content; an English design specimen is not a new approved translation. Website implementation and the remaining manuscript batches follow review of these samples and designs and require their own concrete assignments.
+
+Preserve the current two full English adaptations and two overviews with accurate availability; full-book translation is not part of this batch. After the revision round stabilises, deliver a matching new PDF alongside that revised reading edition. Keep the identified 209-page comparison intact until then. These samples are not admitted web sources or a replacement PDF merely because this scope is confirmed.
+
+Content requirements below apply to the assigned chapters and their immediate joins. Reviewing the eight-part structure does not itself assign a new system map, expansion of the closing chapter, or a rewrite of every piece. Identify those changes from actual gaps before assigning them.
 
 Required outcomes for scope review:
 
@@ -45,11 +53,11 @@ Out of this edition's core implementation scope: accounts, cloud synchronisation
 
 Each chapter selected for revision opens with enough orientation to understand the question, supplies the conditions behind its mechanism, and gives a worked example or explanatory visual where prose alone is insufficient. A reader should be able to explain why the outcome happened and what would change it. Use flexible narrative structures rather than mechanically repeating five headings.
 
-If O06 includes whole-book revision, review how the eight parts connect and whether a whole-book orientation/system map is needed; creating that map requires an assigned task. Within the selected scope, give each revised part an understandable starting situation and resolve its problem before passing its consequences onward. Product and design decisions receive the same explanatory care as API, database, cloud and on-call work. Keep the discovery, experimental evidence and delivery decisions visible.
+The eight-part assessment should examine how the system and its decisions connect and whether a whole-book orientation/system map is needed; creating that map requires an assigned task. Within the selected scope, give each revised part an understandable starting situation and resolve its problem before passing its consequences onward. Product and design decisions receive the same explanatory care as API, database, cloud and on-call work. Keep the discovery, experimental evidence and delivery decisions visible.
 
 Original portable cases may supplement the course/handout thread. A familiar banking-transfer problem can explain an invariant without reworking someone else's distinctive story. State teaching assumptions, distinguish author experience from fictional dialogue, identify example records near their first use, and label referenced figures/tables. Keep source and reuse checks in the chapter workflow. The author's voice and meaning govern English adaptation, including humour; literal translation is insufficient.
 
-The two calibration chapters test evidence-to-design decisions and transaction/concurrency depth. Their acceptance does not approve all 51 revised pieces or a new PDF. If revision of the off-duty closing is included in O06, develop concrete choices and reflection without turning them into promises of employment, health or financial outcomes. The life volume carries the longer social exploration.
+The two calibration chapters test evidence-to-design decisions and transaction/concurrency depth. Their acceptance does not approve all 51 revised pieces or a new PDF. If a later batch assigns revision of the off-duty closing, develop concrete choices and reflection without turning them into promises of employment, health or financial outcomes. The life volume carries the longer social exploration.
 
 ## Reading journeys and acceptance scenarios
 
@@ -92,24 +100,24 @@ Before release, Delivery supplies exact source/build/commit identities and engin
 
 ## Decisions needed before release scope is frozen
 
-| ID | Open decision | Working treatment, not an approval | Owner / when |
+| ID | Decision or remaining detail | Current treatment and status | Owner / when |
 | --- | --- | --- | --- |
 | O01 | Public edition name/version | “Beta 1” is the author's candidate label; internal Delivery Milestone numbers and historical aliases stay unchanged | Author with Product, before release naming/copy |
-| O02 | Required launch languages and translation coverage | Preserve current accurate EN/ZH availability; do not promise all chapters in English | Author, informed by Writer, before translation scheduling/release gate |
-| O03 | Must the PDF update alongside the revised web edition? | Keep the identified 209-page comparison; never relabel it as the new manuscript | Author with Product/Delivery, before manuscript admission and release packaging |
+| O02 | Required launch languages and translation coverage | Confirmed for this round: Chinese first; retain two English adaptations and two overviews with accurate availability. No full translation batch | Writer/Delivery preserve availability; Product reviews language paths |
+| O03 | PDF and revised reading edition | Confirmed direction: synchronise a new PDF once the revision round is stable; preserve the 209-page comparison. Exact export and release batch still needs assignment and review | Writer/Developer prepare matching sources and export; Product/Delivery verify before release |
 | O04 | Real devices/browsers, type defaults and measurable acceptance | Use the proposed verification tasks to choose targets; do not invent a universal size or declare untested devices supported | Product/Developer and author, before design acceptance |
-| O06 | Manuscript depth included in this release | The two samples are reviewed candidates. Extending revision across all eight parts needs explicit batches; current drafts already cover all eight | Author with Product/Writer, before a release content list is frozen |
+| O06 | Manuscript depth included in this round | Confirmed direction: assess all eight parts and deepen weak areas, not a blanket rewrite. Current writing assignment covers only the two reference samples; later batches and the final release content list follow their review | Product/Writer identify gaps; Delivery assigns bounded batches |
 | O07 | Are executable database examples a public promise? | PG18 examples currently have source-backed reasoning and paper traces; no local dual-session PostgreSQL execution is claimed | Writer/Developer with Product, before describing the example as verified runnable |
 | O05 | Scope of new chapter/page gestures | Retain explicit next/previous and browser Back; a gesture study is optional | Product with author, only if a later slice proposes it |
 
-Open decisions do not prevent document review or the already authorised header repair. Any next design slice must identify which decisions it depends on. The [decision index](../decisions/README.md) records accepted direction separately from these proposals.
+O02, O03 and O06 record confirmed direction with the execution limits above; O01, O04, O05 and O07 remain unresolved. The header repair and requirements-document integration are complete at the amended baseline. Remaining open decisions do not prevent the assigned sample and paired-design work. Any next design slice must identify which decisions it depends on. The [decision index](../decisions/README.md) records accepted direction separately from these proposals.
 
 ## Delivery sequence
 
 1. Close the existing code fix and keep author main clean; preserve comparison sources.
 2. Review this PRD, the [migration table](document-migration.md) and decision records against Writer/Developer findings.
 3. Run a documentation-only recovery check; record the reviewer’s existing project experience and resolve ambiguity in the sources rather than a private explanation.
-4. Confirm the relevant open scope decisions, pair the designs and select one complete reading journey for implementation.
+4. Apply the confirmed first-batch scope, refine the two reference samples and pair the designs. Resolve relevant remaining decisions before assigning one complete reading journey for implementation.
 5. Review that journey on its exact candidate, then expand. Admit manuscripts and export artifacts only through their separate gates.
 
 The board owns who is working now. This sequence is not a second task queue. No date, business metric or universal method validation is promised.

@@ -1,0 +1,29 @@
+# M4 standard samples and paired design — batch brief
+
+26 November 2026 · Delivery coordinates the original Writer/Developer and Product's existing design side. [Board](../coordination.md) owns live assignments; [review](../reviews/m4-standard-samples.md) records judgments. Baseline: main 9742626edc8f4089c396a5c5e6b1e508886f98c2. Exact local workspaces are assigned privately by Delivery, never inferred from a chat cwd.
+
+## Inputs and already accepted work
+
+Part 2 sample `p2-one-less-click.md`: SHA-256 e56feacfb876fb9214bf7d032b863770e1bd3f9a2885bac42717e6fce5af3f16. Part 4 `p4-roll-call.md`: a759948b606a2f1ea6e8edf4e7905cdcde2fc83b029d3ae69b781c3069d45fb5. Both passed prior concept, manuscript and Product review as local samples; they are not website/PDF replacements. Delivery supplies verified copies while preserving the prior Writer worktree and all published sources.
+
+Read the actual samples, their status, the outline's revision map, editorial technical/translation criteria and approved Chinese voice sample. Part 2 already contains recruitment/interview/questionnaire, two paper prototypes, evidence worksheet, UI/API states and a bounded rollout/experiment. Part 4 already contains PG 18/Read Committed assumptions, two tables, partial uniqueness, bad/correct schedules, conditional transaction branches, zero-seat readback, cancellation and historical-outcome limits. Do not reinvent these as missing features.
+
+## Remaining delta and owner files
+
+**Writer:** submit a short remaining-delta and figure plan before changing prose. Refine the existing P2 worksheet/state-flow only if labels, source evidence or a reader's route need clarification; keep every explanatory addition after the prototype reveal. For P4, make the two-table relationship and conditional code branches easy to follow, using the same school/session/learner/enrolment identities and keeping code explanations adjacent. A compact relationship diagram or before/after row view must add information rather than repeat the interleaving table. Review portable role labels within the samples and their immediate joins without a whole-volume rename. Preserve good sentences; no word/page target. Own only the new `book/revisions/zh/volume-one-standard-samples-20261126/` candidate, necessary assets below it, and its Writer handoff. Old calibration copies and making-of sources are read-only.
+
+**Developer:** first inspect available binaries, versions and local container state. Never install/pull packages/images, contact external databases, send manuscripts externally or change shared services. If PostgreSQL is available, use a disposable cluster/database scoped to the assigned workspace and synthetic data, with two independent sessions and controlled ordering. An existing version other than 18 must be labelled accurately, with limits; do not report it as PG 18 evidence. If capability is absent, report exact findings and the smallest optional environment choices; continue preparing a no-new-dependency runnable harness/fixtures and expected results, explicitly unexecuted. Own only `examples/volume-one/last-seat/`, the Developer handoff and ignored local evidence. No website, package/dependency, CI or manuscript edits.
+
+Minimum case matrix: show the naive lost-seat invariant violation as a negative control; one winner/one zero-row loser; winner rollback followed by waiter success; last-seat same-person retry versus another full-capacity learner; capacity-two unique-conflict rollback; one-time cancellation and duplicate cancellation; cancel→new enrolment→late old cancellation targeting the old ID; missing/foreign-school rows and injected failure. Check committed rows and remaining+active=capacity, not messages alone. Preserve the distinction between current state and the historical request result. A proposed operation-history protocol is out of this chapter's scope. Record versions, isolation, commands, session order, observed wait/error/commit/rollback and limits. Prepare traceable script-to-prose correspondence, not a second unrelated example.
+
+**Product:** owns PRD and necessary PDR updates for O02/O03/O06 and reader verdicts. **Design side:** owns only `docs/design/reader-v3-1-bilingual-pairing.md` and the already assigned Figma work, under Product's design direction. Delivery adds discoverable links only after actual sources exist. Other design/current-role files remain read-only unless specifically returned for correction.
+
+## Gates and next boundary
+
+First checkpoint: actual owner acknowledgements, Writer delta/figure plan, Developer capability and case plan, Product scope revision and the first paired-design inventory. Delivery reviews changes needed, not the already passed chapters from scratch. After concept acceptance, Writer drafts and Delivery independently reviews facts, prose, examples/figures, paper links and adjacent joins; changed mechanisms return to Developer for affected evidence. Product receives the exact frozen samples/design for independent reader checks.
+
+Website implementation, sample admission, full-book writing, full translation and new whole-book PDF production do not start from this brief. Actual local database execution may remain unavailable; that cannot be labelled a pass or silently replaced by SQLite/paper reasoning. Preserve the 209-page comparison and clean author main. Integration and publication are separate scoped outcomes managed by Delivery.
+
+## Startup checkpoint
+
+The original Writer and Developer explicitly acknowledged the assigned workspaces and began input/environment verification. Product submitted its three scope documents; Delivery matched all submitted hashes and accepted their complete diff. The existing design side confirmed its clean `9742626` workspace and is pairing actual published bilingual F01 content. No new role was created. Exact local directory/branch identities and verified input-copy hashes are retained in Delivery's local registry.
