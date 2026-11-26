@@ -1,6 +1,6 @@
 # Vibe Coding, Then What? — v1 Content Framework
 
-Updated: 2026-11-17. Owner: Writer. **The author has confirmed the v1 positioning, Junior–Senior audience and eight-part direction.** This is the current content framework, replacing the former three-part/45-chapter proposal as the organizing plan. Working reading-page names and splits remain editable; this framework is not individual chapter research, manuscript, website or publication acceptance.
+Updated: 2026-11-26. Owner: Writer. **The author has confirmed the v1 positioning, Junior–Senior audience and eight-part direction.** This is the current content framework, replacing the former three-part/45-chapter proposal as the organizing plan. Working reading-page names and splits remain editable; this framework is not individual chapter research, manuscript, website or publication acceptance.
 
 Book/project: **Vibe Coding, Then What?** — **Understanding the Systems We Build, and Learning to Live with What We Can’t Fully Control**. Start from engineers who have built with AI and want to understand the systems behind their products. This branding entry preserves Junior–Senior Full-stack + AI Product Engineer coverage and the eight-part/48-adjustable-unit framework below; it is not a beginner-from-zero or complete-knowledge promise. The [editorial baseline](editorial-brief.md#author-confirmed-purpose-and-reading-experience) states the two connected themes of system understanding and useful AI collaboration amid wider uncertainty.
 
@@ -29,7 +29,7 @@ Keep the registration/handout thread where it carries cause and consequence. Use
 
 Add a short whole-book orientation and a system map that readers can revisit as each part adds a responsibility. Expand the closing movement around information overload, choosing and reviewing AI assistance, stopping experiments, and ordinary rest/hobbies. Keep the author's fishing and paper-book preferences as personal experience. The life volume carries the longer social and everyday-life exploration.
 
-Suggested calibration chapters are Part 2 discovery/prototyping and Part 4 transactions/data. They test different kinds of depth before scaling revision. These are proposed next assignments; the [board](../../docs/coordination.md) owns execution. Content and explanatory figure/table drafts precede final typography, illustration and PDF polish in M4. The report of blurry PDF text remains a symptom pending inspection of the actual file, font embedding and rendered/printed samples.
+Suggested calibration chapters are Part 2 discovery/prototyping and Part 4 transactions/data. They test different kinds of depth before scaling revision. These two samples are authorised in the current batch; the [board](../../docs/coordination.md) owns execution. Content and explanatory figure/table drafts precede final typography, illustration and PDF polish in M4. The report of blurry PDF text remains a symptom pending inspection of the actual file, font embedding and rendered/printed samples.
 
 ## Two-book series
 

@@ -1,6 +1,6 @@
 # Editorial Baseline: Vibe Coding, Then What?
 
-Updated: 2026-11-21 (Australia/Perth). Owner: Writer. This brief covers Volume 1. For Volume 2 use the [companion outline](volume-two-outline.md). The author confirmed v1 positioning for Junior–Senior Full-stack + AI Product Engineers and an eight-part content direction. [Vision](../../docs/project-vision.md) owns shared positioning; [outline](outline.md) owns the detailed page map; [roadmap](../../docs/roadmap.md) owns future dependencies; the [board](../../docs/coordination.md) alone owns current task/hold state.
+Updated: 2026-11-26 (Australia/Perth). Owner: Writer. This brief covers Volume 1. For Volume 2 use the [companion outline](volume-two-outline.md). The author confirmed v1 positioning for Junior–Senior Full-stack + AI Product Engineers and an eight-part content direction. [Vision](../../docs/project-vision.md) owns shared positioning; [outline](outline.md) owns the detailed page map; [roadmap](../../docs/roadmap.md) owns future dependencies; the [board](../../docs/coordination.md) alone owns current task/hold state.
 
 The former W01 three-part/45-chapter proposal is historical, superseded as an organizing framework. Its 45 entries remain traceable in the outline's legacy map and original handoff/Git history. Confirmation of v1 direction does not accept every page's research, prose, implementation or publication.
 
