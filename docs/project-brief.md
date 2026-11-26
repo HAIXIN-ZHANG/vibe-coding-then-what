@@ -6,6 +6,9 @@ This compatibility entry points to authoritative documents; do not maintain a se
 | --- | --- |
 | [README](../README.md) | Public introduction and practical entry points |
 | [Project vision](project-vision.md) | Audience, book direction, content map and intended reading experience |
+| [Public-edition PRD](product/volume-one-public-edition.md) | Next-edition requirements, current capabilities and open author decisions; draft, not implementation authorisation |
+| [Decision records](decisions/README.md) | Consequential product/workspace choices and their evidence |
+| [Documentation migration](product/document-migration.md) | Bounded entry-point changes and read-only recovery checks |
 | [Roadmap](roadmap.md) | Proposed feature scope, priorities and gates; not execution authorization |
 | [Development History](development-history.md) | Historical outcomes, decisions and immutable delivery evidence |
 | [AGENTS](../AGENTS.md) | Agent startup entry and explicitly assigned role guides |
@@ -16,7 +19,7 @@ This compatibility entry points to authoritative documents; do not maintain a se
 
 For the formal title, subtitle and language-specific bylines, use the [editorial identity table](../book/planning/editorial-brief.md#identity-and-reason-to-write). The book uses its pen name on the cover and in reader-facing credits. Jason Zhang maintains the [repository](https://github.com/HAIXIN-ZHANG/vibe-coding-then-what).
 
-The website is English-default and the book bilingual, with Chinese manuscript review before English adaptation. Implemented commands and limitations belong in the [site developer guide](../site/DEVELOPMENT.md). The [content contract](content-contract.md) governs explicitly assigned source integration; it is not blanket draft publication. [Design handoff](design/reading-experience-v1.md) distinguishes design references from code/browser acceptance.
+The website is English-default and the book bilingual, with Chinese manuscript review before English adaptation. Implemented commands and limitations belong in the [site developer guide](../site/DEVELOPMENT.md). The [content contract](content-contract.md) governs explicitly assigned source integration; it is not blanket draft publication. [V1 design handoff](design/reading-experience-v1.md) is a historical design reference. The [PRD design-reference section](product/volume-one-public-edition.md#design-reference-and-constraints) identifies the current V3.1 candidate and its unverified gaps; design references do not establish code/browser acceptance.
 
 The first edition starts from engineers who have built with AI and want to understand the systems behind their products, targeting **Junior–Senior Full-stack + AI Product Engineers**. The [project vision](project-vision.md) owns audience and editorial depth; the [detailed outline](../book/planning/outline.md) owns the confirmed eight-part direction's content planning. AI product architecture is core; AI-assisted coding/delivery is a distinct thread. This is book scope, not evidence of implemented runtime AI chat on the reading website or acceptance of new manuscripts. Specialist DevOps/data expansion remains outside the first-edition main line.
 
