@@ -1,5 +1,8 @@
 # Developer Role Guide
 
+Current reader design pointers: V3.1 decisions and limitations, motion and illustration and [real-use review](product-design-role.md#real-use-review). Use integrated main for feature availability. Explicit Bookmark and automatic resume are distinct; text-size controls already exist. EN/ZH layout pairing, runtime recovery and device checks remain delivery evidence to gather for an assigned slice.
+
+
 Use this stable guide when the caller explicitly assigns **Developer**. It defines responsibility, not an active task. The [board](coordination.md) is the sole current task/hold/workspace record; [collaboration](collaboration.md) defines the detailed shared workflow.
 
 ## Start and recover

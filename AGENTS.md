@@ -48,3 +48,7 @@ Reader-facing copy follows the URL edition, including menus, saved chapter title
 For web and print, give the text room, use a clear typographic hierarchy and keep illustration close to the passage it serves. Use the [outline](book/planning/outline.md) for editorial placement and the handoff for this edition's provisional artwork, preferences and proof. Public copy should tell a reader what they can read or do. Record implementation and review evidence in the internal handoff.
 
 Follow the [document/notes policy](docs/agent-notes-policy.md). Keep credentials, private transcripts and unnecessary personal details out of this public repository. Shared files and direct messages do not share chat histories or continuously watch files. Silence, delivery and elapsed time are not approval.
+
+## Human-centred work across the series
+
+Apply the author's 26 November 2026 direction to both volumes, the production companion and the reader. Give prose a recognisable point of view, concrete consequences and enough explanation to support the reader's judgment. Match structure to the material; review repeated chapter formulas, slogans and unnecessary summaries. Preserve factual accuracy and the author's uncertainty. Use the [editorial criteria](book/planning/editorial-brief.md#human-centred-writing-across-the-series) and [real-use review](docs/product-design-role.md#real-use-review) when reviewing the assigned deliverable. Simulated readers provide hypotheses; record actual human feedback and device experience separately.

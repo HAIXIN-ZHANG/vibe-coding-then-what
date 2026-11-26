@@ -2,16 +2,16 @@
 
 ## Available now
 
-The [Chinese reading site](https://haixin-zhang.github.io/vibe-coding-then-what/zh/) has the introduction, system overview and browser foundations in Simplified Chinese. You can move between chapters, search the available Chinese content and link to individual sections. English chapters are planned. The [English site](https://haixin-zhang.github.io/vibe-coding-then-what/) points to the Chinese originals.
+The [Chinese reading site](https://haixin-zhang.github.io/vibe-coding-then-what/zh/read/) has the complete first-volume reading order of 51 pieces and a [209-page A5 PDF](https://haixin-zhang.github.io/vibe-coding-then-what/downloads/volume-one-zh-a5.pdf). You can search, share passages, adjust reading sizes, keep local bookmarks and return to your reading position on the same device.
+
+The [English contents](https://haixin-zhang.github.io/vibe-coding-then-what/read/) includes the preface and browser chapter in full, plus two introductions offering the Chinese originals. The life volume is in development.
 
 ## Next
 
-- **More of the Chinese book.** Follow familiar features from interface and API decisions through data, reliability, delivery and recovery. Later chapters connect those foundations to building AI features and working with coding assistants.
-- **An easier way back to your place.** A planned Continue option will help you resume reading on the same browser and device.
+We are improving technical explanations and worked examples in the first book, while keeping its conversational voice. The reading design is being refined for clearer first visits, easier returns, comfortable mobile text and useful figures you can inspect and close without losing your place.
 
 ## Later
 
-- **English chapters in batches.** Adapt Chinese chapters once the text is stable, with examples and technical details checked in both languages.
-- **More ways to read.** Explore related-chapter links, bookmarks and a downloadable edition as the book takes shape.
+Further English adaptations will follow reviewed Chinese revisions. The life book explores AI in everyday life; a separate production companion follows how the author and agents made these books. Final illustrations and additional reading formats follow their own review.
 
-The order may change as chapters and reading features are ready. Tell us what was hard to follow or what you’d like to read next. [Share feedback](https://github.com/HAIXIN-ZHANG/vibe-coding-then-what/issues)
+Tell us where you lost the thread or what was awkward to use. [Share feedback](https://github.com/HAIXIN-ZHANG/vibe-coding-then-what/issues)

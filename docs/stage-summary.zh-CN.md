@@ -1,14 +1,22 @@
 # Vibe Coding, Then What?：项目阶段速览
 
-## 本轮优先顺序
+## 当前同步结果 · 2026 年 11 月 26 日
 
-M4 分两条线：专业副册收录三版设计比较，另做图版、网页与二维码；生活卷单独筹备、构思、试写并分批成稿。M5 安排生活卷正式发布和稳定 EPUB。已归档的设计原图供 M4 使用。[现行路线与验收](roadmap.md#current-priorities-after-the-reader-review)
+本次重新读取线上 release.json，版本为 5f625ad，含第一册 51 篇中文、两篇英文全文和两篇英文概览。第一册 A5 对照稿为 209 页。朗读样本仍有声线授权与试听验收依赖。下方早期三篇与英文为零的描述是历史记录。
+
+当前先完成资料同步。[第一册八部修订](../book/planning/outline.md#revision-2026-11-26)补技术机制、案例、图表与贯穿关系；[生活卷](../book/planning/volume-two-outline.md)逐辑讲清生活变化的原因；副册六章贯穿作者从逐句盯到分工、互审、返工和阶段验收的过程。字体、最终插画、排版与 PDF 清晰度在 M4 验证。
+
+设计已明确首次与回访首页、Bookmark 与自动续读、有限动效。中英对应画面和同内容纸样、真机与大字体验仍待补齐。具体状态见同步复查，开工安排以[看板](coordination.md)为准。
+
+## 历史优先顺序 · 11 月 22 日
+
+本轮 M3 只交第一册第八部约 3–5 页扩写、整卷通读与 A5 复排，保留已验的 207 页对照。M4 分两条线：专业副册收录三版设计比较，另做图版、网页与二维码；生活卷单独筹备、构思、试写并分批成稿。M5 安排生活卷正式发布和稳定 EPUB。已归档的设计原图供 M4 使用。[现行路线与验收](roadmap.md#current-priorities-after-the-reader-review)
 
 ## 11 月 18 日基线与 11 月 22 日路线更新
 
 正式副标题为 **Understanding the Systems We Build, and Learning to Live with What We Can’t Fully Control**。中文名、英文书名与八大部分的框架保持不变；48 个工作单元可拆合，不是必须写出 48 个文件。理解系统与学习使用 AI、作出判断和委托，是两条相连的主线。
 
-已公开的篇目以[中文目录](https://haixin-zhang.github.io/vibe-coding-then-what/zh/read/)和[英文目录](https://haixin-zhang.github.io/vibe-coding-then-what/read/)为准。第一册中文定稿共 51 篇，A5 实排 209 页。
+**当时内容状态（历史）：** 仓库有五份已审中文原创稿：引言、G01、浏览器基础、[AI 写完以后，我们还需要做什么？](../book/drafts/zh/03-after-ai-finishes.md)、[没有找到课程，还是没有查到结果？](../book/drafts/zh/04-api-contract.md)。本地阅读器收录前三篇，三篇修订版均已随 [V2 阅读器上线并通过公开验证](reviews/v2-fragment-release-fix.md#verified-public-release)。英文正文为零。V2 首页另行推进。引言采用已审阅的 r3，署名为“缸子太子与世界”，并保留一段简短的 AI 致谢。G01 和浏览器基础采用各自已审阅的语气修订版。P8.10 和 P3.2 分别完成[正文 review](reviews/P810M.md) 与 [API 契约正文 review](reviews/P32M.md)，两篇都尚未收录或发布。
 
 **Milestone 1 的基础与首轮发布关口已完成：** 实际验收、发布、同版本恢复及保留限制以[统一记录](delivery/milestone-1.md#6-release-readiness-remains-in-delivery-milestone-1)为准。本页引用已记录的结果，不重新核实远端或认证当前部署；后续版本是否上线仍需各自证据。下方 Nov16 的“发布未完成”只描述当时状态。
 
