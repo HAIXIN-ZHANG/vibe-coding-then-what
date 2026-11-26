@@ -19,7 +19,7 @@ export function SiteHeader({ locale, languageHome = false }: { locale: Locale; l
       <SearchControl locale={locale} />
       <nav aria-label={messages.navigation}>
         <BooksLink locale={locale} />
-        <ChapterHeaderMenu label={messages.navigation}>
+        <ChapterHeaderMenu label={messages.navigation} responsive={!languageHome}>
         <Link href={localePath(locale, 'read/')}>{messages.contents}</Link>
         {languageHome ? (
           <Link href={localePath(otherLocale)} hrefLang={otherLocale} aria-label={messages.switchLabel}>
