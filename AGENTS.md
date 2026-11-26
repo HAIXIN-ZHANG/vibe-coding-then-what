@@ -20,6 +20,8 @@ For this request, follow [team startup](docs/collaboration.md#team-startup) once
 2. Read the [board](docs/coordination.md) for current assignments, holds and workspaces, then the linked task brief and necessary inputs. History and archives are optional evidence, not startup prerequisites.
 3. Verify actual directory, branch, HEAD, working status and relation to the assigned main baseline before editing. Report role/task, actual workspace/revision, next scoped action and conflicts once; continue clear authorized work directly. This is not another approval gate. Missing assignment or an applicable hold means no invented work.
 
+Keep the author's main checkout clean and readable. Perform assigned edits in the role's separate branch/worktree; [Collaboration](docs/collaboration.md#workspace-and-main-checkout) defines recovery and main-update ownership.
+
 AGENTS is the shared entry; the caller/tool must supply access and context. These documents do not guarantee automatic loading by every tool.
 
 ## Four roles and boundaries
