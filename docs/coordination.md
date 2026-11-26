@@ -8,6 +8,8 @@ Delivery Lead owns recovery, inventory and reviewed integration from the current
 
 The authorised scope is tasks 1–3. Task 4, paired bilingual design completion, and task 5, new reader implementation, remain unstarted. V3.1 is a design candidate with outstanding QA. Further life-volume and companion writing requires its own assignment.
 
+**Scheduled next, not started.** M4 opening first needs the [public-edition requirements and decision handoff](roadmap.md#m4-opening-prerequisite--public-edition-requirements-and-decisions), before new reader implementation. Product owns the future PRD and product decisions; Delivery coordinates review/integration, Writer checks manuscript scope, and Developer checks implemented capabilities. This is a saved dependency, not a new executor assignment. Tasks 1–3 stay active; tasks 4/5 and further companion/life-volume prose stay pending.
+
 ## Historical coordination records
 
 ## Risk-based E2E maintenance — local review accepted, integration gate
