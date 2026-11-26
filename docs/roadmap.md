@@ -8,6 +8,12 @@ Project/book: **Vibe Coding, Then What?** Repository slug: `vibe-coding-then-wha
 
 The vision owns positioning; Writer's outline owns proposed chapter-level detail. This document owns future dependencies; the [public-edition PRD](product/volume-one-public-edition.md) owns the next edition’s requirements and open scope. Development History owns the sequence of actual work and decisions. Resolve conflicting instructions through Coordinator rather than choosing whichever file has the newest timestamp.
 
+## Active M4 preparation · 26 November 2026
+
+The author has selected Chinese-first, selective improvement across all eight parts rather than a mandatory rewrite of every chapter. The present batch establishes two standard samples from the already reviewed Part 2 discovery and Part 4 last-seat chapters, with necessary explanatory diagrams and local database evidence. Product records the current language/manuscript/PDF direction in the PRD. Same-content EN/ZH designs proceed in parallel; accurate current English availability remains, without full-translation scheduling.
+
+Standard samples and paired design precede a bounded reader implementation assignment. Further whole-book writing batches follow the standard-sample gate; a new PDF follows the stable full revision, while the approved 209-page edition stays available for comparison. The [board](coordination.md) and [batch brief](handoffs/m4-standard-samples.md) own current execution and holds. Existing life-volume/guide plans below do not start their writing in this batch.
+
 ## Making the book · M3 delivery, M4 preparation and M5 release
 
 **Volume I manuscript.** The accepted reading edition contains 51 pieces. Its 209-page A5 includes the Part VIII production story on pages 203–205. The 207-page comparison copy is retained in the author’s archive.
