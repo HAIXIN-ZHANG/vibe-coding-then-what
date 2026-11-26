@@ -22,7 +22,7 @@ See the [reader roadmap](docs/reader-roadmap.md) for what we’re working toward
 
 ## About the author
 
-The books are written under the pen name **Jar & Prince Explore the World / 缸子太子与世界**. **Jason Zhang** maintains the project; a brief acknowledgment of AI's role in writing appears in the [introduction](book/drafts/zh/00-before-we-start.md). Open to engineering opportunities and collaboration. Find Jason on [GitHub](https://github.com/HAIXIN-ZHANG).
+The books are written under the pen name **Jar & Prince Explore the World / 缸子太子与世界**. **Jason Zhang** maintains the project; a brief acknowledgment of AI's role in writing appears in the [introduction](book/revisions/zh/volume-one-making-of/00-before-we-start.md). Open to engineering opportunities and collaboration. Find Jason on [GitHub](https://github.com/HAIXIN-ZHANG).
 
 Questions, corrections and relevant sources are welcome through [GitHub issues](https://github.com/HAIXIN-ZHANG/vibe-coding-then-what/issues). See [contributing](CONTRIBUTING.md) for the review process and contribution expectations.
 
