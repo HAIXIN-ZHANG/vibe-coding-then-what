@@ -17,6 +17,13 @@ Writer normally owns `book/` and teaching assets; Developer normally owns assign
 
 Concurrent work uses assigned workspaces with disjoint allowed files. A chat's default cwd does not follow assignments automatically: verify directory, branch, HEAD, status and relation to the assigned main baseline before editing. Do not switch/reset/stage to hide a mismatch. Worktrees separate working areas, not account permissions/confidentiality. Coordinator coordinates all Git writes; executors do not stage, commit, push or merge.
 
+### Workspace and main checkout
+
+The author's primary checkout stays on clean, current `main`. Each role performs assigned edits in a separate branch and worktree, including documentation and manuscript work. A chat opened at the author path must use its assigned working directory explicitly. Delivery alone updates the author checkout by fast-forwarding reviewed, merged changes; an unaccepted task branch does not enter main to clear the workspace.
+
+Before moving existing work, stop its owners at a recoverable point, inventory tracked/untracked and necessary ignored files, and verify durable private archives/branches against those bytes. Preserve deletions as part of the user's change. Keep unpublished designs, comparison manuscripts and private handoffs outside the public main package; a temporary stash is not their sole recovery copy. Release an occupied main worktree only after checking its state and activity, without deleting it. Record exact role workspaces and recovery pointers in the current local handoff, not in public prose.
+
+
 ## Team startup
 
 On the explicit team-start request in [AGENTS](../AGENTS.md), use the current chat as Coordinator. Inspect the accessible project chats for this repository and verify their actual roles. Reuse matching chats; create only the missing Product & Design Lead · Reader Experience, Writer and Developer chats. Do not create a second Coordinator. A resumed named-role chat keeps its own identity and does not recursively start another team.

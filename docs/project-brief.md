@@ -10,11 +10,11 @@ This compatibility entry points to authoritative documents; do not maintain a se
 | [Development History](development-history.md) | Historical outcomes, decisions and immutable delivery evidence |
 | [AGENTS](../AGENTS.md) | Agent startup entry and explicitly assigned role guides |
 | [Coordination board](coordination.md) | Sole current assignments, holds, workspaces and next action |
-| [Collaboration](collaboration.md) | Detailed three-role ownership, review, recovery and integration workflow |
+| [Collaboration](collaboration.md) | Detailed four-role ownership, review, recovery and integration workflow |
 
 ## Identity and reading contracts
 
-Project/book: **Vibe Coding, Then What?** / **《Vibe Coding 之后：能跑，然后呢？》**; repository: [HAIXIN-ZHANG/vibe-coding-then-what](https://github.com/HAIXIN-ZHANG/vibe-coding-then-what). Subtitle: **Understand the Systems Behind Your AI-Built Products**. Author: **Jason Zhang**, with AI assistance. Earlier project names are historical, not workspace instructions.
+For the formal title, subtitle and language-specific bylines, use the [editorial identity table](../book/planning/editorial-brief.md#identity-and-reason-to-write). The book uses its pen name on the cover and in reader-facing credits. Jason Zhang maintains the [repository](https://github.com/HAIXIN-ZHANG/vibe-coding-then-what).
 
 The website is English-default and the book bilingual, with Chinese manuscript review before English adaptation. Implemented commands and limitations belong in the [site developer guide](../site/DEVELOPMENT.md). The [content contract](content-contract.md) governs explicitly assigned source integration; it is not blanket draft publication. [Design handoff](design/reading-experience-v1.md) distinguishes design references from code/browser acceptance.
 
