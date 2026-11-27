@@ -1,5 +1,11 @@
 # Vibe Coding, Then What? — agent entry
 
+> **Transition notice · 28 November 2026. Read this first.**
+>
+> The project's direction, titles and roles changed on 27–28 November ([decision records PDR-005 to PDR-009](docs/decisions/README.md)), and the [roadmap](docs/roadmap.md) and [PRD](docs/product/volume-one-public-edition.md) were rewritten. Roles are now PM, Designer, Delivery Lead, Writer, Developer and an audience panel. They are bound to Codex and Claude by the [team file](docs/team.md), with cards in [`docs/roles/`](docs/roles/).
+>
+> The rest of this file still describes the earlier four-role process. It is replaced when [T-004](docs/tasks/T-004-two-desk-structure.md) lands. Until then, where this file conflicts with the team file, the role cards, the task queue or a decision record, those newer sources win. The next work is listed in the [task queue](docs/tasks/README.md); start with T-002 and T-004.
+
 Vibe Coding, Then What? is the engineering volume of the [two-book series](book/planning/outline.md#two-book-series) and the current focus of the reading website. Consult [README](README.md), [project vision](docs/project-vision.md) and [roadmap](docs/roadmap.md) when the assigned task needs product context; they are not mandatory startup reading or execution authorization.
 
 The human author is the final authority. Work only on a concrete user/Coordinator assignment; roadmaps, historical prompts and document updates do not authorize execution. Preserve user and other owners' changes. Flag scope/ownership conflicts to Coordinator.
