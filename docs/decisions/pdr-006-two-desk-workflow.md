@@ -86,7 +86,7 @@ The blind comparison is no longer required. The author may still ask for one.
 
 These are decided by the reviewer under the author's delegation:
 
-- **One accent colour** instead of six. Readers can choose a paper background (white, paper, light grey, dark) instead. *Superseded on 28 November by [PDR-009](pdr-009-reader-feature-triage.md): three accents.*
+- **One accent colour** instead of six. Readers can choose a paper background (white, paper, light grey, dark) instead. *Superseded on 28 November by [PDR-009](pdr-009-reader-feature-triage.md): three accents, and paper tones White, Paper, Mist and Quiet grey, each with a dark version.*
 - **Serif body text**, option A, chosen by the author. The web-font loading strategy is part of the V4 design.
 - **No horizontal chapter swipe** (the print-edition viewer is frozen) and **no end-of-chapter pull** in the main flow. An explicit next-chapter control remains. Bottom sheets are allowed on mobile when a visible button opens them.
 - The V4 Figma redesign happens in a new file, because the existing file is read-only for the connected account. The original file is preserved.
