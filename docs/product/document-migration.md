@@ -1,5 +1,7 @@
 # Documentation migration map
 
+> **Historical, 28 November 2026.** This migration map was carried out in a different form. The roadmap, PRD, vision and project index were rewritten, with their originals in `docs/archive/`. Roles now follow [PDR-008](../decisions/pdr-008-roles-and-modes.md). This page records the 26 November plan only.
+
 Draft · 26 November 2026. Product owns the proposed information architecture; Delivery owns scoped moves, reviews and integration. No archive deletion or broad rewriting is authorised by this table. Source baseline: main c50854f plus the preserved design candidate.
 
 ## Responsibilities

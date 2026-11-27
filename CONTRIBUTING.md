@@ -68,4 +68,4 @@ A pull request, review, merge and public deployment are separate steps. Merging 
 
 ## Licensing status
 
-Project source code and original programming samples are offered under the [MIT License](LICENSE); original book prose and teaching diagrams in `book/drafts/` are offered under [CC BY-SA 4.0](LICENSE-CONTENT.md). Before proposing a contribution, ensure you have the rights needed to submit it under the applicable project license, identify any third-party material and discuss exceptions with a maintainer. Do not assume a contribution changes ownership of your work or that these terms override third-party rights.
+Project source code and original programming samples are offered under the [MIT License](LICENSE); original book prose and teaching diagrams, in every edition and language, are offered under [CC BY-SA 4.0](LICENSE-CONTENT.md). Before proposing a contribution, ensure you have the rights needed to submit it under the applicable project license, identify any third-party material and discuss exceptions with a maintainer. Do not assume a contribution changes ownership of your work or that these terms override third-party rights.

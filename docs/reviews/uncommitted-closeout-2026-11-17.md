@@ -1,6 +1,6 @@
 # Uncommitted baseline closeout and V2 transition review
 
-Date: 2026-11-17 (Australia/Perth). Owner/reviewer: Coordinator. **Outcome: preserve the accepted local baseline; closeout/document alignment complete within this scope. Git integration, public release and V2 design acceptance remain separate pending gates.** The author requested this review before further visual development. [The board](../coordination.md) owns current assignments/holds; [the roadmap](../roadmap.md#current-design-direction--milestone-2-refresh-2026-11-17) and [Milestone 2 record](../delivery/milestone-2.md#design-direction-and-next-delivery-priority--2026-11-17) own the new direction.
+Date: 2026-11-17 (Australia/Perth). Owner/reviewer: Coordinator. **Outcome: preserve the accepted local baseline; closeout/document alignment complete within this scope. Git integration, public release and V2 design acceptance remain separate pending gates.** The author requested this review before further visual development. [The board](../coordination.md) owns current assignments/holds; [the roadmap](../archive/roadmap-2026-11-27.md#current-design-direction--milestone-2-refresh-2026-11-17) and [Milestone 2 record](../delivery/milestone-2.md#design-direction-and-next-delivery-priority--2026-11-17) own the new direction.
 
 ## Actual workspace and recovery boundary
 

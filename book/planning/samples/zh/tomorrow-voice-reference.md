@@ -5,6 +5,7 @@
 - **Scope:** Preserve the approved text below verbatim. Fictional teaching scenario; not an account of the author's production experience.
 - **Status:** Editorial voice acceptance only. Not a published chapter, English manuscript, independent technical/manuscript review or authorization to rewrite accepted sources.
 - **Use:** Calibrate observation, warmth, light humor, connected paragraphs and varied sentence length; do not mandate the scene, metaphor or structure in every chapter.
+- **Adopted in the preface (27 November 2026):** On the author's decision, the first five paragraphs, from 「AI 写得很快」 to 「报名的人在哪里看？」, open the [M4 preface candidate](../../../revisions/zh/volume-one-m4/00-before-we-start.md) verbatim. The rest of this specimen remains calibration only.
 
 ---
 

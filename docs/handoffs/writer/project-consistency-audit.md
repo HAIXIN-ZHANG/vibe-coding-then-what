@@ -52,7 +52,7 @@ Byte comparisons confirm **15 protected files** match audit HEAD: both Chinese m
 
 No new document hierarchy, backlog, fixed chapter count or whole-book generation is proposed. The remaining [Milestone 1 Release Readiness](../../delivery/milestone-1.md#6-release-readiness-remains-in-delivery-milestone-1) already records dependency reassessment, permanent E2E/CI, gated Pages CD and actual online/rollback evidence under the deployment hold. These require separate implementation/acceptance, not a documentation pass.
 
-The [roadmap](../../roadmap.md) retains later reader/content directions and conditional Goal 4 expansion; the [chapter workflow](../../../book/planning/chapter-workflow.md) remains the sole chapter-analysis/manuscript authority. Writer found no reason to create duplicate tasks or expand those scopes. Assign a concrete chapter or operational slice through the board when its prerequisites are met. Developer's audit may return additional bounded technical findings independently; do not infer their completion from this report.
+The [roadmap](../../archive/roadmap-2026-11-27.md) retains later reader/content directions and conditional Goal 4 expansion; the [chapter workflow](../../../book/planning/chapter-workflow.md) remains the sole chapter-analysis/manuscript authority. Writer found no reason to create duplicate tasks or expand those scopes. Assign a concrete chapter or operational slice through the board when its prerequisites are met. Developer's audit may return additional bounded technical findings independently; do not infer their completion from this report.
 
 ## Frozen Writer files
 

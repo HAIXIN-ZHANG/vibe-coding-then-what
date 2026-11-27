@@ -15,7 +15,7 @@ Deliverable: the narrow actual portal-planning diff and real consistency/preserv
 | Payload | Actual SHA-256 | Changed scope |
 | --- | --- | --- |
 | [Project vision](../../project-vision.md) | `0b8ce63a48a28c9a920d3e0fd40cc6360b2f7a7f6cfdce3e2c91a19fbfb5abb7` | L13 assigns the author/bookshelf entry to Milestone4, allows a simple link to this book without a second completed guide and conditions richer features on actual content/need. L114's delivery overview now includes that proposed Milestone4 role. |
-| [Roadmap](../../roadmap.md) | `4bd0b1ee0fced92c3320340bf6df7d0d171569fba98f979515fdd38530b55bbe` | L34 focus paragraph, L98 discoverability mapping, removal from Milestone3 candidates and addition at L291 to Milestone4, L287 objective, L298 acceptance direction and L344 gate. |
+| [Roadmap](../../archive/roadmap-2026-11-27.md) | `4bd0b1ee0fced92c3320340bf6df7d0d171569fba98f979515fdd38530b55bbe` | L34 focus paragraph, L98 discoverability mapping, removal from Milestone3 candidates and addition at L291 to Milestone4, L287 objective, L298 acceptance direction and L344 gate. |
 
 The simple entry remains a future planning candidate and current book writing remains the near-term focus. Accurate metadata/factual author information stays in the earlier scope. A minimal works list is distinct from cross-guide navigation/search: the former can link this book alone; the latter still needs a real second collection and reviewed reader/content mapping. No second book, new brand or platform is made a prerequisite for the small portal. Commercial publishing remains deferred until after Milestone4; analytics remains its original late-Milestone2/Milestone3 candidate.
 

@@ -1,5 +1,7 @@
 # Reading experience V2
 
+> **Historical design reference, 28 November 2026.** The V4 design replaces the V2 and V3.1 candidates: one design system with three accents, four paper tones and serif text ([PDR-009](../decisions/pdr-009-reader-feature-triage.md)), drawn in the Editorial Reader V4 Figma file. Frame identities and review evidence below stay valid as history. Current requirements are in the [PRD](../product/volume-one-public-edition.md).
+
 Author design review · 21 November 2026. The layouts below describe the proposed reading experience. The density comparison uses an earlier local manuscript fixture. Implementation status is tracked separately on the [board](../coordination.md).
 
 Use [16 · Editorial reading experience](https://www.figma.com/design/3GYIfJz8xSPGx3AE3RRkKi/?node-id=320-147) for the editorial homepage, return visits and compact navigation. [17 · Reading details](https://www.figma.com/design/3GYIfJz8xSPGx3AE3RRkKi/?node-id=327-200) holds the current section toolbar, correction and copy feedback, rail, pagination and reference links. The [V2 design index](https://www.figma.com/design/3GYIfJz8xSPGx3AE3RRkKi/?node-id=267-33) links to existing reader foundations, earlier explorations and candidates. The frames show representative states. The website implements the transitions.

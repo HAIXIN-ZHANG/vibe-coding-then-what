@@ -5,7 +5,7 @@ Updated: 2026-11-17. The project owner selected MIT for project source code and 
 ## Scope and exceptions
 
 - **MIT:** project source code and original programming code examples, including programming snippets in book chapters, unless a specific notice says otherwise. Text diagrams and explanatory prose remain book content even in fenced blocks.
-- **CC BY-SA 4.0:** original prose and teaching diagrams in `book/drafts/`, to the extent the rights holder can license them. Attribution and share-alike conditions apply; commercial use is allowed. See [Creative Commons' official terms](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
+- **CC BY-SA 4.0:** original prose and teaching diagrams in every edition and language (`book/drafts/`, `book/revisions/`, `book/adaptations/` and the published site; scope widened 28 November 2026), to the extent the rights holder can license them. Attribution and share-alike conditions apply; commercial use is allowed. See [Creative Commons' official terms](https://creativecommons.org/licenses/by-sa/4.0/legalcode).
 - **Separately governed:** third-party dependencies, excerpts, images and other materials retain their own terms. Project names, logos and trademarks are not granted by these content notices. The selected licenses cannot grant rights not controlled by their licensors.
 - **Other project documents:** internal planning and coordination records are not implicitly identified as book prose by this notice; clarify any desired additional scope separately.
 
