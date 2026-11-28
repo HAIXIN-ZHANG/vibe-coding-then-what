@@ -19,7 +19,7 @@ The vision, roadmap and PRD define the audience, the milestones and the three wo
 
 ## Decisions
 
-**Primary outcome.** A professional visitor arriving from LinkedIn or the résumé sees two things within a few minutes: the author's engineering judgment, and how the author works with AI. Volume I remains the maintained base. Its full revision is not the gate for presenting the work.
+**Primary outcome** (amended below: a goal for after Volume I is finished). A professional visitor arriving from LinkedIn or the résumé sees two things within a few minutes: the author's engineering judgment, and how the author works with AI. Volume I remains the maintained base. Its full revision is not the gate for presenting the work.
 
 **Work-in-progress limit.** Run at most two writing streams and one engineering stream at a time. Initially:
 
@@ -103,6 +103,19 @@ Also deferred until observed signals justify them:
 - the M6 store-app decision;
 - explanatory video;
 - update feeds, topic filters and chapter discussions.
+
+## Amendment · Volume I first, promotion last (28 November 2026)
+
+The author's words, relayed by the Designer session and confirmed as the author's direction: LinkedIn posts can wait indefinitely; market presentation comes only once the books are substantially written. Everything goes into finishing Volume I's framework and content first. Then the guide and Volume II. Only after that, promotion and new features, including LinkedIn presentation and the résumé update.
+
+This changes the decisions above as follows:
+
+- **Primary outcome:** the professional-visitor outcome is a goal for after Volume I is finished, not a gate for the current work.
+- **Work in progress:** Volume I writing is the main writing stream. The guide moves to Phase 2, after Volume I. The Volume II serial also waits for Phase 2. The limit of two writing streams and one engineering stream still applies.
+- **Adoption sequence:** step 4 (author and works page, share cards, first LinkedIn post) moves to Phase 3. The five-reader trial stays in Phase 1, because it checks the writing rather than promoting it. Step 5 keeps the flagship pieces and moves guide chapter 1 to Phase 2.
+- **Signals:** promotion signals apply from Phase 3. Until then, the signal that matters is whether target readers can explain a flagship mechanism.
+
+The [roadmap](../roadmap.md) holds the three phases.
 
 ## Alternatives considered
 

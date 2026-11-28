@@ -18,51 +18,59 @@ All three keep the same light, story-like voice. The project is the author's per
 | **《活交给 AI，我去钓会儿鱼》 / *Leave It to the Agents. I'm Going Fishing.*** | Half-length guide, from vibe coding to agentic coding, using this project as the case | Concept and trial narrative exist; to be restructured into three stages |
 | **《省下来的时间，去哪儿了？》 / *Where Does the Saved Time Go?*** | Conversational serial on living with AI | 20-chapter outline and two voice samples; serial not started |
 
+**Order of work (author, 28 November 2026):** finish Volume I first, then the guide and Volume II, and only then promotion and its related features ([PDR-005 amendment](decisions/pdr-005-project-purpose.md#amendment--volume-i-first-promotion-last-28-november-2026)). LinkedIn posts, résumé updates and outreach can wait as long as needed.
+
 ## Now · while Codex is unavailable
 
-Codex has no quota at the moment, so every Writer and Developer task waits in the [queue](tasks/README.md). Claude, holding the PM, Designer and Delivery Lead roles ([team](team.md)), prepares what those tasks need without making large changes itself:
+Codex has no quota at the moment, so every Writer and Developer task waits in the [queue](tasks/README.md). Claude holds the PM, Designer and Delivery Lead roles ([team](team.md)) and prepares what those tasks need, without making large changes itself:
 
-- **Audience panel** rehearsals of each flagship piece before real readers see it.
-- **Volume I structure review:** done on 28 November. The framework is settled; the [structure and revision plan](../book/planning/volume-one-revision-plan.md) sets five flagship pieces and the order of revision.
-- **Per-chapter revision plans for the five flagship pieces** (for T-011), each written after reading the piece in full.
-- **Scene-led writing:** the author's 27 November direction is now part of the [revision plan](../book/planning/volume-one-revision-plan.md#scene-led-writing--the-authors-direction-of-27-november). The Writer's standard-sample r1 drafts of the Part 2 and Part 4 pieces are the starting point, and their review comes first.
-- **The guide's three-stage outline**, built from its existing concept and trial narrative.
-- **A Volume II outline review,** adding small practices readers can take away.
-- **The V4 design review,** once the Figma seat is upgraded.
+- **Volume I structure review:** done on 28 November. The framework is settled. The [structure and revision plan](../book/planning/volume-one-revision-plan.md) sets five flagship pieces, the order of revision and the author's scene-led direction.
+- **Per-chapter revision plans** for the five flagship pieces (for T-011), each written after reading the piece in full. The Writer's standard-sample r1 drafts of the Part 2 and Part 4 pieces are the starting point.
+- **Audience-panel rehearsals** of each flagship piece.
+- **The V4 reader design:** direction A + B (PDR-009), drawn in Figma once the seat is upgraded.
 
-## Next · the first four weeks after execution resumes
+## Phase 1 · Finish Volume I
 
-Work in progress is limited to two writing streams and one engineering stream ([PDR-005](decisions/pdr-005-project-purpose.md#decisions)).
+Work in progress: Volume I writing plus one engineering stream.
 
-1. **Reset the repository and process.** Integrate the 27–28 November work, including the roadmap and product documents already rewritten (T-003, T-005). Set up the roles and modes ([PDR-008](decisions/pdr-008-roles-and-modes.md)), lighten the process, shorten the board, and rename to the new titles (T-001, T-002, T-004, T-006).
-2. **Volume I flagship pieces.**
-   - Admit the revised preface, the trimmed Part 8 chapter, the part openers and the whole-book map (T-007).
-   - Revise the five flagship pieces: the first chapter, browser foundations, the AI-evaluation chapter, and the Part 2 and Part 4 calibration samples (T-011).
-   - English: adapt the first chapter and the AI-evaluation chapter; browser foundations already has an adaptation.
-3. **The guide.** Move its material into main (T-008), restructure it into three stages, then draft the first stage in Chinese and publish its English adaptation.
-4. **Presentation basics.**
-   - An author and works page.
-   - Share cards for the books and chapters.
-   - A five-person reading of one flagship piece, recruited by the author.
-   - The first LinkedIn post, linking an English flagship piece.
+1. **Reset the repository and process.**
+   - Integrate the 27–28 November work. The roadmap and product documents are already rewritten (T-003, T-005).
+   - Set up the roles and modes ([PDR-008](decisions/pdr-008-roles-and-modes.md)), lighten the process and shorten the board.
+   - Rename to the new titles (T-001, T-002, T-004, T-006).
+2. **The book.**
+   - Admit the revised preface, the trimmed Part 8 chapter, the retitled closing, the part openers and the whole-book map (T-007).
+   - Revise the five flagship pieces (T-011).
+   - Then work through the remaining batches one part at a time: Part 8 first, where the AI chapters are thinnest; then Parts 6 and 7; then Part 3's permission chapter; Parts 2, 4 and 5 last ([revision plan](../book/planning/volume-one-revision-plan.md#revision-order-after-the-flagship-pieces)).
+   - Explanatory figures are drawn with each batch, following a figure style guide.
+3. **The reader**, in V4 implementation slices (T-010), reusing the held V3 code where it fits. Reading quality comes first: typography, the single-column skeleton, less noise, chapter openers and ends, phone and tablet layouts, figures that open and return, and GitHub feedback.
+4. **English** for the first chapter, browser foundations (already adapted) and the AI-evaluation chapter.
+5. **A five-person reading** of flagship pieces, to check whether the writing works. This is not promotion; the author decides when.
+6. **A new A5 edition** once the revision round is stable. The 209-page edition stays available meanwhile.
 
-**Exit check.** At the end of the four weeks, record a continue, revise or stop decision for each stream, based on what was observed.
+**Done when:** the framework is complete, the flagship pieces and planned batches are revised, the reader reads well on phone, tablet and desktop, and the author is satisfied with the result.
 
-## After that · following the exit check
+## Phase 2 · The guide and Volume II
 
-- The V4 reader, in implementation slices once the Figma design is accepted (T-010). Reuse the held V3 code where it fits.
-- The remaining Volume I revision batches, one part at a time rather than a rewrite of all 51 pieces. Part 8 comes first, where the AI chapters are thinnest; then Parts 6 and 7; then Part 3's permission chapter; Parts 2, 4 and 5 come last ([revision plan](../book/planning/volume-one-revision-plan.md#revision-order-after-the-flagship-pieces)).
-- Guide stages 2 and 3. Stage 3 waits until the roles-and-modes workflow has run on real tasks.
-- The Volume II serial, starting after the guide's first chapter is published, at about one piece every two weeks on the site, with distribution on Chinese platforms.
-- A new A5 edition once the revision round is stable. The 209-page edition stays available meanwhile.
+- **The guide:** move its material into main (T-008), restructure it into three stages, then write it. Stage 3 waits until the roles-and-modes workflow has run on real tasks.
+- **The Volume II serial** on the site, at about one piece every two weeks.
 
-## Later
+## Phase 3 · Promotion and new features
 
-- **Site measurement with Umami** (T-009). This starts once the revised edition is public, as the author decided on 28 November. Until then, nothing is written in full and there is little to measure.
-- Further English adaptations of stable Chinese pieces, each reviewed against its source.
-- Collecting the Volume II serial into a book, if the serial finds readers.
-- Reflowable EPUB editions.
-- Glossary hover cards, curated reading routes, paragraph-level links, an update feed page, email subscription and email feedback ([PDR-009](decisions/pdr-009-reader-feature-triage.md)).
+This phase begins only when the books are substantially written.
+
+- **Promotion:**
+  - an author and works page;
+  - share cards and quote cards;
+  - LinkedIn posts;
+  - a résumé update;
+  - distribution of Volume II on Chinese platforms.
+- **Measurement:** Umami (T-009).
+- **New reader features** ([PDR-009](decisions/pdr-009-reader-feature-triage.md)):
+  - an RSS feed, email subscription and email feedback;
+  - glossary hover cards, curated reading routes and paragraph-level links;
+  - an update feed page;
+  - the interactive figure, chapter transitions and the ⌘K palette designed in V4.
+- **More formats and languages:** further English adaptations, collecting Volume II into a book, and EPUB editions.
 
 ## Frozen, and what would thaw it
 
@@ -86,7 +94,7 @@ Work in progress is limited to two writing streams and one engineering stream ([
 
 ## Signals to observe
 
-No targets are set. Record what actually happens. Until site measurement starts, use LinkedIn's own post analytics and the replies people actually send.
+**Phase 1:** whether target readers can explain a flagship mechanism after reading it, and where they stall. **From Phase 3:** promotion signals. No targets are set; record what actually happens. Until site measurement starts, use LinkedIn's own post analytics and the replies people actually send.
 
 - chapter visits referred from posts;
 - conversations, messages or interviews that mention the work;
@@ -99,7 +107,7 @@ Visits measure access, not reading or understanding.
 ## Waiting on the author
 
 - Upgrade the Figma seat to Full or Dev so the V4 design can be drawn.
-- Recruit the five readers.
-- Pick the Chinese platforms for the Volume II serial.
+- Decide when to run the five-person reading.
+- Pick the Chinese platforms for Volume II, in Phase 3.
 - Decide the public edition label, from [PRD O01](product/volume-one-public-edition.md#decisions-needed-before-release-scope-is-frozen).
 - Choose a series name; "…Then What?" is a candidate.

@@ -4,7 +4,7 @@ Updated 28 November 2026. This document covers what the next public edition of *
 
 ## Reader and promise
 
-**Who it is for.** People who can already build something with AI but cannot explain why it works, or why it breaks. That includes engineers strong in one layer, career changers and newer developers. A second group arrives from LinkedIn or the author's résumé: professionals who give the work a few minutes and judge the author from what they see.
+**Who it is for.** People who can already build something with AI but cannot explain why it works, or why it breaks. That includes engineers strong in one layer, career changers and newer developers. From Phase 3 (promotion), a second group arrives from LinkedIn or the author's résumé.
 
 **What it promises.** Readers follow one course-enrolment story from a button that says "success", through the page, the API, the database, background work, release, recovery and AI inside the product. Afterwards they can explain why the outcome happened and what would change it. It reads like a story, not a manual.
 
@@ -15,8 +15,8 @@ Updated 28 November 2026. This document covers what the next public edition of *
 | Chinese manuscript | The 51 published pieces. The new preface opening, taken from the author's voice sample. The eight part openers and the whole-book map. The trimmed Part 8 chapter. The closing retitled 《今天就到这儿吧》. The five flagship pieces revised to the depth standard: the first chapter, browser foundations, the AI-evaluation chapter, and the Part 2 and Part 4 calibration samples ([revision plan](../../book/planning/volume-one-revision-plan.md)) |
 | English | Full adaptations of the preface, the first chapter, browser foundations and the AI-evaluation chapter. The other English pages stay as honest overviews that link to the Chinese text |
 | Titles | The [PDR-007](../decisions/pdr-007-titles-and-positioning.md) titles across the site. URLs unchanged |
-| Reader | The journeys below, in the V4 design: three accent colours, four paper tones, serif body text, margin notes, quote cards and an RSS feed ([PDR-009](../decisions/pdr-009-reader-feature-triage.md)) |
-| Presentation | An author and works page that introduces all three works. Share cards for the books and chapters |
+| Reader | The journeys below, in the V4 design (direction A + B): three accent colours, four paper tones, serif body text and margin notes ([PDR-009](../decisions/pdr-009-reader-feature-triage.md)). Quote cards and RSS move to Phase 3 |
+| Presentation | Not in this edition. The author and works page, share cards and quote cards move to Phase 3, promotion ([roadmap](../roadmap.md#phase-3--promotion-and-new-features)) |
 | Print | The 209-page A5 edition stays as it is. A matching new PDF follows once the whole revision round is stable; it is not part of this edition |
 
 **Out of scope:** accounts and sync, hosted AI and comments (all paused); the web print-edition viewer, the store app and video (paused); the offline bookshelf and code sandbox (stopped); swipe or pull-to-next-chapter gestures; and site measurement, which starts after this edition is public.
@@ -45,12 +45,11 @@ Updated 28 November 2026. This document covers what the next public edition of *
 | R11 | **Search, an empty result, or corrupt saved data.** Search covers only available text, with clear recovery; bad storage never blocks reading | P0 | Exists | None |
 | R12 | **Switch accent, paper tone, light or dark, reduced motion; a failed image.** Text stays legible and selected controls are identifiable without colour alone; failed images leave captions and a way back | P0 | Six accents exist | Three accents and four paper tones (24 combinations); test failed images |
 | R15 | **Report a problem.** From any chapter, a reader can open a GitHub issue with the chapter, section and selected text filled in. Nothing is sent without the reader's action | P0 | GitHub issue draft exists | Make the entry easy to find from every chapter. Email comes later, with the Volume II serial |
-| R16 | **Share a quote.** Select a passage and get an image with the book title, chapter and link that opens that section | P1 | Missing | New, building on section sharing |
-| R13 | **Arrive from LinkedIn.** The author and works page shows all three works with honest status and opens the flagship piece in the advertised language | P0 | Missing | New page and share cards |
 | R04 | **Open contents mid-chapter, pick a section, close.** The heading is visible below the fixed controls; focus returns sensibly | P1 | Exists on desktop | Contents in a bottom sheet on mobile |
 | R07 | **Bookmark a passage, revisit it, remove it.** It is independent of automatic resume; a failed write never claims success | P1 | Exists | Restyle |
 | R09 | **Chapter → book home or book selection → Back.** Labels are distinct; language and place are kept; planned books are labelled as planned | P1 | Exists | Two-book landing becomes three works |
 | R10 | **Tablet split view; keyboard and touch.** The passage and figure stay in view; sidebars yield before the prose is squeezed | P1 | Tested in emulation | Real iPad check |
+| R13, R16 | **Arriving from LinkedIn at an author and works page; sharing a quote card.** | Phase 3 | Missing | Deferred with promotion (PDR-005 amendment, 28 November) |
 | R14 | **Part openers and the whole-book map.** Each part starts with its opener, and the map can be reached from any chapter | P1 | Missing | Reader support for part introductions |
 
 ## Verification
@@ -63,12 +62,7 @@ Updated 28 November 2026. This document covers what the next public edition of *
 
 ## Signals after release
 
-No targets are set. Record what actually happens:
-
-- conversations, messages or interviews that mention the work;
-- post replies;
-- peer shares;
-- whether readers could explain a mechanism.
+No targets are set; record what actually happens. For this edition, the signal that matters is whether readers can explain a mechanism, and where they stall. Promotion signals start in Phase 3: post replies, peer shares, and conversations that mention the work.
 
 Site measurement starts after this edition is public ([PDR-005](../decisions/pdr-005-project-purpose.md#decisions)).
 

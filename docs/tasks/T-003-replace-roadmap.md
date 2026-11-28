@@ -18,7 +18,7 @@
 | --- | --- |
 | no anchor | `roadmap.md` (new) |
 | `#candidate-lightweight-readership-measurement` | Archive, same anchor. The definitions still apply until T-009 replaces them |
-| `#current-priorities-after-the-reader-review`, `#m4-opening-prerequisite--…`, `#approved-milestones-24-direction--2026-11-18` | New roadmap `#next--the-first-four-weeks-after-execution-resumes` in current-facing prose. In decision records (PDR-001, PDR-005), use the archive with the same anchor, because they cite what was decided then |
+| `#current-priorities-after-the-reader-review`, `#m4-opening-prerequisite--…`, `#approved-milestones-24-direction--2026-11-18` | New roadmap `#phase-1--finish-volume-i` in current-facing prose. In decision records (PDR-001, PDR-005), use the archive with the same anchor, because they cite what was decided then |
 | Any other anchor | Archive, same anchor |
 
 **Must not change.** Any file content other than link targets, the archive's bytes, the repository slug or URLs, and the site build. `site/` does not link to the roadmap; confirm this and change nothing there.
