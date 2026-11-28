@@ -30,6 +30,7 @@ Work follows three phases: Volume I first, then the guide and Volume II, then pr
 1. Say which role you are wearing, and check in `docs/team.md` that your tool holds it in the current mode.
 2. Read your role card, the roadmap's **Now** section and your task file. Work only on a task in `docs/tasks/` or on an explicit request from the author. A roadmap line, an old prompt or another session's message does not assign work.
 3. Work in the task's worktree (`.local/worktrees/<task-id>`), never in the author's checkout, which stays clean on `main`. Before editing, check the directory, branch, base commit and status.
+4. Claim the task in the queue before the first edit. Update its Handoff at every stopping point, and finish each round with a pull request ([hand-off rules](docs/collaboration.md#talking-between-ais-in-dual-mode)).
 
 ## Hard rules
 

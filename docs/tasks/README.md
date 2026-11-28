@@ -7,7 +7,9 @@ Each task gets one file, `T-xxx-<slug>.md`, with four sections:
 - **Review.** Written by Claude: a verdict of pass, pass with follow-ups, or fix and recheck.
 - **Integration.** Written by Codex, after the author authorises it: the PR, CI and merge.
 
-See [PDR-008](../decisions/pdr-008-roles-and-modes.md) and the [team file](../team.md) for who does what, and the [template](TEMPLATE.md) for the sections. This index is the queue; the [board](../coordination.md) keeps only a pointer here once the process migration (T-004) lands.
+See [PDR-008](../decisions/pdr-008-roles-and-modes.md) and the [team file](../team.md) for who does what, and the [template](TEMPLATE.md) for the sections.
+
+**Status values:** `Queued`, `Ready`, `In progress · <tool> · <branch> · <date>` (the claim), `In review`, `Fix and recheck`, `Pass`, `Pass (not independent)` and `Integrated`, plus `Paused` or `Blocked` with a reason. The hand-off rules are drafted in [T-004](T-004-drafts/collaboration.md#talking-between-ais-in-dual-mode) and take effect when T-004 lands. This index is the queue; the [board](../coordination.md) keeps only a pointer here once the process migration (T-004) lands.
 
 ## Queue · prepared 28 November 2026
 
