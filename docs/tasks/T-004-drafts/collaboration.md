@@ -60,6 +60,13 @@ Anything else needs a PR description, CI and a Delivery Lead look at the diff. A
 - **When the author opens Codex directly,** it reads the queue and the task file and continues from there.
 - **No message is approval:** silence, a received message or time passing does not approve anything.
 
+Four rules make the hand-offs work without anyone relaying messages (author, 28 November 2026):
+
+1. **Claim before starting.** Before the first edit, the executor sets the task's status in the [queue](tasks/README.md) to `In progress · <tool> · <branch> · <date>`, for example `In progress · Codex · codex/T-010-s1 · 29 Nov`, and pushes that change with its first commit. A tool never starts a task that the other tool has claimed. If a claimed task has no new commit for three days, the Delivery Lead marks it **Paused**, gives the reason, and asks the author before anyone else takes it.
+2. **Hand off at every stop.** At each stopping point the executor commits work in progress to the task branch and updates the Handoff. Stopping points include the end of a session, a quota warning and a long wait. The Handoff states what is done, the branch and its head commit, the next step, and anything not yet run. The other tool, or a fresh session, must be able to continue from the task file and the branch alone, never from a chat history. Nothing is left only in an uncommitted working tree or a stash.
+3. **A pull request is the done signal.** The executor finishes a round by writing the Handoff, opening a pull request, or pushing a branch that the Handoff names, and setting the status to `In review`. The reviewer does not wait to be told. At the start of every session Claude reads the queue and the open pull requests, and picks up anything `In review`. This also covers tasks the author ran directly in Codex.
+4. **Say when a review is not independent.** When the reviewer is the same model that executed the task, the verdict reads **Pass (not independent)**. This happens, for example, when Codex is unavailable and Claude does both. The queue shows it that way, and the task needs an independent review by the other model or the author before its phase closes or anything built on it is released.
+
 ## Product desk check
 
 At a stage close, or when one change affects edition switching, saved position, access to the text or claims about available content:

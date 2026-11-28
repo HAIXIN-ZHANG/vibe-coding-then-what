@@ -119,6 +119,7 @@ Visits measure access, not reading or understanding.
 
 ## Waiting on the author
 
+- When Codex has quota again, install the Codex plugin for Claude Code so that Claude can hand tasks to Codex directly ([PDR-006](decisions/pdr-006-two-desk-workflow.md)). Until then, the hand-off runs through the task files and pull requests alone.
 - Decide when to run the [reader trial](audience/reader-trial-plan.md) with three to five readers, after T-011.
 - Check the V4 reader on a real iPhone and iPad as slices land.
 - Pick the Chinese platforms for Volume II, in Phase 3.

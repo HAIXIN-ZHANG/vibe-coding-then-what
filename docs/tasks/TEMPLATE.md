@@ -20,7 +20,7 @@ Each section is written once per round by the role named. A rework round appends
 
 ## Handoff
 
-*Writer or Developer.* Changed files, what was checked and how (with real output), what was not run, and open questions.
+*Writer or Developer.* Changed files, what was checked and how (with real output), what was not run, and open questions. Update it at every stopping point, not only at the end. Record the branch and its head commit, and the next step, so that another session can continue from this file alone.
 
 ## Panel
 
@@ -28,7 +28,7 @@ Each section is written once per round by the role named. A rework round appends
 
 ## Review
 
-*Delivery Lead.* Verdict: Pass, Pass with follow-ups, or Fix and recheck. Findings: location, expected, blocking or not. State whether the reviewer is the same model as the executor.
+*Delivery Lead.* Verdict: Pass, Pass with follow-ups, or Fix and recheck. Findings: location, expected, blocking or not. State whether the reviewer is the same model as the executor; if so, the verdict reads **Pass (not independent)** and an independent review is still owed.
 
 ## Integration
 
