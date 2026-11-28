@@ -57,7 +57,7 @@ People now let AI do the work. It runs, but they do not know what it did. An eng
   - The approved 209-page PDF, which remains the earlier edition under its original title.
   - Dated historical records, which keep the titles they used at the time.
 - **Supersedes:** the title and audience statements in the [project vision](../project-vision.md) and the earlier title lines in the [outline](../../book/planning/outline.md#two-book-series) and the [life-volume outline](../../book/planning/volume-two-outline.md).
-- **Series name:** still open. "…Then What?" is a candidate. It appears only on the author and works page.
+- **Series name:** still open, decided in Phase 3. Amended 28 November 2026 (author): the "…Then What?" candidate and the 「然后呢」 pattern are dropped. The three works (Volume I, the guide and Volume II, "two and a half books") each cover something different, so the series is not named by forcing one phrase onto all of them. Having no series name is an acceptable outcome; the author and works page can list the three works with one line each. Any name appears only on that page.
 
 ## Alternatives considered
 

@@ -122,4 +122,4 @@ Visits measure access, not reading or understanding.
 - Decide when to run the [reader trial](audience/reader-trial-plan.md) with three to five readers, after T-011.
 - Check the V4 reader on a real iPhone and iPad as slices land.
 - Pick the Chinese platforms for Volume II, in Phase 3.
-- Choose a series name; "…Then What?" is a candidate.
+- Whether the three works need a shared series name at all, in Phase 3. The author dropped the "…Then What?" pattern on 28 November: each book is about something different, and the name should not be forced.
