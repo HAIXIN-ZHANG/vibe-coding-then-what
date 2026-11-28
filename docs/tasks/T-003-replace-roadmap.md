@@ -42,7 +42,31 @@
 
 ## Review
 
-*Pending. The executor was Claude, so the review must come from Codex or the author.*
+*Delivery Lead (Claude), 28 November 2026, at the author's request, against main `0bd5134`. **This review is not independent:** Claude also executed the task. The brief asked for Codex or the author to review it. To limit that weakness, the verdict rests on mechanical checks that do not depend on the reviewer's judgement. The author can still ask Codex for an independent pass.*
+
+**Verdict: Pass.** One broken anchor is fixed in this change. It was introduced later, by PR #53, not by T-003.
+
+Checks:
+
+- **The archive matches the original.**
+  - The original file was taken from `9acaa05:docs/roadmap.md`, SHA-256 prefix `ca3f0e5bb44ab459`, as in the Handoff.
+  - With link targets masked, the only difference from `docs/archive/roadmap-2026-11-27.md` is the added archive note and its blank line.
+  - Both copies have 112 links. Resolved from their own folders (`docs/` and `docs/archive/`), all 112 point to the same file and anchor as before.
+  - So the Handoff's stated deviation, link paths plus one note, is the whole deviation.
+- **Historical files changed only their roadmap links.** Each historical file the brief lists, as changed in `43fe74d`, was compared with roadmap link targets masked. Thirteen files changed only those link lines. Two other files showed other changes, neither of them T-003's:
+  - `docs/handoffs/public-edition-requirements.md` repoints the PRD link to its archived copy, the same pattern for T-005's archive.
+  - `docs/handoffs/writer/m4-standard-samples.md` is a new file brought into main by the same PR.
+- **Link checker.**
+  - It ran over `docs/`, `book/` and `AGENTS.md`, plus `README.md`: 330 Markdown files, every relative link, and every heading anchor using GitHub-style slugs.
+  - Of the 38 problems it reported:
+    - 33 are links in `T-004-drafts/` and `T-006-drafts/`. Those files are written to sit at the repository root, and the links resolve from there.
+    - 3 are angle-bracket links containing `(english)` and `(chinese)` route folders, which the checker's pattern cuts short. All three files exist.
+    - 1 is a root-relative example inside the T-006 brief's instructions.
+    - 1 is real: `book/planning/tasks.md` linked to `roadmap.md#phase-1--finish-volume-i`, a heading that never existed under that name. PR #53 renamed the Phase 1 heading while that link was being written. It now points to `#phase-1--volume-i-v1-the-book-settles-and-the-design-stops-changing`.
+  - No other link to either roadmap file is broken.
+- **The site has no roadmap links.** `site/` contains no link to the roadmap, so the build was unaffected, as the Handoff states.
+
+Not checked: the brief's `git diff --word-diff` samples. The masked comparisons above cover the same question more completely.
 
 ## Integration
 
