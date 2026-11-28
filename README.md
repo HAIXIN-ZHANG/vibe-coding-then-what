@@ -28,6 +28,6 @@ Questions, corrections and relevant sources are welcome through [GitHub issues](
 
 ## License
 
-Project source code and original programming samples are offered under the [MIT License](LICENSE). Original book prose and teaching diagrams in `book/drafts/` are offered under [CC BY-SA 4.0](LICENSE-CONTENT.md). Third-party material and project names or logos may be subject to separate rights; see the [content license notice](LICENSE-CONTENT.md) for scope and exceptions.
+Project source code and original programming samples are offered under the [MIT License](LICENSE). Original book prose and teaching diagrams, in every edition and language, are offered under [CC BY-SA 4.0](LICENSE-CONTENT.md). Third-party material and project names or logos may be subject to separate rights; see the [content license notice](LICENSE-CONTENT.md) for scope and exceptions.
 
 Inspiration: [The Engineering Handbook](https://github.com/handbook-academy/engineering-handbook) for organizing engineering knowledge, and [HowToLiveBetter](https://github.com/eternity4719/HowToLiveBetter) for accessible, maintained public reading. These acknowledgments imply no affiliation, endorsement or reuse of their text, code or diagrams.

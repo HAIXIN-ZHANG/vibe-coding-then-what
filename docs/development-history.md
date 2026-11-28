@@ -1,6 +1,6 @@
 # Development History
 
-Original evidence snapshot: 2026-11-15; later integration addendum: 2026-11-16 (Australia/Perth), through PR #14. This map describes delivered, reviewed and preserved work. The [Roadmap](roadmap.md) describes future scope; neither page is an execution authorization. For operating detail, use the [coordination board](coordination.md), [collaboration rules](collaboration.md) and [main developer guide](../site/DEVELOPMENT.md).
+Original evidence snapshot: 2026-11-15; later integration addendum: 2026-11-16 (Australia/Perth), through PR #14. This map describes delivered, reviewed and preserved work. The [Roadmap](archive/roadmap-2026-11-27.md) describes future scope; neither page is an execution authorization. For operating detail, use the [coordination board](coordination.md), [collaboration rules](collaboration.md) and [main developer guide](../site/DEVELOPMENT.md).
 
 **Current record pointer — 2026-11-16:** the [canonical Delivery Milestone 1 ledger](delivery/milestone-1.md) consolidates original expectations, actual review/rework, mainline integrations through PR #16 and the remaining Release Readiness gates. PR #15 search/sharing and PR #16 public-document/license closeout are merged at main `9684c3c1e56323f879500c0f462ef44505b47cd7`. Goal 1's foundation is accepted/merged; permanent E2E/CI, dependency reassessment, gated Pages CD and verified online/rollback evidence remain Milestone 1 work, with deployment still held. The snapshots, table rows, failed/interrupted attempts and dated limits below are retained unchanged; their pauses and pending states are not a live queue. Product Goals/Delivery Milestones are the current terms; legacy Stage/Beta names remain in historical evidence.
 
@@ -26,7 +26,7 @@ Human-readable names are primary. Legacy references remain for existing paths, r
 | Continuous Integration and Merge Protection | Access baseline and CI integrated; three cloud checks required after actual success | [Access review](reviews/SEC01.md), [CI review](reviews/CI01.md), legacy SEC01/CI01 |
 | Strict TypeScript Migration | Accepted and merged; runtime/JSX unchanged after extension normalization | [Handoff](handoffs/developer/TS01.md), [review](reviews/TS01.md), legacy TS01 |
 | Design Tokens and Day/Night Themes | Local implementation/build evidence preserved; independent browser/integration acceptance incomplete | [Checkpoint handoff](handoffs/developer/DS01.md), [review checkpoint](reviews/DS01.md), legacy DS01 |
-| Reusable Reading Components | Authorized future scope, currently paused; not delivered | [Roadmap](roadmap.md), legacy CMP01 |
+| Reusable Reading Components | Authorized future scope, currently paused; not delivered | [Roadmap](archive/roadmap-2026-11-27.md), legacy CMP01 |
 | Responsive Chapter Reading | Initial content contract accepted; renderer and reading UI not delivered; paused | [Content contract](content-contract.md), legacy PAGE01 |
 | Browser Validation and E2E Tests | Necessary tools/small E2E suite authorized; full acceptance and permanent tests not completed; paused | [Review checkpoint](reviews/DS01.md), legacy QA01 |
 | GitHub Pages Release | Authorized only after code/content/QA acceptance; not deployed; paused | [Access policy](security/access-policy.md), legacy DEP01 |

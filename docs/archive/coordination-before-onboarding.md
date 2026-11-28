@@ -12,7 +12,7 @@ The current tree is `/tmp/btf-project-docs`, branch `codex/ai-development-histor
 
 **Preserved, not accepted:** Design Tokens and Day/Night Themes (DS01) and existing documentation drafts were saved/pushed as checkpoint `4da2578048f8df113fed92d99e084f644a9a788e` on `codex/ds01-panda-theme`. Local code/build evidence exists; independent Browser review remains incomplete. The stable Playwright harness passed syntax checking only and never ran. This checkpoint is not a reviewed acceptance, main merge, E2E result or deployment. The original checkout is clean at that checkpoint and must not be overwritten by documentation work.
 
-See [Development History](../development-history.md) for the readable outcome map, decision evolution and exact PR/head/merge ledger; [Roadmap](../roadmap.md) owns future scope. The dated entries below preserve earlier execution/authorization snapshots and are superseded by this current priority where they conflict.
+See [Development History](../development-history.md) for the readable outcome map, decision evolution and exact PR/head/merge ledger; [Roadmap](roadmap-2026-11-27.md) owns future scope. The dated entries below preserve earlier execution/authorization snapshots and are superseded by this current priority where they conflict.
 
 ## Dated execution records
 
@@ -77,7 +77,7 @@ The WF01 outcome and direct-review-loop update were delivered once to each exist
 
 2026-11-14 UI02: Coordinator reviewed and refined the Figma design system: English UI, Chinese implementation annotations, shared reading components, 55 tokens, Day/Night compositions, and 1024/768/320px samples alongside the existing 1440/390px layouts. On explicit confirmation, changed the Beyond the Frontend Folder's team default to view/comment; verified the file's public link is view-only and Owner editing remains. See [UI02 review](../reviews/UI02.md) and [current design handoff](../design/reading-experience-v1.md). User visual review and code-level acceptance remain pending; no dependent implementation stage is released.
 
-[README](../../README.md) is the public entry, [project vision](../project-vision.md) owns audience/content/product direction, and [roadmap](../roadmap.md) owns feature scope and checkpoints. `project-brief.md` is a compatibility entry. Current project/repository name is Beyond the Frontend / `beyond-the-frontend`; older names in history below are not current instructions.
+[README](../../README.md) is the public entry, [project vision](../project-vision.md) owns audience/content/product direction, and [roadmap](roadmap-2026-11-27.md) owns feature scope and checkpoints. `project-brief.md` is a compatibility entry. Current project/repository name is Beyond the Frontend / `beyond-the-frontend`; older names in history below are not current instructions.
 
 2026-11-14 historical v1 checkpoint: On user request, Coordinator created the Beyond the Frontend Folder under HAIXIN's Starter team and verified the design file was moved into it. The first design included 8 screen/state compositions; it was subsequently expanded and reviewed as UI02 above. The [design handoff](../design/reading-experience-v1.md) retains its original path and now describes v2. No website implementation was changed during either design task.
 

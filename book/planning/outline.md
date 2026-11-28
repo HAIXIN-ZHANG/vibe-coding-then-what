@@ -8,6 +8,8 @@ Book/project: **Vibe Coding, Then What?** — **Understanding the Systems We Bui
 
 <a id="revision-2026-11-26"></a>
 
+> **28 November 2026:** The book's framework is settled, and five flagship pieces and the order of revision are now set in the [structure and revision plan](volume-one-revision-plan.md). The content map below still describes what each part explains. Book titles changed in [PDR-007](../../docs/decisions/pdr-007-titles-and-positioning.md); the title lines later in this file are updated by the rename task.
+
 ## Reader-led revision · 26 November 2026
 
 The author's whole-book feedback accepts the natural, literary voice and asks for stronger technical precision, explanatory depth and connections across product, design, frontend, backend, database/data, cloud and operations. The comparison edition is the [51-piece making-of manuscript](../revisions/zh/volume-one-making-of/README.md), with its 209-page A5. This is the current revision direction; subsequent source changes need their own reviewed edition. The earlier eight-part topic inventory below remains a coverage reference.

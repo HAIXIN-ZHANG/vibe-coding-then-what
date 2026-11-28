@@ -38,7 +38,7 @@ Line references below identify the frozen input/output hashes recorded at the en
 
 ### W-PD-01 — update the new mapping's stale integration wording
 
-**Priority: P2, status accuracy.** [Roadmap](../../roadmap.md), lines 78 and 83: the new table describes search/heading sharing as implemented “on the recorded branch” and asks to verify final integration. The current main baseline already includes merged PR #15. Resume/bookmarks and passage selection remain future work; they must not be conflated with heading sharing.
+**Priority: P2, status accuracy.** [Roadmap](../../archive/roadmap-2026-11-27.md), lines 78 and 83: the new table describes search/heading sharing as implemented “on the recorded branch” and asks to verify final integration. The current main baseline already includes merged PR #15. Resume/bookmarks and passage selection remain future work; they must not be conflated with heading sharing.
 
 Proposed status-cell wording, respectively:
 

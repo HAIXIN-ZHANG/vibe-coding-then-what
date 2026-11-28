@@ -1,26 +1,21 @@
-# Vibe Coding, Then What? — shared project entry
+# Project index
 
-This compatibility entry points to authoritative documents; do not maintain a second vision, roadmap or runtime queue here.
+Updated 28 November 2026. Each topic has one page that owns it; this index only points to them. The earlier version of this page is [archived](archive/project-brief-2026-11-27.md).
 
-| Read | For |
+| Need | Page |
 | --- | --- |
-| [README](../README.md) | Public introduction and practical entry points |
-| [Project vision](project-vision.md) | Audience, book direction, content map and intended reading experience |
-| [Public-edition PRD](product/volume-one-public-edition.md) | Next-edition requirements, current capabilities and open author decisions; draft, not implementation authorisation |
-| [Decision records](decisions/README.md) | Consequential product/workspace choices and their evidence |
-| [Documentation migration](product/document-migration.md) | Bounded entry-point changes and read-only recovery checks |
-| [Roadmap](roadmap.md) | Proposed feature scope, priorities and gates; not execution authorization |
-| [Development History](development-history.md) | Historical outcomes, decisions and immutable delivery evidence |
-| [AGENTS](../AGENTS.md) | Agent startup entry and explicitly assigned role guides |
-| [Coordination board](coordination.md) | Sole current assignments, holds, workspaces and next action |
-| [Collaboration](collaboration.md) | Detailed four-role ownership, review, recovery and integration workflow |
-
-## Identity and reading contracts
-
-For the formal title, subtitle and language-specific bylines, use the [editorial identity table](../book/planning/editorial-brief.md#identity-and-reason-to-write). The book uses its pen name on the cover and in reader-facing credits. Jason Zhang maintains the [repository](https://github.com/HAIXIN-ZHANG/vibe-coding-then-what).
-
-The website is English-default and the book bilingual, with Chinese manuscript review before English adaptation. Implemented commands and limitations belong in the [site developer guide](../site/DEVELOPMENT.md). The [content contract](content-contract.md) governs explicitly assigned source integration; it is not blanket draft publication. [V1 design handoff](design/reading-experience-v1.md) is a historical design reference. The [PRD design-reference section](product/volume-one-public-edition.md#design-reference-and-constraints) identifies the current V3.1 candidate and its unverified gaps; design references do not establish code/browser acceptance.
-
-The first edition starts from engineers who have built with AI and want to understand the systems behind their products, targeting **Junior–Senior Full-stack + AI Product Engineers**. The [project vision](project-vision.md) owns audience and editorial depth; the [detailed outline](../book/planning/outline.md) owns the confirmed eight-part direction's content planning. AI product architecture is core; AI-assisted coding/delivery is a distinct thread. This is book scope, not evidence of implemented runtime AI chat on the reading website or acceptance of new manuscripts. Specialist DevOps/data expansion remains outside the first-edition main line.
-
-Start from AGENTS → assigned role guide → board → linked task brief and necessary inputs. The handoff records assignment/execution evidence; the review records exact-revision judgment. Current branches, tasks and holds belong only on the board, with recoverable task evidence in its handoff. See the [document/notes policy](agent-notes-policy.md) for storage. No source here authorizes additional implementation, installation, Git operations or release.
+| Public introduction | [README](../README.md) |
+| Why the books exist and who they are for | [Project vision](project-vision.md) |
+| Order of work | [Roadmap](roadmap.md) |
+| Next edition's requirements | [PRD](product/volume-one-public-edition.md) |
+| Decisions and their reasons | [Decision records](decisions/README.md) |
+| Work in progress | [Task queue](tasks/README.md) and [board](coordination.md) |
+| Roles, and which AI holds each | [Team](team.md) and [role cards](roles/) |
+| How work is done and reviewed | [Collaboration](collaboration.md) |
+| Volume I content and revision order | [Outline](../book/planning/outline.md) and [revision plan](../book/planning/volume-one-revision-plan.md) |
+| Voice | [Editorial brief](../book/planning/editorial-brief.md) and [voice sample](../book/planning/samples/zh/tomorrow-voice-reference.md) |
+| Site behaviour and commands | [Site developer guide](../site/DEVELOPMENT.md) |
+| Admitting manuscripts to the site | [Content contract](content-contract.md) |
+| Releases | [Release runbook](release.md) |
+| What happened before | [Development history](development-history.md) and [archive](archive/) |
+| The author's summary in Chinese | [Stage summary](stage-summary.zh-CN.md) |

@@ -1,6 +1,8 @@
 # Editorial Baseline: Vibe Coding, Then What?
 
-Updated: 2026-11-26 (Australia/Perth). Owner: Writer. This brief covers Volume 1. For Volume 2 use the [companion outline](volume-two-outline.md). The author confirmed v1 positioning for Junior–Senior Full-stack + AI Product Engineers and an eight-part content direction. [Vision](../../docs/project-vision.md) owns shared positioning; [outline](outline.md) owns the detailed page map; [roadmap](../../docs/roadmap.md) owns future dependencies; the [board](../../docs/coordination.md) alone owns current task/hold state.
+Updated: 2026-11-26 (Australia/Perth). Owner: Writer.
+
+> 28 November 2026: the author's 27 November [scene-led direction](samples/zh/scene-led-technical-writing-20261127.md) is adopted for revision batches through the [structure and revision plan](volume-one-revision-plan.md#scene-led-writing--the-authors-direction-of-27-november). The approved voice sample below still sets the voice. This brief covers Volume 1. For Volume 2 use the [companion outline](volume-two-outline.md). The author confirmed v1 positioning for Junior–Senior Full-stack + AI Product Engineers and an eight-part content direction. [Vision](../../docs/project-vision.md) owns shared positioning; [outline](outline.md) owns the detailed page map; [roadmap](../../docs/roadmap.md) owns future dependencies; the [board](../../docs/coordination.md) alone owns current task/hold state.
 
 The former W01 three-part/45-chapter proposal is historical, superseded as an organizing framework. Its 45 entries remain traceable in the outline's legacy map and original handoff/Git history. Confirmation of v1 direction does not accept every page's research, prose, implementation or publication.
 
@@ -49,7 +51,7 @@ The author confirmed the following direction after the P8.10 reading draft was c
 
 The identity table above remains active, including the approved long subtitle and chosen pen names. Later cover-side copy and the candidates “和 AI 一起写代码，把系统和产品想明白” / “Making Sense of What We Build with AI” are not final wording. Approval of the broad direction does not replace the title/subtitle, accept all new prose word for word or authorize Git/publication. Preserve completed P810M review and its exact manuscript identity; later prose changes need affected review by the original-owner workflow.
 
-**Closing direction · 21 November.** Follow the [closing sequence](outline.md#opening-recurring-scenes-and-closing-movement) and the Chinese voice study. The opening wishes the book three to five good years. In the closing, imagine the author picking up the first edition to see which judgments aged well and whether he still prefers paper. His experience with work and technology gives him a point of view, and another reader of the same age may see things differently. Leave room for both.
+**Closing direction · 21 November.** Follow the [closing sequence](outline.md) and the Chinese voice study. The opening wishes the book three to five good years. In the closing, imagine the author picking up the first edition to see which judgments aged well and whether he still prefers paper. His experience with work and technology gives him a point of view, and another reader of the same age may see things differently. Leave room for both.
 
 ## Readers: one text, layered depth
 

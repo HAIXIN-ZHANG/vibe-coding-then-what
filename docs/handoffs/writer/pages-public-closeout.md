@@ -18,7 +18,7 @@ r1 is ready for Coordinator review; Writer has not self-approved or performed Gi
 | File | Change and review boundary | SHA-256 |
 | --- | --- | --- |
 | [README](../../../README.md) | Prominent real online reading entry; reader capabilities and explicit two-Chinese/zero-English manuscript availability. No CI/job/recovery history added to the reader introduction. | `702dcee304f8ad9d5418764315908af8cbe64561ffbb71c68b07606110c731a7` |
-| [Roadmap](../../roadmap.md) | Replaced obsolete current missing-E2E/CD/deployment-hold claims with verified initial-release status and links to the canonical ledger; future goals/features and legacy aliases preserved. | `5042bdd44517af0c3f6db87feeb3eaea4dbd2f1114eeba766d304aaa8046ac42` |
+| [Roadmap](../../archive/roadmap-2026-11-27.md) | Replaced obsolete current missing-E2E/CD/deployment-hold claims with verified initial-release status and links to the canonical ledger; future goals/features and legacy aliases preserved. | `5042bdd44517af0c3f6db87feeb3eaea4dbd2f1114eeba766d304aaa8046ac42` |
 | [Milestone 1 ledger](../../delivery/milestone-1.md) | One current operational outcome table, source identity, public/recovery evidence and retained limits; dated initial inventory/history/checklist explicitly preserved as historical. Existing section 6 anchor retained. | `b03928dbffc70e2e28a080291ed56e2651b1d94d89ee3a5dd43d723a2aacbff3` |
 | [Licensing/readiness notes](../../licensing-and-readiness.md) | Only date/status introduction points to separately verified public release. Scope, exceptions and all subsequent legal/readiness text unchanged. | `3f75598538e6dfdc7ffa8edade54e4a172797aa1c038719a02de8dc77a140627` |
 
