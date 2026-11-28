@@ -1,6 +1,6 @@
 # V4 reader design · status
 
-Updated 28 November 2026, after the V4 design was completed. This page collects where the V4 design stands, so that no session has to rely on chat history. Decisions are in [PDR-009](../decisions/pdr-009-reader-feature-triage.md); the order of work is in the [roadmap](../roadmap.md#order-of-work--rules-for-every-role-and-ai).
+Updated 28 November 2026. The author accepted the V4 design that day ([PDR-010](../decisions/pdr-010-v4-acceptance-and-edition.md)). This page collects where the V4 design stands, so that no session has to rely on chat history. Decisions are in [PDR-009](../decisions/pdr-009-reader-feature-triage.md); the order of work is in the [roadmap](../roadmap.md#order-of-work--rules-for-every-role-and-ai).
 
 ## Direction
 
@@ -31,13 +31,13 @@ The author wants a modern, high-quality, Apple-like feel.
 - tablet and desktop panels: the settings popover, iPad split view, and the chapter end with the footer;
 - failure states: a figure that did not load, storage denied, and 320 px at the largest text size.
 
-It also holds the V3.1 → V4 change table, the layout, type and motion rules, and the acceptance table for [T-010](../tasks/T-010-v4-reader.md). The same page is published as an author-private artifact (https://claude.ai/artifact/Mi5obCcxQMJBLMHL9Tw2Fp, version 5); edit both together.
+It also holds the V3.1 → V4 change table, the layout, type and motion rules, and the acceptance table for [T-010](../tasks/T-010-v4-reader.md). The same page is published as an author-private artifact (https://claude.ai/artifact/Mi5obCcxQMJBLMHL9Tw2Fp, version 6); edit both together.
 
 Figma is no longer a blocker. The author's seat is View, so the V3.1 file stays read-only as history. If the seat is upgraded later, the design can be redrawn there, but the repository file stays the reference until a decision record changes it.
 
 ## Design-system follow-up
 
-The design file introduces components that design system version 10 does not yet document: the dock, the typographic cover, the status tag, the toast, the popover, the search palette and the bookmarks sheet. The Designer adds them to the design system once the author accepts V4. Until then, the design file is the reference.
+The design file introduces components that design system version 10 does not yet document: the dock, the typographic cover, the status tag, the toast, the popover, the search palette and the bookmarks sheet. Now that V4 is accepted, the Designer adds them to the design system. Until that is done, the design file is the reference.
 
 ## Other artefacts
 

@@ -15,5 +15,6 @@ Records below were reconstructed on 26 November 2026 from author direction and i
 | [PDR-007](pdr-007-titles-and-positioning.md) | Titles, readers and shared voice for Volume I, Volume II and the production guide | Accepted 27 Nov 2026; rename executes with PDR-005's adoption sequence |
 | [PDR-008](pdr-008-roles-and-modes.md) | Roles as hats (PM, Designer, Delivery Lead, Writer, Developer, audience panel), bound to Codex and/or Claude by mode; amends PDR-006 | Accepted 28 Nov 2026 |
 | [PDR-009](pdr-009-reader-feature-triage.md) | Reader features kept, deferred, paused or stopped; three accent colours; quote cards, margin notes, email feedback and RSS added | Accepted 28 Nov 2026 |
+| [PDR-010](pdr-010-v4-acceptance-and-edition.md) | V4 design accepted; no edition name, last-two-versions browser support, English adaptation-out-of-date note | Accepted 28 Nov 2026 |
 
 Each record includes context, alternatives, choice, rationale, consequences, decision-maker/date, evidence and relevant PRs. Record later changes as superseding decisions or explicit amendments. Do not invent discussion, alternatives considered by the author, measurements or historical rationale. Alternatives written for clarity below are editorial comparisons unless an original source confirms they were discussed.

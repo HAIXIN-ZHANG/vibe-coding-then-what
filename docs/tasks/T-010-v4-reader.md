@@ -2,7 +2,7 @@
 
 ## Brief
 
-*Delivery Lead and Designer (Claude), 28 November 2026. Base: main after T-006. Mode: dual (Claude designs and reviews, Codex builds). The author's acceptance of the design is the start condition.*
+*Delivery Lead and Designer (Claude), 28 November 2026. Base: main after T-006. Mode: dual (Claude designs and reviews, Codex builds). The author accepted the design on 28 November 2026 ([PDR-010](../decisions/pdr-010-v4-acceptance-and-edition.md)), with the edition label, browser support and English note decided at the same time.*
 
 - **Goal.** Phase 1's reader interface is live and then frozen (roadmap rule 4). A reader on a phone or a desktop gets a book-like page and a quiet interface: one serif column, a chapter opener, a next-chapter card, a bottom sheet for contents and text settings, one style for figures, code and tables, part openers, honest status labels, and a GitHub route for reporting a problem.
 - **Executor.** Developer (Codex).
@@ -26,7 +26,7 @@ Eight slices, one pull request each, in this order. Each slice must pass review 
 | 5 | **Sheets and settings.** One bottom-sheet component (500 ms, `cubic-bezier(0.32, 0.72, 0, 1)`, momentum close, focus trap, Escape); contents as a sheet on phones and a pinnable 300 px sidebar from 1200 px; text settings with a five-stop size slider, four page tones, appearance and three accents; per-role sizes behind a pushed level that reuses the existing role-size control and its storage | Contents ×2, settings ×2 | R05, R08, R12 | `ui/reading-size-control.tsx`, `ui/appearance-control.tsx`, `site/theme/*`, `book-navigation.tsx`, `sidebar-preference.ts` |
 | 6 | **Home and part pages.** A typographic cover component (book colour, serif title, spine, 10° turn at rest); first-visit and returning home with one primary action; a three-book shelf with honest status; part opener pages and the whole-book map (content arrives through T-007) | Home ×3, part opener, map | R01, R09, R14 | `home-page.tsx`, `home-content.ts`, `companion-book.tsx`, `book-choice-anchor.tsx`, new part-page route |
 | 7 | **Search, feedback, errors and failure states.** Edition-scoped search as a phone sheet and a desktop palette, with arrow-key navigation and landing below the header; the GitHub issue-draft sheet with prefilled book, chapter, section and selected text; 404; the moved-section fallback sentence; a failed figure shows its text description; the storage-denied banner; 320 px at 1.45× with no page scroll | Search ×2, report sheet, 404, moved link, failure ×3 | R03, R11, R12, R15 | `site/components/search/*`, `passage-tools.tsx`, `sharing.ts`, `not-found-content.tsx`, `global-not-found.tsx`, `chapter-media.tsx` |
-| 8 | **English edition and wide panels.** Paired English home, contents, search and 404; the per-chapter language sheet; the adaptation-out-of-date note if the author approves it (PRD O10); from 600 px, settings as a popover and bookmarks, report and language as a centred dialog; the footer at chapter ends and on home | English ×6, tablet ×2, desktop footer | R08, R10 | `language-switch.tsx`, `site/config/i18n.ts`, `home-page.tsx`, `document-layout.tsx` |
+| 8 | **English edition and wide panels.** Paired English home, contents, search and 404; the per-chapter language sheet; the adaptation-out-of-date note (PRD O10, decided); from 600 px, settings as a popover and bookmarks, report and language as a centred dialog; the footer at chapter ends and on home | English ×6, tablet ×2, desktop footer | R08, R10 | `language-switch.tsx`, `site/config/i18n.ts`, `home-page.tsx`, `document-layout.tsx` |
 
 ### Status labels: data, not hand-typed text
 
@@ -62,6 +62,7 @@ For slice 8's adaptation note, each English adaptation records the SHA-256 of th
 - Screenshots of each frame the slice covers, at 320, 390, 1024 and 1440 px, light and dark, plus Paper and one non-Blue accent, placed next to the design frame in the Handoff.
 - Contrast measured from the shipped tokens for each tone, light and dark: body 7:1 or higher, secondary text and accent 4.5:1 or higher.
 - No horizontal page scroll at 320 px with the largest text size.
+- Browser support as decided in [PDR-010](../decisions/pdr-010-v4-acceptance-and-edition.md): the E2E suites run in Chromium, as today. Check the slice by hand in Safari, and in Safari on iOS 17 or later (a simulator is acceptable; the author checks real devices). Adding a WebKit Playwright project downloads a browser in CI, so propose it in the Handoff rather than adding it. In Firefox, confirm the slice is readable and usable; the typographic enhancements may be missing there.
 
 ### Extra layers
 
