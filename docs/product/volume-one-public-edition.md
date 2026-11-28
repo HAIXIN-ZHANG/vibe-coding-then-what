@@ -16,7 +16,7 @@ Updated 28 November 2026. This document covers what the next public edition of *
 | English | The existing adaptations stay: the preface and browser foundations in full, and two overviews that link to the Chinese text. New English adaptations move to Phase 3 |
 | Titles | The [PDR-007](../decisions/pdr-007-titles-and-positioning.md) titles across the site. URLs unchanged |
 | Reader | The journeys below, in the V4 design (direction A + B): three accent colours, four paper tones, serif body text and margin notes ([PDR-009](../decisions/pdr-009-reader-feature-triage.md)). Quote cards and RSS move to Phase 3 |
-| Presentation | Not in this edition. The author and works page, share cards and quote cards move to Phase 3, promotion ([roadmap](../roadmap.md#phase-3--promotion-and-new-features)) |
+| Presentation | Not in this edition. The author and works page, share cards and quote cards move to Phase 3, promotion ([roadmap](../roadmap.md#phase-3--promotion-and-expansion)) |
 | Print | The 209-page A5 edition stays as it is. A matching new PDF follows once the whole revision round is stable; it is not part of this edition |
 
 **Out of scope:** accounts and sync, hosted AI and comments (all paused); the web print-edition viewer, the store app and video (paused); the offline bookshelf and code sandbox (stopped); swipe or pull-to-next-chapter gestures; and site measurement, which starts after this edition is public.

@@ -10,5 +10,6 @@
   - Never dispatch from the author's checkout. Do not enable the plugin's stop-hook review gate.
 - **Reviewing:** use the `review-gate` skill. Never review work Claude executed; send Claude's own designs and decision records to `/codex:adversarial-review`.
 - **Audience panel:** use the `audience-panel` skill, or one subagent per persona if `.claude/agents/` defines them.
+- **Phases:** follow the roadmap's order-of-work rules. Do not propose promotion work before Phase 3, and put ideas from a later phase in the backlog.
 - **Codex unavailable:** its tasks wait. Do not take them over unless the author says so.
 - **Design:** new design work goes in the Editorial Reader V4 Figma file; the older file is reference only.
