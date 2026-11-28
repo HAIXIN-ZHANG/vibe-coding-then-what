@@ -24,5 +24,15 @@ None of these tasks is started. Codex picks them up when it is available again, 
 | T-007 | **Admit the Volume I candidates to the site.** Adopt the revised preface, the trimmed Part 8 chapter and the retitled closing: update manifest hashes, search, links and tests. Add part openers and the whole-book map, which need part-introduction support in the reader. | Codex | T-006; part-opener rendering needs the V4 design | Partly ready |
 | T-008 | **Bring the production guide into main.** Publish public-safe copies of the guide's concept and through-narrative from the author's preservation branch, with private paths removed. Claude then writes the restructuring plan into three stages (PDR-007). | Codex migration, Claude plan | T-001 | Ready |
 | T-009 | **Measurement.** Integrate Umami with the existing event definitions, add a privacy notice and verify the counts. | Codex | Revised edition public; author creates the Umami account | Later (author, 28 Nov) |
-| T-010 | **V4 reader and author and works page.** Claude reviews the V4 Figma design and splits it into implementation slices. Codex implements them, reusing V3 code where it fits. | Claude design, Codex build | Figma seat upgraded; V4 design accepted | Blocked |
-| T-011 | **Volume I flagship revision batch.** Claude writes a revision plan for each of the five flagship pieces in the [structure and revision plan](../../book/planning/volume-one-revision-plan.md). Codex drafts them, Claude reviews, and the author does the voice pass. English adaptations follow. | Codex drafts, from Claude's plans | T-007 | Needs Claude plans |
+| T-010 | **V4 reader** (the author and works page waits for Phase 3). Eight slices, one PR each, built from the [V4 design](../design/v4/reader-v4-design.html), reusing held V3 code where it already matches. | Claude design and review, Codex build | T-006 (design accepted 28 Nov, [PDR-010](../decisions/pdr-010-v4-acceptance-and-edition.md)) | Ready after T-006: [brief](T-010-v4-reader.md) |
+| T-011 | **Volume I flagship revision and Part 8.** The five flagship pieces and the eight Part 8 pieces, one round per piece: Codex drafts, Claude reviews, the panel rehearses, the author does the voice pass. English adaptations wait for Phase 3. | Codex drafts, from Claude's plans | T-007; F5 also needs T-012 | Ready after T-007: [brief](T-011-volume-one-flagship-revision.md) and [per-chapter plans](../../book/planning/phase-one-chapter-plans.md) |
+| T-012 | **Run the Part 4 PostgreSQL example** in two real sessions and record the transcripts against the manuscript's claims. | Codex (Developer) | Author authorises pulling the PostgreSQL image | Ready: [brief](T-012-postgresql-example.md) |
+| T-013 | **Phase 1 reader trial** with three to five target readers on F1–F3. | Author runs it; PM (Claude) prepares and records | T-011, deployed | Planned: [plan](../audience/reader-trial-plan.md) |
+
+## Backlog
+
+Ideas that do not belong to the current phase are listed here, not designed or built (roadmap rule 2). Phase 3 items are already listed in the [roadmap](../roadmap.md#phase-3--promotion-and-expansion).
+
+| Idea | Phase | Raised |
+| --- | --- | --- |
+| Link-preview (Open Graph) images | 3 | Designer, 28 Nov |

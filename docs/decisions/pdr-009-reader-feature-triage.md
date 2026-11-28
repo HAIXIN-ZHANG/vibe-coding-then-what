@@ -8,7 +8,7 @@ The earlier roadmap, now [archived](../archive/roadmap-2026-11-27.md), collected
 
 ## Decisions
 
-**This edition**, in the [PRD](../product/volume-one-public-edition.md):
+**This edition**, in the [PRD](../product/volume-one-public-edition.md). Amended 28 November: the author and works page, quote cards and RSS move to Phase 3 (promotion), after the books are substantially written ([PDR-005 amendment](pdr-005-project-purpose.md#amendment--volume-i-first-promotion-last-28-november-2026)):
 
 - **Kept:** search, continue reading, bookmarks, text size, sharing a section, the language switch, paper tones with light and dark, figures that open and return, share cards, the author and works page, part openers and the map, and the existing PDF download.
 - **Three accent colours** instead of one (author, 28 November). Readers choose an accent and a paper tone separately. Three accents across four paper tones in light and dark give 24 combinations to check for contrast, half of what six would need. The author confirmed the four paper tones on 28 November: **White, Paper, Mist and Quiet grey**, each with a dark version. Mist is the cool pale blue of the cover background. The accents are Blue (the cover blue, default), Iris and Graphite.

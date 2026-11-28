@@ -4,7 +4,7 @@ Updated 28 November 2026. This document covers what the next public edition of *
 
 ## Reader and promise
 
-**Who it is for.** People who can already build something with AI but cannot explain why it works, or why it breaks. That includes engineers strong in one layer, career changers and newer developers. A second group arrives from LinkedIn or the author's résumé: professionals who give the work a few minutes and judge the author from what they see.
+**Who it is for.** People who can already build something with AI but cannot explain why it works, or why it breaks. That includes engineers strong in one layer, career changers and newer developers. From Phase 3 (promotion), a second group arrives from LinkedIn or the author's résumé.
 
 **What it promises.** Readers follow one course-enrolment story from a button that says "success", through the page, the API, the database, background work, release, recovery and AI inside the product. Afterwards they can explain why the outcome happened and what would change it. It reads like a story, not a manual.
 
@@ -12,11 +12,11 @@ Updated 28 November 2026. This document covers what the next public edition of *
 
 | Area | In this edition |
 | --- | --- |
-| Chinese manuscript | The 51 published pieces. The new preface opening, taken from the author's voice sample. The eight part openers and the whole-book map. The trimmed Part 8 chapter. The closing retitled 《今天就到这儿吧》. The five flagship pieces revised to the depth standard: the first chapter, browser foundations, the AI-evaluation chapter, and the Part 2 and Part 4 calibration samples ([revision plan](../../book/planning/volume-one-revision-plan.md)) |
-| English | Full adaptations of the preface, the first chapter, browser foundations and the AI-evaluation chapter. The other English pages stay as honest overviews that link to the Chinese text |
+| Chinese manuscript | The 51 published pieces. The new preface opening, taken from the author's voice sample. The eight part openers and the whole-book map. The trimmed Part 8 chapter. The closing retitled 《今天就到这儿吧》. The five flagship pieces revised to the depth standard (the first chapter, browser foundations, the AI-evaluation chapter, and the Part 2 and Part 4 calibration samples) and a deepened Part 8 ([revision plan](../../book/planning/volume-one-revision-plan.md)). Other pieces carry honest status labels; the remaining batches are Phase 2 maintenance |
+| English | The existing adaptations stay: the preface and browser foundations in full, and two overviews that link to the Chinese text. New English adaptations move to Phase 3 |
 | Titles | The [PDR-007](../decisions/pdr-007-titles-and-positioning.md) titles across the site. URLs unchanged |
-| Reader | The journeys below, in the V4 design: three accent colours, four paper tones, serif body text, margin notes, quote cards and an RSS feed ([PDR-009](../decisions/pdr-009-reader-feature-triage.md)) |
-| Presentation | An author and works page that introduces all three works. Share cards for the books and chapters |
+| Reader | The journeys below, in the V4 design (direction A + B): three accent colours, four paper tones, serif body text and margin notes ([PDR-009](../decisions/pdr-009-reader-feature-triage.md)). Quote cards and RSS move to Phase 3 |
+| Presentation | Not in this edition. The author and works page, share cards and quote cards move to Phase 3, promotion ([roadmap](../roadmap.md#phase-3--promotion-and-expansion)) |
 | Print | The 209-page A5 edition stays as it is. A matching new PDF follows once the whole revision round is stable; it is not part of this edition |
 
 **Out of scope:** accounts and sync, hosted AI and comments (all paused); the web print-edition viewer, the store app and video (paused); the offline bookshelf and code sandbox (stopped); swipe or pull-to-next-chapter gestures; and site measurement, which starts after this edition is public.
@@ -45,12 +45,11 @@ Updated 28 November 2026. This document covers what the next public edition of *
 | R11 | **Search, an empty result, or corrupt saved data.** Search covers only available text, with clear recovery; bad storage never blocks reading | P0 | Exists | None |
 | R12 | **Switch accent, paper tone, light or dark, reduced motion; a failed image.** Text stays legible and selected controls are identifiable without colour alone; failed images leave captions and a way back | P0 | Six accents exist | Three accents and four paper tones (24 combinations); test failed images |
 | R15 | **Report a problem.** From any chapter, a reader can open a GitHub issue with the chapter, section and selected text filled in. Nothing is sent without the reader's action | P0 | GitHub issue draft exists | Make the entry easy to find from every chapter. Email comes later, with the Volume II serial |
-| R16 | **Share a quote.** Select a passage and get an image with the book title, chapter and link that opens that section | P1 | Missing | New, building on section sharing |
-| R13 | **Arrive from LinkedIn.** The author and works page shows all three works with honest status and opens the flagship piece in the advertised language | P0 | Missing | New page and share cards |
 | R04 | **Open contents mid-chapter, pick a section, close.** The heading is visible below the fixed controls; focus returns sensibly | P1 | Exists on desktop | Contents in a bottom sheet on mobile |
 | R07 | **Bookmark a passage, revisit it, remove it.** It is independent of automatic resume; a failed write never claims success | P1 | Exists | Restyle |
 | R09 | **Chapter → book home or book selection → Back.** Labels are distinct; language and place are kept; planned books are labelled as planned | P1 | Exists | Two-book landing becomes three works |
 | R10 | **Tablet split view; keyboard and touch.** The passage and figure stay in view; sidebars yield before the prose is squeezed | P1 | Tested in emulation | Real iPad check |
+| R13, R16 | **Arriving from LinkedIn at an author and works page; sharing a quote card.** | Phase 3 | Missing | Deferred with promotion (PDR-005 amendment, 28 November) |
 | R14 | **Part openers and the whole-book map.** Each part starts with its opener, and the map can be reached from any chapter | P1 | Missing | Reader support for part introductions |
 
 ## Verification
@@ -58,17 +57,12 @@ Updated 28 November 2026. This document covers what the next public edition of *
 - **Devices and browsers:** a real iPhone and iPad in Safari, plus desktop Safari and Chrome. Emulation alone does not count.
 - **Coverage:** both languages; four paper tones, each in light and dark; reduced motion; denied storage; a failed image.
 - **Audience panel first:** before real readers, the [audience panel](../roles/audience-panel.md) rehearses each flagship piece with the relevant [personas](../audience/personas.md). Its reports are hypotheses for revision, never acceptance.
-- **Human reading:** five target readers each read one flagship piece without coaching, then explain the mechanism in their own words. Record where they stalled, separately from what they said.
+- **Human reading:** three to five target readers each read one flagship piece without coaching, then explain the mechanism in their own words. Record where they stalled, separately from what they said.
 - **Who records what:** the Developer records build, test and device results in the task file. The Delivery Lead reviews them, and the PM runs the product desk check. The author gives the final reader verdict.
 
 ## Signals after release
 
-No targets are set. Record what actually happens:
-
-- conversations, messages or interviews that mention the work;
-- post replies;
-- peer shares;
-- whether readers could explain a mechanism.
+No targets are set; record what actually happens. For this edition, the signal that matters is whether readers can explain a mechanism, and where they stall. Promotion signals start in Phase 3: post replies, peer shares, and conversations that mention the work.
 
 Site measurement starts after this edition is public ([PDR-005](../decisions/pdr-005-project-purpose.md#decisions)).
 
@@ -76,20 +70,21 @@ Site measurement starts after this edition is public ([PDR-005](../decisions/pdr
 
 | ID | Decision | Status |
 | --- | --- | --- |
-| O01 | Public name for this edition. "Beta1" was the author's earlier candidate | Open: author |
-| O02 | Languages | Decided: Chinese first, with English for the preface and the flagship pieces ([PDR-005](../decisions/pdr-005-project-purpose.md#consequences)) |
+| O01 | Public name for this edition. "Beta1" was the author's earlier candidate | Decided ([PDR-010](../decisions/pdr-010-v4-acceptance-and-edition.md)): no version name in the reader. The status labels 新修订 and 初版 say which pieces are revised, and dated release notes record each update |
+| O02 | Languages | Decided: Chinese first. The existing English adaptations stay; new adaptations come in Phase 3 |
 | O03 | PDF | Decided: the 209-page edition stays; a new PDF follows the stable revision |
-| O04 | Which devices and browser versions count as supported | Open: author, before V4 acceptance |
+| O04 | Which devices and browser versions count as supported | Decided ([PDR-010](../decisions/pdr-010-v4-acceptance-and-edition.md)): Safari on iOS and iPadOS 17 or later; the latest two major versions of desktop Safari, Chrome and Edge; Firefox readable, without the typographic enhancements |
 | O05 | Chapter gestures | Decided: none in the main flow; an explicit next-chapter control ([PDR-006](../decisions/pdr-006-two-desk-workflow.md#design-amendments-to-pdr-003)) |
-| O06 | How much manuscript this edition revises | Decided: the five flagship pieces plus the preface, part openers and Part 8 trim; the remaining parts follow in later batches |
+| O06 | How much manuscript this edition revises | Decided: the five flagship pieces, a deepened Part 8, the preface, the part openers, the Part 8 trim and the closing retitle. The rest is Phase 2 maintenance |
 | O07 | Whether the Part 4 PostgreSQL example is promised as runnable | Open: it depends on actually executing it |
 | O09 | Email feedback route | Decided: GitHub only for this edition; email later, with a dedicated address ([PDR-009](../decisions/pdr-009-reader-feature-triage.md)) |
-| O08 | Which flagship pieces get English in this edition | Proposed: the first chapter, browser foundations and the AI-evaluation chapter; the two calibration samples after their Chinese revision. Author to confirm |
+| O08 | Which flagship pieces get English | Deferred to Phase 3 (PDR-005 amendment, 28 November) |
+| O10 | What English readers see once the Chinese browser chapter is revised and its English adaptation is not | Decided ([PDR-010](../decisions/pdr-010-v4-acceptance-and-edition.md)): keep the English text as it is and show a one-line note, "Adapted from the first Chinese edition. The Chinese chapter has since been revised", linking to the revised Chinese ([V4 design](../design/v4/reader-v4-design.html), English section) |
 
 ## Design reference and constraints
 
-- **Design system:** the [Editorial Reader design system](https://claude.ai/artifact/YWreQbgH39fzcEYqkFvPXL). It is a proposal until the V4 Figma design is accepted.
-- **Figma:** new screens go in the Editorial Reader V4 file. The older file, including the V3.1 candidate, is reference only.
+- **Design of record:** [`docs/design/v4/reader-v4-design.html`](../design/v4/reader-v4-design.html), 39 frames, built for [T-010](../tasks/T-010-v4-reader.md). The author accepted it on 28 November 2026 ([PDR-010](../decisions/pdr-010-v4-acceptance-and-edition.md)). Tokens come from the [Editorial Reader design system](https://claude.ai/artifact/YWreQbgH39fzcEYqkFvPXL), version 10 (author-private); where the two differ, the design file wins.
+- **Figma:** optional. The author's seat is View, so the V4 design lives in the repository. The older Figma file, including the V3.1 candidate, is reference only.
 - **Layout:** long-form comfort comes first. Text, code, tables and captions must fit at 320 px and when text is enlarged; a narrow-layout overlap of book-card artwork with its text was seen on 26 November and needs rechecking.
 - **Motion:** no scroll hijacking, no infinite animation loops, and an alternative for every action under reduced motion.
 - **Language pairs:** Chinese and English screens are designed as matching pairs, with English layer names and reviewer captions placed outside the reader interface.

@@ -39,9 +39,11 @@ Character counts below are real characters from the comparison edition, about 12
 | 4 | [校方想少点一下](../revisions/zh/volume-one-making-of/p2-one-less-click.md) | Part 2 calibration sample: from evidence to a design decision. **Start from** the Writer's [standard-sample manuscript r1](../revisions/zh/volume-one-standard-samples-20261126/p2-one-less-click.md), about 8,000 characters against the original's 5,800, in review since 26 November |
 | 5 | [最后一把椅子，两个人同时伸手](../revisions/zh/volume-one-making-of/p4-roll-call.md) | Part 4 calibration sample: transactions and concurrency. **Start from** the Writer's [standard-sample manuscript r1](../revisions/zh/volume-one-standard-samples-20261126/p4-roll-call.md), about 6,800 characters against the original's 2,200. Its PostgreSQL two-session example has not been executed |
 
-**English:** pieces 1 and 2 come first, since they are where an English visitor starts reading, then piece 3. Pieces 4 and 5 get English adaptations after their Chinese revision is accepted. This replaces the earlier "first two flagship pieces" wording, and the author can change it (PRD O08).
+**English:** new English adaptations move to Phase 3, the promotion phase (PDR-005 amendment, 28 November). The existing English preface and browser chapter stay as they are.
 
 ## Revision order after the flagship pieces
+
+**Phase 1** covers the flagship pieces and Part 8. The other batches below are **Phase 2** maintenance; until then, those pieces carry honest status labels.
 
 Each batch covers one part. Before drafting, the Delivery Lead reads every piece in the part in full and writes a short plan for each one: keep, deepen or merge; the mechanism to explain; the worked example or figure; and the joins to its neighbours.
 
