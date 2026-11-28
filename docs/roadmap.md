@@ -35,7 +35,7 @@ The author, 28 November 2026: the product comes first, and its packaging, includ
 
 Codex has no quota, so every Writer and Developer task waits in the [queue](tasks/README.md). Claude holds the PM, Designer and Delivery Lead roles ([team](team.md)) and prepares Phase 1 without making large changes itself:
 
-- **Per-chapter revision plans** for the five flagship pieces and for Part 8.
+- **Per-chapter revision plans** for the five flagship pieces and for Part 8: done on 28 November ([plans](../book/planning/phase-one-chapter-plans.md), [T-011](tasks/T-011-volume-one-flagship-revision.md)). The PostgreSQL run is [T-012](tasks/T-012-postgresql-example.md) and the reader trial is [T-013](audience/reader-trial-plan.md).
 - **Audience-panel rehearsals.**
 - **The V4 reader design:** done on 28 November. The [design of record](design/v4/reader-v4-design.html) covers every Phase 1 screen, and the [T-010 brief](tasks/T-010-v4-reader.md) splits it into seven slices. It waits for the author's acceptance.
 
