@@ -69,6 +69,25 @@ The earlier roadmap, now [archived](../archive/roadmap-2026-11-27.md), collected
   - Reduced motion falls back to fades.
 - **The shelf** shows the three books as covers with a light 3D hover, each in its own colour. CSS transforms are enough; WebGL is not needed.
 
+## Art direction · decided 28 November 2026
+
+The author chose a combination of two prototype directions, A and B, from the [three-direction prototype](https://claude.ai/artifact/U5gvDekt9RpSSFbbSP2XBy):
+
+- **The reading area takes A's book-like treatment:** the part name and chapter number set centred above a serif title, a lead paragraph, an estimated reading time, and margin notes on wide screens.
+- **The interface takes B's restraint:** a nearly invisible top bar, a thin reading-progress line, and a next-chapter card separated by a hairline.
+- **No drop cap.** The author sees no value in it.
+- **Direction C's chapter illustrations are not pursued for now.** Original explanatory figures from the revision plan come first; a shared illustration style can be chosen once they exist.
+
+The author's stated aim is a book with a modern, high-quality, Apple-like feel. On 28 November the author left five detailed choices to the Designer role:
+
+- **Home-page covers are typographic for now.** Each is a single book colour with a serif title, a slightly darker spine on the left and the author name at the foot, built as one cover component shared by the three books. Illustrated covers can replace it later. The current cover artwork still carries the old title.
+- **Chinese body text is justified.** CJK punctuation trimming is used where the browser supports it; English stays left-aligned.
+- **Reading time is estimated from length:** Chinese at about 300 characters a minute and English at about 200 words a minute, excluding code blocks. It is rounded to minutes and shown once in the chapter opener as "约 N 分钟".
+- **Margin notes appear at a viewport width of 1280 px and above.** Below that, including a 1024 px iPad in landscape, notes sit inside the text column with a thin rule on the left.
+- **Quote cards:** Chinese cards carry a small monochrome QR code, because images shared in WeChat cannot hold a link. English cards carry only a short link.
+
+The V4 Figma design follows this direction once the Figma seat is upgraded.
+
 ## Alternatives considered
 
 - **Keep the full early feature set on the roadmap.** Rejected: it spreads one author's time before any reader signal exists.
