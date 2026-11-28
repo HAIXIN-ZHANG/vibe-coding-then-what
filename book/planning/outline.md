@@ -35,7 +35,7 @@ Suggested calibration chapters are Part 2 discovery/prototyping and Part 4 trans
 
 ## Two-book series
 
-The author has chosen a two-book frame. The proposed series name is **“AI，然后呢？”两部曲**. Volume one keeps its approved Chinese and English titles. The series label remains a working name. The confirmed companion titles are 《省下来的时间，去哪儿了？》 and *Where Does the Saved Time Go?*.
+The author has chosen a two-book frame. The earlier working series name, “AI，然后呢？”两部曲, was dropped by the author on 28 November 2026; whether the works share a series name is open until Phase 3 ([PDR-007](../../docs/decisions/pdr-007-titles-and-positioning.md)). Volume one keeps its approved Chinese and English titles. The confirmed companion titles are 《省下来的时间，去哪儿了？》 and *Where Does the Saved Time Go?*.
 
 | Volume | Reader and question | Material |
 | --- | --- | --- |
