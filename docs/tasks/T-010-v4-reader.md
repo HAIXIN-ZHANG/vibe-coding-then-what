@@ -6,7 +6,7 @@
 
 - **Goal.** Phase 1's reader interface is live and then frozen (roadmap rule 4). A reader on a phone or a desktop gets a book-like page and a quiet interface: one serif column, a chapter opener, a next-chapter card, a bottom sheet for contents and text settings, one style for figures, code and tables, part openers, honest status labels, and a GitHub route for reporting a problem.
 - **Executor.** Developer (Codex).
-- **Design of record.** [`docs/design/v4/reader-v4-design.html`](../design/v4/reader-v4-design.html). Open it in a browser. It has 39 frames with English reviewer captions, the layout and motion tables, and an acceptance table that matches the slices below. Values come from the Editorial Reader design system, version 10 (author-private artifact; its tokens are copied into the design file). Where this brief and the design file disagree, the design file wins; report the conflict in the Handoff.
+- **Design of record.** [`docs/design/v4/reader-v4-design.html`](../design/v4/reader-v4-design.html). Open it in a browser. It has 39 frames with English reviewer captions, the layout and motion tables, and an acceptance table that matches the slices below. Values come from the Editorial Reader design system (author-private artifact), which since 28 November also documents the seven V4 components and the V4 sizes ([status](../design/v4-status.md#design-system-follow-up)). Its tokens are copied into the design file. Where this brief and the design file disagree, the design file wins; report the conflict in the Handoff.
 - **Inputs.**
   - [PRD](../product/volume-one-public-edition.md): R01–R16.
   - [PDR-009](../decisions/pdr-009-reader-feature-triage.md): what is kept, deferred, paused and stopped, and the 28 November art direction.
