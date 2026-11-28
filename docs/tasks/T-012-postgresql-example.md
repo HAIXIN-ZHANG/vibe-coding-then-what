@@ -1,4 +1,4 @@
-# T-012 · Run the Part 4 PostgreSQL example
+# T-012 · Check the Part 4 PostgreSQL example
 
 ## Brief
 
@@ -25,6 +25,10 @@
   - Transcripts committed under `book/revisions/zh/volume-one-standard-samples-20261126/evidence/p4-roll-call-<date>.md`, with the version, the commands and the outputs.
   - A table: claim, result as observed, match or mismatch.
   - The container and its volume removed afterwards. Say so in the Handoff.
+
+## Change of plan · 28 November 2026
+
+The author decided that a step-by-step trace is enough for now, so nothing was pulled or installed. The Delivery Lead traced every schedule against the PostgreSQL 18 documentation: [desk trace](../../book/revisions/zh/volume-one-standard-samples-20261126/evidence/p4-roll-call-desk-trace-20261128.md). It found no mismatch in results and three wording findings for the Writer (T-011, F5 round). The container run in the brief above is kept as an optional later step, and still needs the author's authorisation if it is wanted.
 
 ## Handoff
 

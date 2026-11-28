@@ -20,7 +20,7 @@ Work one piece per round, in the order of the plans' [order of work](../../book/
 1. F1.
 2. F2.
 3. F4 (review of the existing r1, then a revision).
-4. F5 (review of the existing r1 after T-012, then a revision).
+4. F5 (review of the existing r1 against the T-012 desk trace, then a revision).
 5. Part 8: 43, then 44 and 46 together, then 45, F3 (47) and 48, then a join pass over 49 and 50.
 
 Each round has these steps:
@@ -47,7 +47,7 @@ Each round has these steps:
 
 - Each piece is within its target length, or its Handoff explains why not.
 - Every source link resolves, and the cited passage says what the text claims.
-- No unlabelled measurement. F5's SQL is either run (T-012 transcript linked) or labelled "未实际运行".
+- No unlabelled measurement. F5's SQL says it was traced against the PostgreSQL 18 documentation and not run, linking the desk trace, unless a later run replaces that.
 - `npm run check`, `npm run build:pages` and `npm run verify:export` pass after each admission.
 - After the whole batch, the reader trial runs ([plan](../audience/reader-trial-plan.md)).
 
