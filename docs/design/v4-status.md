@@ -1,6 +1,6 @@
 # V4 reader design · status
 
-Updated 28 November 2026. This page collects where the V4 design stands, so that no session has to rely on chat history. Decisions are in [PDR-009](../decisions/pdr-009-reader-feature-triage.md); the order of work is in the [roadmap](../roadmap.md#order-of-work--rules-for-every-role-and-ai).
+Updated 28 November 2026, after the V4 design was completed. This page collects where the V4 design stands, so that no session has to rely on chat history. Decisions are in [PDR-009](../decisions/pdr-009-reader-feature-triage.md); the order of work is in the [roadmap](../roadmap.md#order-of-work--rules-for-every-role-and-ai).
 
 ## Direction
 
@@ -12,42 +12,49 @@ Direction **A + B**:
 
 The author wants a modern, high-quality, Apple-like feel.
 
-## Artefacts
+## Design of record
+
+**[`docs/design/v4/reader-v4-design.html`](v4/reader-v4-design.html)** is the complete Phase 1 design. Open it in a browser. It has 27 frames with English reviewer captions:
+
+- home, first visit and returning, on phone and desktop;
+- the chapter opener in Chinese and English, and on desktop with a margin note;
+- the style guide for code, tables and figures, with the figure view and the return to the passage;
+- the part opener and the whole-book map;
+- contents as a phone sheet and as a pinned desktop sidebar;
+- text settings and per-role sizes;
+- search, with a no-results state;
+- the chapter end and the report-a-problem sheet;
+- bookmarks;
+- three tone, dark and accent combinations;
+- the 404 page and the moved-section fallback.
+
+It also holds the V3.1 → V4 change table, the layout, type and motion rules, and the acceptance table for [T-010](../tasks/T-010-v4-reader.md). The same page is published as an author-private artifact (https://claude.ai/artifact/Mi5obCcxQMJBLMHL9Tw2Fp, version 3); edit both together.
+
+Figma is no longer a blocker. The author's seat is View, so the V3.1 file stays read-only as history. If the seat is upgraded later, the design can be redrawn there, but the repository file stays the reference until a decision record changes it.
+
+## Other artefacts
 
 All are private to the author.
 
 | What | Where | State |
 | --- | --- | --- |
-| Design system "Editorial Reader" | [artifact](https://claude.ai/artifact/YWreQbgH39fzcEYqkFvPXL) | Version 9. 86 tokens; 8 themes; 3 accents; 24 combinations contrast-checked; components ReadingPage, Button, SegmentedControl, Sheet, TextSettings, Shelf, with ChapterPull marked Exploration |
-| Direction prototype | [artifact](https://claude.ai/artifact/U5gvDekt9RpSSFbbSP2XBy) | A + B is the default view; real browser-chapter text; widths 390, 1024 and 1440; four paper tones plus dark |
+| Design system "Editorial Reader" | [artifact](https://claude.ai/artifact/YWreQbgH39fzcEYqkFvPXL) | Version 10. The five held edits were published on 28 November: GitHub-only reporting, Chinese justified, margin notes from 1280 px, reading time, and phase labels. Typographic covers and no drop cap are also recorded |
+| Direction prototype | [artifact](https://claude.ai/artifact/U5gvDekt9RpSSFbbSP2XBy) | Version 5. A + B is the default view, at widths 390, 1024 and 1440 |
 | Research report | [artifact](https://claude.ai/artifact/KHgkrkqg7BWUJAtxtBiFnp) | Version 3, rewritten for A + B |
 | Body-type comparison | [artifact](https://claude.ai/artifact/JDLXP2bjNkpRHwh5ZiNY3C) | The serif option A was chosen |
 
-## Design-system edits held until the author says to publish
+## Decided in the V4 design (28 November)
 
-1. **Reader features › Report a problem:** GitHub only. The issue draft is prefilled with the book, chapter, section and selected text, and the reader reviews it before submitting. An email route is planned for the Volume II serial; leave room for it in the layout but do not show it now.
-2. **Chinese body text is justified, English left-aligned.** ReadingPage's "Don't justify text on the web" applies to English only. Typography also mentions `text-spacing-trim`.
-3. **Margin notes start at 1280 px** instead of 1440, both in the README layout section and in ReadingPage.
-4. **Reading time:** about 300 Chinese characters or 200 English words a minute, excluding code blocks, shown once in the chapter opener.
-5. **Phase labels:** quote cards, RSS and the author page are marked Phase 3.
-
-## Figma
-
-- The author's seat is **View** in both teams, so the original file is read-only and creating a file fails ("Invalid planKey").
-- Once the seat is Full or Dev, create **Editorial Reader V4** with one set of variables and text styles, actually applied to the frames.
-- The old file has 9 variable collections and 47 text styles from the BTF, V2 and V3 generations, and its sampled frames used none of them.
-
-## Still to design for Phase 1
-
-In order of importance:
-
-1. **A style guide for figures, tables and code.** The book has 19 code blocks and 14 tables, and the browser chapter has only 2 figures. The guide covers line weight, colour, labels, numbering (图 2-1), captions, opening and returning, dark mode, grayscale print and phone widths.
-2. **Part opener pages and the whole-book map.** The text is in [part-openers.md](../../book/revisions/zh/volume-one-m4/part-openers.md).
-3. **Version status labels** for revised and not-yet-revised pieces.
-4. **Search, 404 and the footer.**
-5. **Typographic covers:** one cover component, a book colour, a serif title and a darker spine.
-
-Link-preview images, quote cards, RSS and the author page wait for Phase 3.
+- **Phone chrome:** one header that hides on scroll, plus a glass dock with Contents, Search, Text and Bookmark.
+- **Contents:** a bottom sheet on phones; from 1200 px, a 300 px sidebar that is closed by default and can be pinned.
+- **Text settings:**
+  - a five-stop size slider (0.9, 1, 1.15, 1.3, 1.45×);
+  - four page tones, appearance, and three accents;
+  - per-role sizes on a pushed level that reuses the existing control.
+- **Status labels:** 新修订 for pieces revised to the depth standard, 初版 for the comparison edition.
+- **Fonts:** Spectral self-hosted as a Latin subset. Chinese uses local faces only in Phase 1.
+- **Chinese titles:** `word-break: keep-all`, so lines break at punctuation and never inside a word.
+- **Measured contrast** on the design file's values: body text at least 13.4:1, secondary labels and accent at least 5.4:1.
 
 ## To verify on real devices
 

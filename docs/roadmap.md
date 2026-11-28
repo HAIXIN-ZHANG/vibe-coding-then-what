@@ -37,7 +37,7 @@ Codex has no quota, so every Writer and Developer task waits in the [queue](task
 
 - **Per-chapter revision plans** for the five flagship pieces and for Part 8.
 - **Audience-panel rehearsals.**
-- **The V4 reader design:** direction A + B, drawn in Figma once the seat is upgraded. Only the screens Phase 1 needs.
+- **The V4 reader design:** done on 28 November. The [design of record](design/v4/reader-v4-design.html) covers every Phase 1 screen, and the [T-010 brief](tasks/T-010-v4-reader.md) splits it into seven slices. It waits for the author's acceptance.
 
 ## Phase 1 · Volume I v1: the book settles and the design stops changing
 
@@ -119,7 +119,7 @@ Visits measure access, not reading or understanding.
 
 ## Waiting on the author
 
-- Upgrade the Figma seat to Full or Dev so the V4 design can be drawn.
+- Accept the [V4 design](design/v4/reader-v4-design.html), or say what to change. A Figma seat upgrade is optional now.
 - Decide when to run the five-person reading.
 - Pick the Chinese platforms for Volume II, in Phase 3.
 - Decide the public edition label, from [PRD O01](product/volume-one-public-edition.md#decisions-needed-before-release-scope-is-frozen).
