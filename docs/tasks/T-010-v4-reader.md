@@ -39,6 +39,35 @@ Slice 3 adds one field to `ChapterEntry` in `site/content/manifest.ts`: `revisio
 
 For slice 8's adaptation note, each English adaptation records the SHA-256 of the Chinese source it was adapted from. When that differs from the current Chinese entry's hash, the build marks the adaptation as out of date.
 
+### Reuse map: what to keep from the earlier reader
+
+*Designer (Claude), 28 November 2026, from a review of the live site at 375 and 1440 px, the held V3 commit `87a3483`, the [V2 and V3 design notes](../design/reading-experience-v2.md) and the existing tests. The author asked for this map.*
+
+The earlier reader was strong on behaviour, edge cases, accessibility and tests. It was weak on visual feel. V4 replaces the look, so keep the behaviour and re-skin it.
+
+- Files on main are reused in place.
+- Files marked **held** exist only in `87a3483` on `codex/m4-ui-release-20261127`. Take them one file at a time with `git show 87a3483:<path>`, and never merge that branch.
+- An existing test changes only where V4 changes the behaviour. Name each changed assertion in the Handoff.
+
+| Slice | Keep as it is | Adapt to V4 | Tests to keep passing |
+| --- | --- | --- | --- |
+| 1 · Typography and skeleton | The relative-unit type sizes; position-keeping when the column changes (`reading-viewport.ts`) | Move the body from sans to serif. Replace the three-column layout and the draggable sidebar width (`sidebar-preference.ts`) with one 640 px column | `reader.spec.mjs`, `reader-split-view.spec.mjs`, `header-cold-start.spec.mjs`, `reading-measurement.test.mjs` |
+| 2 · Chrome, noise and bookmarks | The return rules (`continue-reading.tsx`, `book-return.ts`): a saved section opens directly; a changed chapter or missing section explains the change and opens the chapter start; denied storage falls back to the start. Escape returns focus to the trigger. The copy-link fallback, which shows a selectable link when the clipboard is blocked (`section-actions.tsx`, `sharing.ts`) | Move the section actions into heading hover and long-press, and remove the per-section “链接与纠错” disclosures. Rebuild the toolbar as the Dock | `continue.spec.mjs`, `legacy-heading-recovery.spec.mjs`, `reading-polish.spec.mjs`, `reading-toolbar-links.spec.mjs`, `sidebar-hidden.spec.mjs`, `reading-progress.test.mjs`, `sidebar.test.mjs` |
+| 3 · Opener, end and status | Previous and next chapters at the leading and trailing edges, sized to their titles (`chapter-pagination.tsx`, `chapter-arrow.tsx`) | Use the one-line chapter descriptions in `site/config/i18n.ts` (for example `G01`) as the lead where the manuscript has none. Do not invent leads for the rest | `reader-info.spec.mjs`, `case-reading.spec.mjs` |
+| 4 · Figures, code and tables | The code-block header with a language label and a copy button (`code-block.tsx`); `comparison-table.tsx`; the 0.18em gap where a link meets Chinese text | Redraw the home page's static four-step enrolment figure (`enrolment-figure.tsx` with `site/public/illustrations/home-systems-*.svg`: 提交 · 检查 · 保存 · 确认) to the V4 figure style, as a candidate for chapter 1’s first figure (plan F1). It does not belong on the home page | `passage-tools.test.mjs` |
+| 5 · Sheets and settings | **Held:** per-role sizes, with a session-only fallback when storage is denied (`site/components/ui/reading-size-control.tsx`, `site/theme/reading-size.ts`, `tests/e2e/f01-reader.spec.mjs`). This is the V4 disclosure “分别调整标题、代码和注释” and the storage-denied banner | Replace the dropdown-and-rows form with the V4 controls: size steps, tone swatches, appearance and accent. Keep the storage logic | `passage-preferences.spec.mjs`, `theme.test.mjs`; **held** `f01-reader.spec.mjs` |
+| 6 · Home and part pages | The two-book routing and separate progress per book (`site/config/books.ts`, `/books/everyday-life/`, legacy progress read as Volume I Chinese). The one-tap “选书 / Books” link (`books-link.tsx`, `book-choice-anchor.tsx`). The A5 PDF link (`volume-one-download.tsx`) | Fold “探索系统” (`home-content.ts`) into the part openers and the whole-book map. Replace the hero card and its four equal actions with the cover, one primary action and the shelf. Keep the short route “短读：我就想搜一门课” (`browser-short-reading.tsx`) as a secondary link in contents and at the end of the browser chapter, not on the home page. **Held:** take the hydration-stable landing header from `landing-reader-bridge.spec.mjs` | `case-reading.spec.mjs`; **held** `landing-reader-bridge.spec.mjs` |
+| 7 · Search, feedback, errors and failure states | Search messages that state what was searched (`search/messages.ts`). The GitHub issue draft, which opens only when the reader follows the link. The not-found copy (`not-found-content.tsx`) | Restyle the search as the phone sheet and the desktop SearchPalette. Move the correction action from the sections to the chapter end and the passage menu | `search-sharing.test.mjs`, `public-smoke.test.mjs`; **held** `panel-followup.spec.mjs` (an empty English search declares what it searched) |
+| 8 · English edition and wide panels | The edition rules: the URL sets the edition, and crossing editions is a deliberate action. Chinese-only pieces are counted, not given invented English titles, with a “Read the Chinese original” action (`language-switch.tsx`, `site/config/i18n.ts`). A Chinese bookmark opened from English names its original language (held `f01-reader.spec.mjs`) | Wide panels become the Popover and the 480 px dialog | `english-edition.spec.mjs`, `i18n.test.mjs`, `deployment.test.mjs`, `static-preview.test.mjs` |
+
+**Not carried forward** (V4 replaced these deliberately): the three-column skeleton, sans-serif body text, 24 per-section disclosures in one chapter, the SaaS-style home hero, the settings form, two rows of phone buttons, six accents (now three) and the draggable sidebar width.
+
+**Kept for later phases.** Leave this code in place and do not delete it in T-010:
+
+- the case index (`case-index.tsx`) and the short reading route, for curated routes after the revised edition has readers ([PDR-009](../decisions/pdr-009-reader-feature-triage.md));
+- “听本章” chapter listening (`chapter-media.tsx`), until a reviewed recording exists;
+- the illustrated covers (`book/assets/covers/cover-c-route-en-zh.png`, `site/public/illustrations/route-c-*.webp`, `life-a-*.webp`). Volume I’s cover still carries the old title and needs re-lettering. Its “browser → branch → database” strip is a candidate motif for figures and part openers. Before reuse, record the artwork’s source and usage rights.
+
 ### Decisions already made, so do not reopen them
 
 - No drop cap. No chapter-change animation in Phase 1 (View Transitions are Phase 3). No ⌘K palette features beyond the look and arrow keys. No email feedback. No quote cards, RSS or author page.
