@@ -12,8 +12,8 @@ Updated 28 November 2026. This document covers what the next public edition of *
 
 | Area | In this edition |
 | --- | --- |
-| Chinese manuscript | The 51 published pieces. The new preface opening, taken from the author's voice sample. The eight part openers and the whole-book map. The trimmed Part 8 chapter. The closing retitled 《今天就到这儿吧》. The five flagship pieces revised to the depth standard: the first chapter, browser foundations, the AI-evaluation chapter, and the Part 2 and Part 4 calibration samples ([revision plan](../../book/planning/volume-one-revision-plan.md)) |
-| English | Full adaptations of the preface, the first chapter, browser foundations and the AI-evaluation chapter. The other English pages stay as honest overviews that link to the Chinese text |
+| Chinese manuscript | The 51 published pieces. The new preface opening, taken from the author's voice sample. The eight part openers and the whole-book map. The trimmed Part 8 chapter. The closing retitled 《今天就到这儿吧》. The five flagship pieces revised to the depth standard (the first chapter, browser foundations, the AI-evaluation chapter, and the Part 2 and Part 4 calibration samples) and a deepened Part 8 ([revision plan](../../book/planning/volume-one-revision-plan.md)). Other pieces carry honest status labels; the remaining batches are Phase 2 maintenance |
+| English | The existing adaptations stay: the preface and browser foundations in full, and two overviews that link to the Chinese text. New English adaptations move to Phase 3 |
 | Titles | The [PDR-007](../decisions/pdr-007-titles-and-positioning.md) titles across the site. URLs unchanged |
 | Reader | The journeys below, in the V4 design (direction A + B): three accent colours, four paper tones, serif body text and margin notes ([PDR-009](../decisions/pdr-009-reader-feature-triage.md)). Quote cards and RSS move to Phase 3 |
 | Presentation | Not in this edition. The author and works page, share cards and quote cards move to Phase 3, promotion ([roadmap](../roadmap.md#phase-3--promotion-and-new-features)) |
@@ -71,14 +71,14 @@ Site measurement starts after this edition is public ([PDR-005](../decisions/pdr
 | ID | Decision | Status |
 | --- | --- | --- |
 | O01 | Public name for this edition. "Beta1" was the author's earlier candidate | Open: author |
-| O02 | Languages | Decided: Chinese first, with English for the preface and the flagship pieces ([PDR-005](../decisions/pdr-005-project-purpose.md#consequences)) |
+| O02 | Languages | Decided: Chinese first. The existing English adaptations stay; new adaptations come in Phase 3 |
 | O03 | PDF | Decided: the 209-page edition stays; a new PDF follows the stable revision |
 | O04 | Which devices and browser versions count as supported | Open: author, before V4 acceptance |
 | O05 | Chapter gestures | Decided: none in the main flow; an explicit next-chapter control ([PDR-006](../decisions/pdr-006-two-desk-workflow.md#design-amendments-to-pdr-003)) |
-| O06 | How much manuscript this edition revises | Decided: the five flagship pieces plus the preface, part openers and Part 8 trim; the remaining parts follow in later batches |
+| O06 | How much manuscript this edition revises | Decided: the five flagship pieces, a deepened Part 8, the preface, the part openers, the Part 8 trim and the closing retitle. The rest is Phase 2 maintenance |
 | O07 | Whether the Part 4 PostgreSQL example is promised as runnable | Open: it depends on actually executing it |
 | O09 | Email feedback route | Decided: GitHub only for this edition; email later, with a dedicated address ([PDR-009](../decisions/pdr-009-reader-feature-triage.md)) |
-| O08 | Which flagship pieces get English in this edition | Proposed: the first chapter, browser foundations and the AI-evaluation chapter; the two calibration samples after their Chinese revision. Author to confirm |
+| O08 | Which flagship pieces get English | Deferred to Phase 3 (PDR-005 amendment, 28 November) |
 
 ## Design reference and constraints
 

@@ -115,7 +115,24 @@ This changes the decisions above as follows:
 - **Adoption sequence:** step 4 (author and works page, share cards, first LinkedIn post) moves to Phase 3. The five-reader trial stays in Phase 1, because it checks the writing rather than promoting it. Step 5 keeps the flagship pieces and moves guide chapter 1 to Phase 2.
 - **Signals:** promotion signals apply from Phase 3. Until then, the signal that matters is whether target readers can explain a flagship mechanism.
 
-The [roadmap](../roadmap.md) holds the three phases.
+**Version 1.** The author's own definition: Volume I is settled and its design no longer changes. Phase 1 therefore covers:
+
+- the framework;
+- the five flagship pieces;
+- a deepened Part 8;
+- the frozen V4 core interface;
+- a recorded reader trial.
+
+Moved to Phase 2:
+
+- the remaining revision batches, as ongoing maintenance;
+- the new A5 edition.
+
+Moved to Phase 3:
+
+- English adaptations of the flagship pieces and the guide, which mainly serve LinkedIn readers.
+
+The [roadmap](../roadmap.md#order-of-work--rules-for-every-role-and-ai) holds the three phases and five ordering rules that every role and AI follows, including the design freeze at the end of Phase 1.
 
 ## Alternatives considered
 

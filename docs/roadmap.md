@@ -18,59 +18,72 @@ All three keep the same light, story-like voice. The project is the author's per
 | **《活交给 AI，我去钓会儿鱼》 / *Leave It to the Agents. I'm Going Fishing.*** | Half-length guide, from vibe coding to agentic coding, using this project as the case | Concept and trial narrative exist; to be restructured into three stages |
 | **《省下来的时间，去哪儿了？》 / *Where Does the Saved Time Go?*** | Conversational serial on living with AI | 20-chapter outline and two voice samples; serial not started |
 
-**Order of work (author, 28 November 2026):** finish Volume I first, then the guide and Volume II, and only then promotion and its related features ([PDR-005 amendment](decisions/pdr-005-project-purpose.md#amendment--volume-i-first-promotion-last-28-november-2026)). LinkedIn posts, résumé updates and outreach can wait as long as needed.
+## Order of work · rules for every role and AI
+
+The author, 28 November 2026: the product comes first, and its packaging, including LinkedIn, follows once there is a product. **Version 1 means Volume I is settled and its design is no longer changing.** Recorded in the [PDR-005 amendment](decisions/pdr-005-project-purpose.md#amendment--volume-i-first-promotion-last-28-november-2026).
+
+1. **Do not start a later phase's work until the current phase's completion criteria are met.** There are three exceptions:
+   - fixing bugs;
+   - noting raw material for the guide (PR links, rework, rejected options), but not drafting its prose;
+   - an exception the author explicitly approves.
+2. **A new idea outside the current phase goes into the backlog** in the [task queue](tasks/README.md). It is not designed or built.
+3. **Promotion work is not proposed before Phase 3.** That covers posts, the résumé, share cards and measurement. It never interrupts writing the book.
+4. **The design freezes when Phase 1 ends.** After that, a major change to typography, colour or layout needs a decision record that the author approves.
+5. **If it is unclear which phase something belongs to, ask the author.**
 
 ## Now · while Codex is unavailable
 
-Codex has no quota at the moment, so every Writer and Developer task waits in the [queue](tasks/README.md). Claude holds the PM, Designer and Delivery Lead roles ([team](team.md)) and prepares what those tasks need, without making large changes itself:
+Codex has no quota, so every Writer and Developer task waits in the [queue](tasks/README.md). Claude holds the PM, Designer and Delivery Lead roles ([team](team.md)) and prepares Phase 1 without making large changes itself:
 
-- **Volume I structure review:** done on 28 November. The framework is settled. The [structure and revision plan](../book/planning/volume-one-revision-plan.md) sets five flagship pieces, the order of revision and the author's scene-led direction.
-- **Per-chapter revision plans** for the five flagship pieces (for T-011), each written after reading the piece in full. The Writer's standard-sample r1 drafts of the Part 2 and Part 4 pieces are the starting point.
-- **Audience-panel rehearsals** of each flagship piece.
-- **The V4 reader design:** direction A + B (PDR-009), drawn in Figma once the seat is upgraded.
+- **Per-chapter revision plans** for the five flagship pieces and for Part 8.
+- **Audience-panel rehearsals.**
+- **The V4 reader design:** direction A + B, drawn in Figma once the seat is upgraded. Only the screens Phase 1 needs.
 
-## Phase 1 · Finish Volume I
+## Phase 1 · Volume I v1: the book settles and the design stops changing
 
-Work in progress: Volume I writing plus one engineering stream.
+**Work.**
 
-1. **Reset the repository and process.**
-   - Integrate the 27–28 November work. The roadmap and product documents are already rewritten (T-003, T-005).
-   - Set up the roles and modes ([PDR-008](decisions/pdr-008-roles-and-modes.md)), lighten the process and shorten the board.
-   - Rename to the new titles (T-001, T-002, T-004, T-006).
-2. **The book.**
-   - Admit the revised preface, the trimmed Part 8 chapter, the retitled closing, the part openers and the whole-book map (T-007).
-   - Revise the five flagship pieces (T-011).
-   - Then work through the remaining batches one part at a time: Part 8 first, where the AI chapters are thinnest; then Parts 6 and 7; then Part 3's permission chapter; Parts 2, 4 and 5 last ([revision plan](../book/planning/volume-one-revision-plan.md#revision-order-after-the-flagship-pieces)).
-   - Explanatory figures are drawn with each batch, following a figure style guide.
-3. **The reader**, in V4 implementation slices (T-010), reusing the held V3 code where it fits. Reading quality comes first: typography, the single-column skeleton, less noise, chapter openers and ends, phone and tablet layouts, figures that open and return, and GitHub feedback.
-4. **English** for the first chapter, browser foundations (already adapted) and the AI-evaluation chapter.
-5. **A five-person reading** of flagship pieces, to check whether the writing works. This is not promotion; the author decides when.
-6. **A new A5 edition** once the revision round is stable. The 209-page edition stays available meanwhile.
+- **Close out the process work:** integrate the 27–28 November work, then T-002 and T-004.
+- **Rename** to the new titles (T-006).
+- **Admit** the revised preface, the trimmed Part 8 chapter, the retitled closing, the part openers and the whole-book map (T-007).
+- **Revise the five flagship pieces** (T-011). The Writer's standard-sample r1 drafts are the starting point for the Part 2 and Part 4 pieces.
+- **Deepen Part 8**, the thinnest part and the one closest to the title.
+- **Run the Part 4 PostgreSQL example** where the facilities allow it.
+- **Build the V4 reader** (T-010):
+  - typography, the single-column skeleton, and chapter openers and ends;
+  - the phone bottom sheet, and text settings (size, paper tone, accent);
+  - one style guide for figures, tables and code blocks;
+  - part openers and the whole-book map;
+  - version status labels;
+  - reporting a problem through GitHub.
+- **A reading with three to five target readers,** to check whether the writing works. This is not promotion.
 
-**Done when:** the framework is complete, the flagship pieces and planned batches are revised, the reader reads well on phone, tablet and desktop, and the author is satisfied with the result.
+**Done when:**
+
+- The framework is fixed, the five flagship pieces have passed review, and Part 8 is deepened.
+- The V4 core interface is live and frozen.
+- The reader trial is recorded.
+- Other pieces carry honest status labels. They do not all need rewriting.
 
 ## Phase 2 · The guide and Volume II
 
-- **The guide:** move its material into main (T-008), restructure it into three stages, then write it. Stage 3 waits until the roles-and-modes workflow has run on real tasks.
-- **The Volume II serial** on the site, at about one piece every two weeks.
+- **The guide,** in three stages (T-008 moves its material first). Stage 3 waits until the roles-and-modes workflow has run on real tasks.
+- **The Volume II serial**, in Volume I's reader.
+- **The remaining Volume I revision batches** as ongoing maintenance: Parts 6 and 7, then Part 3's permission chapter, then Parts 2, 4 and 5 ([revision plan](../book/planning/volume-one-revision-plan.md#revision-order-after-the-flagship-pieces)).
+- **A new A5 edition** once the revisions are stable. The 209-page edition stays available until then.
 
-## Phase 3 · Promotion and new features
+## Phase 3 · Promotion and expansion
 
-This phase begins only when the books are substantially written.
-
-- **Promotion:**
-  - an author and works page;
-  - share cards and quote cards;
-  - LinkedIn posts;
-  - a résumé update;
-  - distribution of Volume II on Chinese platforms.
-- **Measurement:** Umami (T-009).
-- **New reader features** ([PDR-009](decisions/pdr-009-reader-feature-triage.md)):
-  - an RSS feed, email subscription and email feedback;
-  - glossary hover cards, curated reading routes and paragraph-level links;
-  - an update feed page;
-  - the interactive figure, chapter transitions and the ⌘K palette designed in V4.
-- **More formats and languages:** further English adaptations, collecting Volume II into a book, and EPUB editions.
+- **English adaptations** of the flagship pieces and the guide, mainly for LinkedIn readers. The existing English preface and browser chapter stay.
+- **Presentation:** the author and works page, share and quote cards, and RSS.
+- **Outreach and measurement:** LinkedIn posts and presentation, the résumé update, Volume II distribution on Chinese platforms, and Umami measurement.
+- **Features designed in V4 but not yet built:** the Part 4 interactive figure, chapter transitions and the ⌘K palette. The 3D shelf is also refined.
+- **Later features and formats** ([PDR-009](decisions/pdr-009-reader-feature-triage.md)):
+  - email subscription and email feedback;
+  - glossary cards, reading routes, paragraph links and an update feed;
+  - further English adaptations;
+  - collecting Volume II into a book;
+  - EPUB editions.
 
 ## Frozen, and what would thaw it
 
@@ -94,7 +107,7 @@ This phase begins only when the books are substantially written.
 
 ## Signals to observe
 
-**Phase 1:** whether target readers can explain a flagship mechanism after reading it, and where they stall. **From Phase 3:** promotion signals. No targets are set; record what actually happens. Until site measurement starts, use LinkedIn's own post analytics and the replies people actually send.
+**Phases 1 and 2:** whether target readers can explain a flagship mechanism after reading it, and where they stall. **Phase 3 only:** promotion signals. No targets are set; record what actually happens. Until site measurement starts, use LinkedIn's own post analytics and the replies people actually send.
 
 - chapter visits referred from posts;
 - conversations, messages or interviews that mention the work;

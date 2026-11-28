@@ -25,4 +25,12 @@ None of these tasks is started. Codex picks them up when it is available again, 
 | T-008 | **Bring the production guide into main.** Publish public-safe copies of the guide's concept and through-narrative from the author's preservation branch, with private paths removed. Claude then writes the restructuring plan into three stages (PDR-007). | Codex migration, Claude plan | T-001 | Ready |
 | T-009 | **Measurement.** Integrate Umami with the existing event definitions, add a privacy notice and verify the counts. | Codex | Revised edition public; author creates the Umami account | Later (author, 28 Nov) |
 | T-010 | **V4 reader** (the author and works page waits for Phase 3). Claude reviews the V4 Figma design and splits it into implementation slices. Codex implements them, reusing V3 code where it fits. | Claude design, Codex build | Figma seat upgraded; V4 design accepted | Blocked |
-| T-011 | **Volume I flagship revision batch.** Claude writes a revision plan for each of the five flagship pieces in the [structure and revision plan](../../book/planning/volume-one-revision-plan.md). Codex drafts them, Claude reviews, and the author does the voice pass. English adaptations follow. | Codex drafts, from Claude's plans | T-007 | Needs Claude plans |
+| T-011 | **Volume I flagship revision batch.** Claude writes a revision plan for each of the five flagship pieces in the [structure and revision plan](../../book/planning/volume-one-revision-plan.md). Codex drafts them, Claude reviews, and the author does the voice pass. Part 8 is deepened in the same phase. English adaptations wait for Phase 3. | Codex drafts, from Claude's plans | T-007 | Needs Claude plans |
+
+## Backlog
+
+Ideas that do not belong to the current phase are listed here, not designed or built (roadmap rule 2). Phase 3 items are already listed in the [roadmap](../roadmap.md#phase-3--promotion-and-expansion).
+
+| Idea | Phase | Raised |
+| --- | --- | --- |
+| Link-preview (Open Graph) images | 3 | Designer, 28 Nov |
