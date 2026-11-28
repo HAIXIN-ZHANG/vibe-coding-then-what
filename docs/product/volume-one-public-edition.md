@@ -83,7 +83,7 @@ Site measurement starts after this edition is public ([PDR-005](../decisions/pdr
 
 ## Design reference and constraints
 
-- **Design of record:** [`docs/design/v4/reader-v4-design.html`](../design/v4/reader-v4-design.html), 39 frames, built for [T-010](../tasks/T-010-v4-reader.md). The author accepted it on 28 November 2026 ([PDR-010](../decisions/pdr-010-v4-acceptance-and-edition.md)). Tokens come from the [Editorial Reader design system](https://claude.ai/artifact/YWreQbgH39fzcEYqkFvPXL), version 10 (author-private); where the two differ, the design file wins.
+- **Design of record:** [`docs/design/v4/reader-v4-design.html`](../design/v4/reader-v4-design.html), 39 frames, built for [T-010](../tasks/T-010-v4-reader.md). The author accepted it on 28 November 2026 ([PDR-010](../decisions/pdr-010-v4-acceptance-and-edition.md)). Tokens and component guidelines come from the [Editorial Reader design system](https://claude.ai/artifact/YWreQbgH39fzcEYqkFvPXL) (author-private), updated for V4 on 28 November; where the two differ, the design file wins.
 - **Figma:** optional. The author's seat is View, so the V4 design lives in the repository. The older Figma file, including the V3.1 candidate, is reference only.
 - **Layout:** long-form comfort comes first. Text, code, tables and captions must fit at 320 px and when text is enlarged; a narrow-layout overlap of book-card artwork with its text was seen on 26 November and needs rechecking.
 - **Motion:** no scroll hijacking, no infinite animation loops, and an alternative for every action under reduced motion.

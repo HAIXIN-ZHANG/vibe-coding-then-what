@@ -31,13 +31,29 @@ The author wants a modern, high-quality, Apple-like feel.
 - tablet and desktop panels: the settings popover, iPad split view, and the chapter end with the footer;
 - failure states: a figure that did not load, storage denied, and 320 px at the largest text size.
 
-It also holds the V3.1 → V4 change table, the layout, type and motion rules, and the acceptance table for [T-010](../tasks/T-010-v4-reader.md). The same page is published as an author-private artifact (https://claude.ai/artifact/Mi5obCcxQMJBLMHL9Tw2Fp, version 6); edit both together.
+It also holds the V3.1 → V4 change table, the layout, type and motion rules, and the acceptance table for [T-010](../tasks/T-010-v4-reader.md). The same page is published as an author-private artifact (https://claude.ai/artifact/Mi5obCcxQMJBLMHL9Tw2Fp, version 7); edit both together.
 
 Figma is no longer a blocker. The author's seat is View, so the V3.1 file stays read-only as history. If the seat is upgraded later, the design can be redrawn there, but the repository file stays the reference until a decision record changes it.
 
 ## Design-system follow-up
 
-The design file introduces components that design system version 10 does not yet document: the dock, the typographic cover, the status tag, the toast, the popover, the search palette and the bookmarks sheet. Now that V4 is accepted, the Designer adds them to the design system. Until that is done, the design file is the reference.
+Done on 28 November 2026. The [Editorial Reader design system](https://claude.ai/artifact/YWreQbgH39fzcEYqkFvPXL) (author-private) now documents the seven V4 components, each with guidelines and a live preview: Dock, BookCover, StatusTag, Toast, Popover, SearchPalette and BookmarksSheet. Its tokens and README were brought in line with V4:
+
+- `measure-reading` is 640px and `size-sidebar` is 300px.
+- New `size-popover` (360px), `size-dialog` (480px) and `size-palette` (640px).
+- Phase 1 loads no Chinese web font.
+- Chinese body text falls back to start alignment below 14 characters a line.
+- The breakpoints are rewritten around the Dock, the Popover and the dialog.
+
+Contrast checks while adding the components found three problems, now fixed in both the design system and this design file:
+
+- **Dark accent tint.** Accent text on `accent-soft` measured 4.47:1 in Quiet grey dark. The dark `accent-soft` is now 16% instead of 18%, and the lowest value across all 24 combinations is 4.53:1.
+- **Status tag on the current-chapter row.** A Revised tag on that row would stack two tints, giving 3.6:1. It now fills with the page colour.
+- **Dark Graphite.** The design file had no dark Graphite rule, so its "White · dark · Graphite" frame showed near-black accent text. The rule is now added.
+
+The Dock's radius is now 24px (`radius-24`, previously 20px). The search palette's active result uses a neutral fill, and its match mark uses bold `label-primary` text on `accent-soft`.
+
+All values are computed from the tokens. None were measured on a device.
 
 ## Other artefacts
 
