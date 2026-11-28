@@ -35,7 +35,7 @@ The author, 28 November 2026: the product comes first, and its packaging, includ
 
 Codex has no quota, so every Writer and Developer task waits in the [queue](tasks/README.md). Claude holds the PM, Designer and Delivery Lead roles ([team](team.md)) and prepares Phase 1 without making large changes itself:
 
-- **Per-chapter revision plans** for the five flagship pieces and for Part 8: done on 28 November ([plans](../book/planning/phase-one-chapter-plans.md), [T-011](tasks/T-011-volume-one-flagship-revision.md)). The PostgreSQL run is [T-012](tasks/T-012-postgresql-example.md) and the reader trial is [T-013](audience/reader-trial-plan.md).
+- **Per-chapter revision plans** for the five flagship pieces and for Part 8: done on 28 November ([plans](../book/planning/phase-one-chapter-plans.md), [T-011](tasks/T-011-volume-one-flagship-revision.md)). The PostgreSQL example was desk-traced instead of run ([T-012](tasks/T-012-postgresql-example.md)) and the reader trial is [T-013](audience/reader-trial-plan.md).
 - **Audience-panel rehearsals.**
 - **The V4 reader design:** done on 28 November. The [design of record](design/v4/reader-v4-design.html) covers every Phase 1 screen, and the [T-010 brief](tasks/T-010-v4-reader.md) splits it into eight slices. The author accepted it on 28 November ([PDR-010](decisions/pdr-010-v4-acceptance-and-edition.md)), together with the edition label, supported browsers and English adaptation note.
 
@@ -119,7 +119,6 @@ Visits measure access, not reading or understanding.
 
 ## Waiting on the author
 
-- Authorise the PostgreSQL container pull when [T-012](tasks/T-012-postgresql-example.md) is ready to run.
 - Decide when to run the [reader trial](audience/reader-trial-plan.md) with three to five readers, after T-011.
 - Check the V4 reader on a real iPhone and iPad as slices land.
 - Pick the Chinese platforms for Volume II, in Phase 3.

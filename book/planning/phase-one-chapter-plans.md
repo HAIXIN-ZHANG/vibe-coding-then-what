@@ -132,12 +132,12 @@ Lengths count Chinese characters only (CJK ideographs), excluding code, tables a
 
 ### F5 · 最后一把椅子，两个人同时伸手 (`p4-roll-call.md`, Writer standard-sample r1, about 3,300 plus SQL)
 
-**Decision.** Review r1. Its PostgreSQL two-session example **has not been executed**, so run it first ([T-012](../../docs/tasks/T-012-postgresql-example.md)). The prose is revised to match what the run shows.
+**Decision.** Review r1. Its PostgreSQL two-session example has not been executed. On 28 November the author chose a desk trace instead of a container run for now. The [trace](../revisions/zh/volume-one-standard-samples-20261126/evidence/p4-roll-call-desk-trace-20261128.md) found every result matching PostgreSQL 18's documented behaviour, with three wording findings that this round fixes.
 
 **Review against:**
 
-- **The schedules.** Check that the two schedules in 把两个时钟拨慢一些 match the T-012 transcript. The handoff's parameter trace is paper reasoning only.
-- **Isolation claims.** Check every claim in 那四个字母保护了哪一种不走运 about isolation levels, row locks and `UPDATE … WHERE remaining > 0` against the PostgreSQL documentation for the version T-012 used. State the level (PostgreSQL defaults to Read Committed).
+- **The schedules.** The [desk trace](../revisions/zh/volume-one-standard-samples-20261126/evidence/p4-roll-call-desk-trace-20261128.md) confirms the two schedules in 把两个时钟拨慢一些. Recheck only what the revision changes.
+- **Isolation claims.** Check every claim in 那四个字母保护了哪一种不走运 about isolation levels, row locks and `UPDATE … WHERE remaining > 0` against the PostgreSQL 18 documentation, as the trace did. State the level (PostgreSQL defaults to Read Committed).
 - **Retry and cancel.** Check that cancelling once returns exactly one seat in the SQL as written.
 - **The email warning** (don't hold the session lock while sending mail). Keep it. It joins forward to background work.
 
@@ -149,7 +149,7 @@ Lengths count Chinese characters only (CJK ideographs), excluding code, tables a
 
 **Length.** Hold around 3,300 plus SQL.
 
-**Labelling.** If T-012 cannot run, the piece stays `first-edition` and the SQL is labelled "未实际运行" (not actually run), per PRD O07.
+**Labelling.** The piece may be admitted as `revised` once the SQL passage says plainly what was checked: "按 PostgreSQL 18 文档逐句推演，未在数据库上实跑" (traced against the documentation, not run). This follows PRD O07 and the trace's finding 3.
 
 ## Part 8 · AI in the product
 
@@ -242,9 +242,9 @@ The pieces in order (manifest order 43–50), with a decision for each:
 ## Order of work
 
 1. **T-007 admits** the preface, the trimmed piece 50, the closing, the part openers and the map.
-2. **T-012 runs the PostgreSQL example.** It can run in parallel with step 3.
+2. **T-012:** done as a desk trace on 28 November. A container run is optional later.
 3. **F1, then F2.** The opening chapters set the voice for the rest.
-4. **F4 and F5:** review r1, then revise. F5 waits for T-012.
+4. **F4 and F5:** review r1, then revise. F5 starts from the desk trace's findings.
 5. **Part 8 in order:** 43, then 44 and 46 together (the merge moves material between them), then 45, F3 (47) and 48. Finish with a join pass over 49 and 50.
 
 Each piece goes through:
