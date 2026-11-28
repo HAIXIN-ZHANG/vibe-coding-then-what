@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Repository copy of the V4 Phase 1 design of record. Published copy (private to the author): https://claude.ai/artifact/Mi5obCcxQMJBLMHL9Tw2Fp, version 3. Edit both together. -->
+<!-- Repository copy of the V4 Phase 1 design of record. Published copy (private to the author): https://claude.ai/artifact/Mi5obCcxQMJBLMHL9Tw2Fp, version 5. Edit both together. -->
 <title>Editorial Reader V4</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -190,6 +190,18 @@ pre.code{margin:6px 0 4px;background:var(--inset);border-radius:12px;padding:12p
 .palette .in{display:flex;align-items:center;gap:10px;padding:16px 18px;border-bottom:.5px solid var(--sep);font:400 18px var(--ui);color:var(--lab)}
 .res{padding:12px 18px;border-bottom:.5px solid var(--sep)}
 .res small{font:500 11.5px var(--ui);color:var(--sec)} .res b{display:block;font:600 15px/1.5 var(--zh);color:var(--lab)} .res span{font:400 13.5px/1.6 var(--zh);color:var(--sec)} .res mark{background:var(--acc-soft);color:var(--acc);border-radius:3px;padding:0 2px}
+.tb-wrap{width:614px;height:461px;overflow:hidden;border-radius:14px;box-shadow:0 0 0 1px rgba(0,0,0,.06),0 18px 44px rgba(0,0,0,.16);max-width:100%}
+.tb{width:1024px;height:768px;transform:scale(.6);transform-origin:top left;background:var(--page);color:var(--ink);position:relative;overflow:hidden}
+.ph.narrow{width:320px;height:700px}
+.pop{position:absolute;z-index:6;width:360px;background:var(--elev);border-radius:16px;box-shadow:0 0 0 .5px var(--sep),0 18px 50px rgba(0,0,0,.2);padding:12px 16px 16px}
+.pop::before{content:"";position:absolute;top:-7px;right:22px;width:14px;height:14px;background:var(--elev);transform:rotate(45deg);box-shadow:-.5px -.5px 0 var(--sep)}
+.banner{background:var(--inset);border-radius:12px;padding:10px 12px;font:400 13px/1.55 var(--ui);color:var(--lab)}
+.banner b{font-weight:600}
+.broken{border:1.5px dashed var(--sep);border-radius:16px;padding:22px 16px;text-align:center;color:var(--sec);font:400 13.5px/1.7 var(--zh)}
+.wellx{position:relative;overflow:hidden;border-radius:12px}
+.wellx::after{content:"";position:absolute;top:0;right:0;bottom:0;width:28px;background:linear-gradient(90deg,transparent,var(--page))}
+.dfoot{position:absolute;left:0;right:0;bottom:0;height:120px;border-top:.5px solid var(--sep);display:flex;justify-content:space-between;align-items:center;padding:0 120px;font:400 14px/1.7 var(--ui);color:var(--sec)}
+.prop{display:inline-block;font:600 10.5px var(--ui);padding:2px 7px;border-radius:999px;background:#fff3d6;color:#8a5a00;margin-left:4px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
 
@@ -210,7 +222,7 @@ pre.code{margin:6px 0 4px;background:var(--inset);border-radius:12px;padding:12p
   <h1>Editorial Reader V4</h1>
   <p>The complete Phase 1 design for <i>AI Wrote It. It Runs. Then What?</i> Codex implements from this page (task T-010). Direction A + B: the reading area is book-like and the interface stays out of the way. Every value comes from the <a href="https://claude.ai/artifact/YWreQbgH39fzcEYqkFvPXL" style="color:var(--b-acc)">Editorial Reader design system</a> (version 10). Chinese screens use real text from the repository. Each frame has an English reviewer caption; the screen itself is the reader interface. Figma stays read-only until the seat is upgraded, so this page is the source of truth until then.</p>
   <nav class="toc" aria-label="Sections">
-    <a href="#changes">What changes</a><a href="#home">Home</a><a href="#opener">Chapter opener</a><a href="#content">Figures, code, tables</a><a href="#part">Part opener and map</a><a href="#contents">Contents</a><a href="#settings">Text settings</a><a href="#figure">Figure view</a><a href="#search">Search</a><a href="#end">Chapter end and feedback</a><a href="#bookmarks">Bookmarks</a><a href="#themes">Tones and dark</a><a href="#empty">Empty and errors</a><a href="#rules">Layout and motion rules</a><a href="#accept">Acceptance</a>
+    <a href="#changes">What changes</a><a href="#home">Home</a><a href="#opener">Chapter opener</a><a href="#content">Figures, code, tables</a><a href="#part">Part opener and map</a><a href="#contents">Contents</a><a href="#settings">Text settings</a><a href="#figure">Figure view</a><a href="#search">Search</a><a href="#end">Chapter end and feedback</a><a href="#bookmarks">Bookmarks</a><a href="#themes">Tones and dark</a><a href="#english">English edition</a><a href="#wide">Tablet and desktop panels</a><a href="#failure">Failure states</a><a href="#empty">Empty and errors</a><a href="#rules">Layout and motion rules</a><a href="#accept">Acceptance</a>
   </nav>
 </header>
 
@@ -635,6 +647,177 @@ pre.code{margin:6px 0 4px;background:var(--inset);border-radius:12px;padding:12p
   </div>
 </section>
 
+<!-- ===================== ENGLISH ===================== -->
+<section class="j" id="english">
+  <h2>English edition and switching language</h2>
+  <p class="why">PRD R08 and the AGENTS language rules. English screens pair with the Chinese ones above. Interface copy follows the URL’s edition. Moving between editions is always a deliberate action, and availability is stated plainly: two full adaptations, two overviews, and the rest in Chinese only.</p>
+  <div class="row">
+    <figure class="shot"><div class="ph f">
+      <div class="hdr"><span class="bm"><i></i></span><span class="t">Jar &amp; Prince Explore the World</span><span class="ib"><svg><use href="#i-search"/></svg></span><span class="ib" style="font:500 13px var(--ui);color:var(--lab)">中文</span></div>
+      <div class="body" style="padding-top:22px;display:grid;gap:16px;align-content:start">
+        <div class="cover" style="width:176px;height:262px;justify-self:center;transform:perspective(900px) rotateY(-10deg)"><small>VOLUME I</small><div><b style="font:600 21px/1.22 var(--en)">AI Wrote It.<br>It Runs.<br>Then What?</b><em style="font-family:var(--zh);font-style:normal">AI 写完了，能跑，然后呢？</em></div><small>JAR &amp; PRINCE</small></div>
+        <div><h2 class="hero-t" style="font:500 28px/1.2 var(--en)">AI Wrote It. It Runs. Then What?</h2><p class="hero-s" style="font:italic 400 16.5px/1.5 var(--en)">Stories from the system behind the code you didn’t write</p></div>
+        <div class="banner">This book is written in Chinese. <b>Two chapters are fully adapted</b> into English, and two more have English overviews.</div>
+        <div class="btn">Start reading</div>
+        <div class="meta" style="text-align:center">Contents · A5 PDF (Chinese)</div>
+      </div>
+    </div><figcaption><b>Home · first visit · EN · 390.</b> The pair of the Chinese home. The availability note comes before the action, so nobody discovers the language limit three clicks in. “Start reading” opens <i>Before We Start</i>. The cover swaps title and subtitle languages; the spine reads the English author name.</figcaption></figure>
+
+    <figure class="shot"><div class="ph f">
+      <div class="body" style="padding-top:20px;opacity:.6"><h1 class="et">How the Browser Builds a Page</h1></div>
+      <div class="scrim"></div>
+      <div class="sheet" style="height:620px">
+        <div class="grab"></div>
+        <div class="sh-h"><b>Contents</b><span>Book map</span></div>
+        <div class="lbl">In English</div>
+        <div class="grp">
+          <div class="rowi"><span>Before We Start: It Runs. Then What?</span><span class="tag">Full</span></div>
+          <div class="rowi"><span>A Page and the System Behind It</span><span class="tag q">Overview</span></div>
+          <div class="rowi cur"><span>How the Browser Builds a Page<small>Reading now</small></span><span class="tag">Full</span></div>
+          <div class="rowi"><span>What Do We Do After AI Finishes Writing the Code?</span><span class="tag q">Overview</span></div>
+        </div>
+        <div class="lbl">In Chinese only</div>
+        <div class="grp"><div class="rowi"><span>47 more pieces across eight parts<small>Opens the Chinese contents in a new edition</small></span><span style="color:var(--acc);font-size:14px;white-space:nowrap">中文目录</span></div></div>
+      </div>
+    </div><figcaption><b>Contents · EN sheet · 390.</b> English items first, labelled Full or Overview. Chinese-only pieces are counted, not listed in English with invented titles. The one action that crosses editions is named in the destination language. The revised and first-edition labels from the Chinese contents are not shown here; English carries its own adaptation note.</figcaption></figure>
+
+    <figure class="shot"><div class="ph f">
+      <div class="hdr"><span class="ib"><svg><use href="#i-l"/></svg></span><span class="t" style="text-align:center">AI Wrote It. It Runs. Then What?</span><span class="ib"><svg><use href="#i-bm"/></svg></span></div>
+      <div class="body" style="padding-top:18px">
+        <div class="banner" style="margin-bottom:22px">Adapted from the first Chinese edition. <b>The Chinese chapter has since been revised.</b> <span style="color:var(--acc)">Read the revised Chinese →</span></div>
+        <div class="eyebrow" style="text-transform:uppercase;letter-spacing:.12em;font-size:11px">Part one · What a page connects to</div>
+        <span class="cno">2</span>
+        <h1 class="et">How the Browser Builds a Page</h1>
+        <div class="rt">22 min read</div>
+        <div style="height:18px"></div>
+        <p class="p en">You can see the course title. You can type into the search box. You’ve even pressed Search. The list of courses hasn’t budged.</p>
+      </div>
+    </div><figcaption><b>Adaptation out of date · EN · 390.</b> <span class="prop">Proposed</span> Shown only when the Chinese source of an English adaptation has been revised after the adaptation was made. The comparison runs at build time from source hashes. Dismissing it hides it for that chapter on this device. Waits for the author’s decision on keeping English as it is until Phase 3.</figcaption></figure>
+
+    <figure class="shot"><div class="ph f">
+      <div class="body" style="padding-top:20px;opacity:.6"><div class="eyebrow">第一部分 · 一个页面连着什么</div><span class="cno">2</span><h1 class="zt">页面出现之前，浏览器在忙什么？</h1></div>
+      <div class="scrim"></div>
+      <div class="sheet">
+        <div class="grab"></div>
+        <div class="sh-h"><b>阅读语言</b><span>完成</span></div>
+        <div class="grp">
+          <div class="rowi cur"><span>中文<small>当前版本</small></span></div>
+          <div class="rowi"><span>English<small>这一章有完整英文改编 · How the Browser Builds a Page</small></span><svg width="16" height="16" style="fill:none;stroke:var(--sec);stroke-width:1.6"><use href="#i-r"/></svg></div>
+        </div>
+        <p class="meta" style="margin:10px 2px 0;line-height:1.6">英文改编自初版中文，和这一版的小节不完全对应。切换后从英文章节开头读起。</p>
+      </div>
+    </div><figcaption><b>Switch language · ZH chapter · 390.</b> The header’s EN button opens this sheet instead of jumping. It says what exists for <i>this</i> chapter: a full adaptation, an overview, or nothing. In the last case the English row reads “这一章还没有英文” and goes to the English home. Position maps by chapter only, never by paragraph.</figcaption></figure>
+
+    <figure class="shot"><div class="ph f">
+      <div class="hdr"><span style="flex:1;display:flex;align-items:center;gap:8px;background:var(--inset);border-radius:10px;height:36px;padding:0 10px;font:400 15px var(--ui);color:var(--lab)"><svg width="18" height="18" style="fill:none;stroke:var(--sec);stroke-width:1.6"><use href="#i-search"/></svg>transaction</span><span style="font:500 15px var(--ui);color:var(--acc);padding:0 6px">Cancel</span></div>
+      <div class="body" style="padding-top:60px;text-align:center">
+        <p class="p en" style="text-align:center;color:var(--lab);font-size:17px;font-family:var(--ui)">No results for “transaction” in English</p>
+        <p class="meta" style="line-height:1.7">English search covers the two adapted chapters and two overviews. The full book is in Chinese.</p>
+        <div class="btn" style="margin:18px 12px 0">Search the Chinese edition</div>
+        <div class="btn2">Open contents</div>
+      </div>
+    </div><figcaption><b>Search · no results · EN · 390.</b> The deliberate cross-edition action from the PRD. It opens Chinese search with the same term, which may be English (code names such as <code>transaction</code> appear in the Chinese text). No term mapping in Phase 1; the glossary is Phase 3.</figcaption></figure>
+
+    <figure class="shot"><div class="ph f"><div class="body nohdr" style="padding-top:220px;text-align:center"><span class="cno" style="font-size:56px">404</span><h1 class="et" style="font-size:26px">This page seems to have wandered off</h1><p class="lead en">The link may be old, or the chapter may have moved. The book and its contents are still here.</p><div style="height:24px"></div><div class="btn">Open contents</div><div class="btn2">Back to home</div></div></div><figcaption><b>Not found · EN.</b> The pair of the Chinese 404, adapted rather than translated. The edition is taken from the URL path; an unknown path defaults to Chinese.</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================== WIDE ===================== -->
+<section class="j" id="wide">
+  <h2>Tablet and desktop panels</h2>
+  <p class="why">PRD R10. From 600 px, panels anchor to their button instead of rising from the bottom: text settings become a 360 px popover; report and bookmarks become a centred 480 px dialog; contents stays a sidebar from 1200 px. Sidebars give way before the column drops below 34em.</p>
+  <div class="row">
+    <figure class="shot"><div class="tb-wrap"><div class="tb f">
+      <div class="dhdr"><span class="bm" style="width:26px;height:26px;border-radius:6px;background:#0a64f5"></span><span style="flex:1">AI 写完了，能跑，然后呢？</span><span class="ib"><svg><use href="#i-list"/></svg></span><span class="ib"><svg><use href="#i-search"/></svg></span><span class="ib" style="background:var(--acc-soft);color:var(--acc)"><svg><use href="#i-aa"/></svg></span><span class="ib"><svg><use href="#i-bm"/></svg></span></div>
+      <div style="position:absolute;top:60px;left:50%;transform:translateX(-50%);width:600px;padding-top:30px">
+        <h2 class="h2" style="font-size:24px;margin-top:0">从“有这个标题”到“标题在这里”</h2>
+        <p class="p" style="font-size:19px">几何位置确定之后，还需要把文字、背景和边框等视觉内容绘制出来。这些工作也不会在每次变化时完整重做。</p>
+        <p class="p" style="font-size:19px">还是那张课程卡片，如果只改变文字颜色，文字的尺寸和位置可以不变，浏览器可以跳过重新布局。</p>
+      </div>
+      <div class="pop" style="right:68px;top:66px">
+        <div class="lbl" style="margin-top:2px">字号</div>
+        <div class="sz"><span class="a1">字</span><div class="track"><b style="width:50%"></b><i style="left:calc(50% - 8px)"></i></div><span class="a2">字</span></div>
+        <div class="lbl">纸张</div>
+        <div class="sw"><div class="on"><i style="background:#fff"></i>白</div><div><i style="background:#f8f4eb"></i>纸色</div><div><i style="background:#f3f6fb"></i>雾蓝</div><div><i style="background:#ededef"></i>浅灰</div></div>
+        <div class="lbl">外观</div>
+        <div class="seg"><span>浅色</span><span>深色</span><span class="on">跟随系统</span></div>
+        <div class="lbl">强调色</div>
+        <div class="dots"><i class="on" style="background:#1958cf;color:#1958cf"></i><i style="background:#6a45c2"></i><i style="background:#4a4d55"></i></div>
+        <div class="rowi" style="padding:12px 0 0;border-top:.5px solid var(--sep);margin-top:14px;font-size:14px"><span>分别调整标题、代码和注释</span><svg width="16" height="16" style="fill:none;stroke:var(--sec);stroke-width:1.6"><use href="#i-r"/></svg></div>
+      </div>
+    </div></div><figcaption><b>Text settings · tablet 1024 · desktop too · 60%.</b> The same controls as the phone sheet, in a 360 px popover with an arrow to the Aa button, which stays highlighted while it is open. At 1024 px it overlaps the right part of the column; the left half of every line stays visible, which is enough to judge size and tone. From 1280 px it sits in the margin and covers nothing. Escape or a click outside closes it, and focus returns to Aa.</figcaption></figure>
+
+    <figure class="shot"><div class="tb-wrap"><div class="tb f">
+      <div style="position:absolute;inset:0 346px 0 0;border-right:6px solid #1c1c1e;background:var(--page)">
+        <div class="dhdr" style="padding:0 18px"><span class="ib"><svg><use href="#i-l"/></svg></span><span style="flex:1;text-align:center;font-size:14px">页面出现之前，浏览器在忙什么？</span><span class="ib"><svg><use href="#i-aa"/></svg></span><span class="ib"><svg><use href="#i-bm"/></svg></span></div>
+        <div style="position:absolute;top:60px;left:32px;right:32px;padding-top:16px">
+          <p class="p" style="font-size:18px">几何位置确定之后，还需要把视觉内容绘制出来：</p>
+          <div class="fig" style="padding:14px"><span class="x"><svg><use href="#i-exp"/></svg></span><div style="height:200px;display:grid;place-items:center;color:var(--sec);font:14px var(--zh)">图 2-1</div></div>
+          <div class="cap"><b>图 2-1</b>标题怎样出现在屏幕上。</div>
+          <p class="p" style="font-size:18px">这些工作也不会在每次变化时完整重做。</p>
+        </div>
+      </div>
+      <div style="position:absolute;top:0;right:0;bottom:0;width:340px;background:#e9e9ec;display:grid;place-items:center;font:500 15px var(--ui);color:#8e8e93">另一个应用</div>
+    </div></div><figcaption><b>iPad split view · reader at 678 px · 60%.</b> At 600–1199 px there is no sidebar and no dock; the header carries icon actions. The figure stays inline with its caption, next to the passage that refers to it. Below 600 px in a split, the phone layout applies.</figcaption></figure>
+
+    <figure class="shot"><div class="dk-wrap"><div class="dk f">
+      <div class="dhdr"><span class="bm" style="width:26px;height:26px;border-radius:6px;background:#0a64f5"></span><span style="flex:1">AI 写完了，能跑，然后呢？</span><span class="ib"><svg><use href="#i-list"/></svg></span><span class="ib"><svg><use href="#i-search"/></svg></span><span class="ib"><svg><use href="#i-aa"/></svg></span><span class="ib"><svg><use href="#i-bm"/></svg></span></div>
+      <div class="prog" style="top:60px;width:100%"></div>
+      <div class="dcol" style="padding-top:40px">
+        <p class="p">这还带来一个稍后会用到的区别：代码改好 DOM，说明文档状态变了；用户看见新画面，还需要相关视觉工作得到执行并呈现。两者不是同一个时刻。</p>
+        <div class="next" style="margin-top:40px"><small>下一章 · 3</small><b style="font-size:22px">多了一份讲义，得多开几台机器？</b><span style="font-size:16px">周末的课还没开始，老师先发来一本讲义，希望已经报名的人能提前读。</span></div>
+        <div style="display:flex;gap:16px;align-items:center;margin-top:18px"><span class="btn" style="padding:0 28px">继续读下一章</span></div>
+        <div class="endacts" style="margin-top:22px;font-size:15px"><span>‹ 上一章</span><span>分享本节</span><span>报告问题</span></div>
+      </div>
+      <div class="dfoot"><span>《AI 写完了，能跑，然后呢？》 · 缸子太子与世界<br>正文以 CC BY-SA 4.0 发布 · 源文件在 GitHub</span><span style="text-align:right">全书地图 · A5 PDF · English<br>本章为新修订版</span></div>
+    </div></div><figcaption><b>Chapter end and footer · ZH · 1440 at 50%.</b> The footer appears only at the end of a chapter and on home, never fixed. It holds the book and author, the content licence with a link to the source, the book map, the PDF and the language switch, in ui-footnote on bg-page with a hairline. No newsletter and no social links in Phase 1.</figcaption></figure>
+  </div>
+</section>
+
+<!-- ===================== FAILURE ===================== -->
+<section class="j" id="failure">
+  <h2>Failure states</h2>
+  <p class="why">PRD R05, R11 and R12, and the 320 px rule. Reading must never be blocked: a missing image, denied storage or the largest text size on the smallest phone each have a designed answer.</p>
+  <div class="row">
+    <figure class="shot"><div class="ph f">
+      <div class="hdr glass"><span class="ib"><svg><use href="#i-l"/></svg></span><span class="t" style="text-align:center">从“有这个标题”到“标题在这里”</span><span class="ib"><svg><use href="#i-bm"/></svg></span></div>
+      <div class="body" style="padding-top:14px">
+        <p class="p">几何位置确定之后，还需要把文字、背景和边框等视觉内容绘制出来。可以用一张依赖图把这些关系接起来：</p>
+        <div class="broken"><div style="font:600 13px var(--ui);color:var(--lab);margin-bottom:6px">图没有加载出来</div>图里画的是：HTML 变成 DOM，CSS 变成样式规则，两者汇合后依次计算样式、确定位置、绘制，最后合成画面。<div style="margin-top:10px;font:500 13.5px var(--ui);color:var(--acc)">重新加载</div></div>
+        <div class="cap"><b>图 2-1</b>标题怎样出现在屏幕上。</div>
+        <p class="p">这些工作也不会在每次变化时完整重做。</p>
+      </div>
+    </div><figcaption><b>Failed image · ZH · 390.</b> The figure’s text description is shown in place of the image, and the caption and number stay. Every figure in content therefore needs a description of what it shows, not a label: T-007 and T-011 add these, and the build fails if one is missing.</figcaption></figure>
+
+    <figure class="shot"><div class="ph f">
+      <div class="body" style="padding-top:18px"><p class="p">从用户这边看，都是等待。从实现这边看，至少有几件不同的事值得问。</p></div>
+      <div class="sheet" style="height:520px">
+        <div class="grab"></div>
+        <div class="sh-h"><b>阅读设置</b><span>完成</span></div>
+        <div class="banner" style="margin-bottom:6px"><b>这台设备不允许保存设置。</b>改动这次打开有效，关掉页面后会回到默认。</div>
+        <div class="lbl">字号</div>
+        <div class="sz"><span class="a1">字</span><div class="track"><b style="width:75%"></b><i style="left:calc(75% - 8px)"></i></div><span class="a2">字</span></div>
+        <div class="lbl">纸张</div>
+        <div class="sw"><div><i style="background:#fff"></i>白</div><div class="on"><i style="background:#f8f4eb"></i>纸色</div><div><i style="background:#f3f6fb"></i>雾蓝</div><div><i style="background:#ededef"></i>浅灰</div></div>
+        <div class="lbl">外观</div>
+        <div class="seg"><span>浅色</span><span>深色</span><span class="on">跟随系统</span></div>
+      </div>
+    </div><figcaption><b>Storage denied · settings · ZH.</b> The controls still work for the session, and the banner says so once, at the top. The same rule covers bookmarks and Continue. A corrupt stored value is discarded silently and replaced by defaults (R11); reading is never blocked by a storage error.</figcaption></figure>
+
+    <figure class="shot"><div class="ph f narrow">
+      <div class="hdr glass" style="padding-left:6px"><span class="ib"><svg><use href="#i-l"/></svg></span><span class="t" style="text-align:center;font-size:13px">文件到了，还要变成可操作的文档</span><span class="ib"><svg><use href="#i-bm"/></svg></span></div>
+      <div class="body" style="padding:8px 16px 0">
+        <p class="p" style="font-size:24.5px;line-height:1.8;text-align:start">例如，下面只是页面结构的一小段：</p>
+        <div class="codehd"><span>HTML</span><span style="color:var(--acc)">复制</span></div>
+        <div class="wellx"><pre class="code" style="font-size:16px;margin:6px 0 0">&lt;h1&gt;找到下一门课程&lt;/h1&gt;
+&lt;label for="query"&gt;课程关键词&lt;/label&gt;</pre></div>
+        <div class="cap" style="font-size:18px"><b>代码 2-1</b>页面结构的一小段</div>
+        <div class="wellx"><table class="tbl" style="font-size:17px;width:420px"><tr><th style="position:sticky;left:0;background:var(--page)">写法</th><th>获取脚本时</th><th>执行时机</th></tr><tr><td style="background:var(--page)">加 <code class="i">defer</code></td><td>与解析重叠</td><td>解析完成后</td></tr></table></div>
+      </div>
+    </div><figcaption><b>320 px at the largest size (1.45×) · ZH.</b> Body 24.5 px, about 11 characters a line; gutters drop to 16 px. Below 14 characters a line, Chinese body switches from justified to start-aligned, because justifying so few characters leaves visible gaps (a container query on the column). Code keeps its size relation and scrolls inside its well, with a fade at the right edge as the cue. Tables keep the first column sticky. Nothing scrolls the page sideways. This frame is the acceptance check for the 26 November overlap.</figcaption></figure>
+  </div>
+</section>
+
 <!-- ===================== EMPTY ===================== -->
 <section class="j" id="empty">
   <h2>Empty states and errors</h2>
@@ -659,9 +842,17 @@ pre.code{margin:6px 0 4px;background:var(--inset);border-radius:12px;padding:12p
     <tr><td>≥ 1280</td><td>640 px, centred</td><td>As above</td><td>Margin column, 210 px, aligned to the line</td><td>As above</td></tr>
   </table></div>
   <div class="spec"><table>
+    <tr><th>Panel</th><th>&lt; 600</th><th>≥ 600</th></tr>
+    <tr><td>Text settings</td><td>Bottom sheet</td><td>360 px popover anchored to Aa</td></tr>
+    <tr><td>Contents</td><td>Bottom sheet</td><td>Sheet from the left below 1200; sidebar from 1200</td></tr>
+    <tr><td>Bookmarks, report a problem, language</td><td>Bottom sheet</td><td>Centred 480 px dialog with the same content</td></tr>
+    <tr><td>Search</td><td>Full-height sheet</td><td>Centred 640 px palette</td></tr>
+    <tr><td>Figure view</td><td>Full-screen layer</td><td>Full-screen layer, figure at most 1100 px wide</td></tr>
+  </table></div>
+  <div class="spec"><table>
     <tr><th>Type rule</th><th>Value</th></tr>
     <tr><td>Chinese titles</td><td><code>word-break: keep-all</code> with <code>overflow-wrap: anywhere</code>, and <code>text-wrap: balance</code>: lines break at punctuation, never inside a word such as 浏览器</td></tr>
-    <tr><td>Chinese body</td><td>Justified, <code>line-break: strict</code>; <code>text-spacing-trim</code> and <code>hanging-punctuation</code> as progressive enhancement only</td></tr>
+    <tr><td>Chinese body</td><td>Justified when the column holds 14 characters or more, start-aligned below that; <code>line-break: strict</code>; <code>text-spacing-trim</code> and <code>hanging-punctuation</code> as progressive enhancement only</td></tr>
     <tr><td>English body</td><td>Left-aligned, <code>hyphens: auto</code> with <code>lang="en"</code>, <code>text-wrap: pretty</code></td></tr>
     <tr><td>Numbers</td><td>Chapter and part numbers in Spectral old-style figures; interface counts in tabular figures</td></tr>
   </table></div>
@@ -688,7 +879,8 @@ pre.code{margin:6px 0 4px;background:var(--inset);border-radius:12px;padding:12p
     <tr><td>4 · Figures, code, tables</td><td>Style guide, figure view, return</td><td>R06</td><td>Numbered captions; code and table scroll inside wells; figure view with focus return and highlight</td></tr>
     <tr><td>5 · Sheets and settings</td><td>Contents, text settings, per-role sizes</td><td>R05, R12</td><td>Sheets with momentum close; slider, tones, appearance, accents; per-role sizes reuse the existing control; device-only or session-only honesty</td></tr>
     <tr><td>6 · Home and part pages</td><td>Home ×3, part opener, map</td><td>R01, R09, R14</td><td>Typographic cover component; one primary action; shelf with honest status; part openers and map reachable</td></tr>
-    <tr><td>7 · Search, feedback, errors</td><td>Search, report sheet, 404, moved link</td><td>R03, R11, R15</td><td>Edition-scoped search with keyboard navigation; GitHub draft preview; fallbacks with one plain sentence</td></tr>
+    <tr><td>7 · Search, feedback, errors</td><td>Search ×3, report sheet, 404 ×2, moved link, failure states ×3</td><td>R03, R11, R12, R15</td><td>Edition-scoped search with keyboard navigation and the cross-edition action; GitHub draft preview; fallbacks with one plain sentence; figure descriptions; storage-denied banner; 320 px at 1.45×</td></tr>
+    <tr><td>8 · English edition and wide panels</td><td>English ×6, tablet ×2, desktop footer</td><td>R08, R10</td><td>Paired English home, contents and 404; language sheet per chapter; adaptation note if the author approves it; popover and dialog panels from 600 px; footer</td></tr>
   </table></div>
   <p class="why" style="margin:0;color:var(--b-muted)">Every slice is checked at 320, 390, 1024 and 1440 px, in light and dark, with Paper and one accent besides Blue, with reduced motion, and on a real iPhone and iPad before the Delivery Lead’s Pass. The design freezes when Phase 1 ends (roadmap rule 4).</p>
 </section>

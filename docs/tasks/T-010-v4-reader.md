@@ -6,7 +6,7 @@
 
 - **Goal.** Phase 1's reader interface is live and then frozen (roadmap rule 4). A reader on a phone or a desktop gets a book-like page and a quiet interface: one serif column, a chapter opener, a next-chapter card, a bottom sheet for contents and text settings, one style for figures, code and tables, part openers, honest status labels, and a GitHub route for reporting a problem.
 - **Executor.** Developer (Codex).
-- **Design of record.** [`docs/design/v4/reader-v4-design.html`](../design/v4/reader-v4-design.html). Open it in a browser. It has 27 frames with English reviewer captions, the layout and motion tables, and an acceptance table that matches the slices below. Values come from the Editorial Reader design system, version 10 (author-private artifact; its tokens are copied into the design file). Where this brief and the design file disagree, the design file wins; report the conflict in the Handoff.
+- **Design of record.** [`docs/design/v4/reader-v4-design.html`](../design/v4/reader-v4-design.html). Open it in a browser. It has 39 frames with English reviewer captions, the layout and motion tables, and an acceptance table that matches the slices below. Values come from the Editorial Reader design system, version 10 (author-private artifact; its tokens are copied into the design file). Where this brief and the design file disagree, the design file wins; report the conflict in the Handoff.
 - **Inputs.**
   - [PRD](../product/volume-one-public-edition.md): R01–R16.
   - [PDR-009](../decisions/pdr-009-reader-feature-triage.md): what is kept, deferred, paused and stopped, and the 28 November art direction.
@@ -15,7 +15,7 @@
 
 ### Slices
 
-One pull request per slice, in this order. Each slice must pass review before the next one starts, unless the Delivery Lead says two can run together.
+Eight slices, one pull request each, in this order. Each slice must pass review before the next one starts, unless the Delivery Lead says two can run together.
 
 | # | Slice | Design frames | PRD | Main files, as far as can be seen today |
 | --- | --- | --- | --- | --- |
@@ -25,7 +25,19 @@ One pull request per slice, in this order. Each slice must pass review before th
 | 4 | **Figures, code and tables.** Inset wells (radius 16 for figures, 12 for code); numbered captions per chapter (图 2-1, 代码 2-1, 表 2-1); code and wide tables scroll inside their well, never the page; figure view that grows from its position and returns focus and a 1.5 s highlight to the passage | Style guide ×2, figure view ×2 | R06 | `code-block.tsx`, `comparison-table.tsx`, `chapter-media.tsx`, `enrolment-figure.tsx`, `callout.tsx` |
 | 5 | **Sheets and settings.** One bottom-sheet component (500 ms, `cubic-bezier(0.32, 0.72, 0, 1)`, momentum close, focus trap, Escape); contents as a sheet on phones and a pinnable 300 px sidebar from 1200 px; text settings with a five-stop size slider, four page tones, appearance and three accents; per-role sizes behind a pushed level that reuses the existing role-size control and its storage | Contents ×2, settings ×2 | R05, R08, R12 | `ui/reading-size-control.tsx`, `ui/appearance-control.tsx`, `site/theme/*`, `book-navigation.tsx`, `sidebar-preference.ts` |
 | 6 | **Home and part pages.** A typographic cover component (book colour, serif title, spine, 10° turn at rest); first-visit and returning home with one primary action; a three-book shelf with honest status; part opener pages and the whole-book map (content arrives through T-007) | Home ×3, part opener, map | R01, R09, R14 | `home-page.tsx`, `home-content.ts`, `companion-book.tsx`, `book-choice-anchor.tsx`, new part-page route |
-| 7 | **Search, feedback and errors.** Edition-scoped search as a phone sheet and a desktop palette, with arrow-key navigation and landing below the header; the GitHub issue-draft sheet with prefilled book, chapter, section and selected text; 404; the moved-section fallback sentence | Search ×2, report sheet, 404, moved link | R03, R11, R15 | `site/components/search/*`, `passage-tools.tsx`, `sharing.ts`, `not-found-content.tsx`, `global-not-found.tsx` |
+| 7 | **Search, feedback, errors and failure states.** Edition-scoped search as a phone sheet and a desktop palette, with arrow-key navigation and landing below the header; the GitHub issue-draft sheet with prefilled book, chapter, section and selected text; 404; the moved-section fallback sentence; a failed figure shows its text description; the storage-denied banner; 320 px at 1.45× with no page scroll | Search ×2, report sheet, 404, moved link, failure ×3 | R03, R11, R12, R15 | `site/components/search/*`, `passage-tools.tsx`, `sharing.ts`, `not-found-content.tsx`, `global-not-found.tsx`, `chapter-media.tsx` |
+| 8 | **English edition and wide panels.** Paired English home, contents, search and 404; the per-chapter language sheet; the adaptation-out-of-date note if the author approves it (PRD O10); from 600 px, settings as a popover and bookmarks, report and language as a centred dialog; the footer at chapter ends and on home | English ×6, tablet ×2, desktop footer | R08, R10 | `language-switch.tsx`, `site/config/i18n.ts`, `home-page.tsx`, `document-layout.tsx` |
+
+### Status labels: data, not hand-typed text
+
+Slice 3 adds one field to `ChapterEntry` in `site/content/manifest.ts`: `revision: 'revised' | 'first-edition'`. The reader shows 新修订 for `revised` and 初版 for `first-edition`. English entries do not show these labels.
+
+- Every existing entry starts as `first-edition`.
+- A piece becomes `revised` only when the Delivery Lead's Review of the task that revised it records a Pass against the PRD content standard. That task (T-007 for the preface, T-011 for the flagship pieces and Part 8) sets the field in the same PR as the manuscript.
+- The trimmed Part 8 chapter and the retitled closing stay `first-edition` until they are reviewed against the standard. A trim or a new title is not a revision.
+- The Handoff of the task that sets an entry to `revised` names the Review that passed it.
+
+For slice 8's adaptation note, each English adaptation records the SHA-256 of the Chinese source it was adapted from. When that differs from the current Chinese entry's hash, the build marks the adaptation as out of date.
 
 ### Decisions already made, so do not reopen them
 
@@ -55,7 +67,7 @@ One pull request per slice, in this order. Each slice must pass review before th
 
 - **Designer check (Claude)** on every slice: compare against the design file at the four widths, then Pass, Pass with follow-ups, or Fix and recheck.
 - **Audience panel** after slices 3 and 6, with personas P1, P2 and P4.
-- **PM stage check** after slice 7: walk the PRD journeys on the deployed preview. Device checks on a real iPhone and iPad before the final Pass: Songti SC on iOS, serif strokes in dark mode, the feel of the sheet, and text-spacing-trim and hanging-punctuation.
+- **PM stage check** after slice 8: walk the PRD journeys on the deployed preview. Device checks on a real iPhone and iPad before the final Pass: Songti SC on iOS, serif strokes in dark mode, the feel of the sheet, and text-spacing-trim and hanging-punctuation.
 - **Freeze.** After the final Pass, typography, colour and layout changes need a decision record approved by the author.
 
 ## Product and design notes

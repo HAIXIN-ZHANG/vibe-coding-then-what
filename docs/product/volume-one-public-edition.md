@@ -57,7 +57,7 @@ Updated 28 November 2026. This document covers what the next public edition of *
 - **Devices and browsers:** a real iPhone and iPad in Safari, plus desktop Safari and Chrome. Emulation alone does not count.
 - **Coverage:** both languages; four paper tones, each in light and dark; reduced motion; denied storage; a failed image.
 - **Audience panel first:** before real readers, the [audience panel](../roles/audience-panel.md) rehearses each flagship piece with the relevant [personas](../audience/personas.md). Its reports are hypotheses for revision, never acceptance.
-- **Human reading:** five target readers each read one flagship piece without coaching, then explain the mechanism in their own words. Record where they stalled, separately from what they said.
+- **Human reading:** three to five target readers each read one flagship piece without coaching, then explain the mechanism in their own words. Record where they stalled, separately from what they said.
 - **Who records what:** the Developer records build, test and device results in the task file. The Delivery Lead reviews them, and the PM runs the product desk check. The author gives the final reader verdict.
 
 ## Signals after release
@@ -70,20 +70,21 @@ Site measurement starts after this edition is public ([PDR-005](../decisions/pdr
 
 | ID | Decision | Status |
 | --- | --- | --- |
-| O01 | Public name for this edition. "Beta1" was the author's earlier candidate | Open: author |
+| O01 | Public name for this edition. "Beta1" was the author's earlier candidate | Open: author. Proposed: no version name in the reader. The status labels 新修订 and 初版 say which pieces are revised, and the release notes carry the date |
 | O02 | Languages | Decided: Chinese first. The existing English adaptations stay; new adaptations come in Phase 3 |
 | O03 | PDF | Decided: the 209-page edition stays; a new PDF follows the stable revision |
-| O04 | Which devices and browser versions count as supported | Open: author, before V4 acceptance |
+| O04 | Which devices and browser versions count as supported | Open: author, before V4 acceptance. Proposed: Safari on iOS and iPadOS 17 or later; the latest two major versions of desktop Safari, Chrome and Edge; Firefox readable, without the typographic enhancements |
 | O05 | Chapter gestures | Decided: none in the main flow; an explicit next-chapter control ([PDR-006](../decisions/pdr-006-two-desk-workflow.md#design-amendments-to-pdr-003)) |
 | O06 | How much manuscript this edition revises | Decided: the five flagship pieces, a deepened Part 8, the preface, the part openers, the Part 8 trim and the closing retitle. The rest is Phase 2 maintenance |
 | O07 | Whether the Part 4 PostgreSQL example is promised as runnable | Open: it depends on actually executing it |
 | O09 | Email feedback route | Decided: GitHub only for this edition; email later, with a dedicated address ([PDR-009](../decisions/pdr-009-reader-feature-triage.md)) |
 | O08 | Which flagship pieces get English | Deferred to Phase 3 (PDR-005 amendment, 28 November) |
+| O10 | What English readers see once the Chinese browser chapter is revised and its English adaptation is not | Open: author. Proposed: keep the English text as it is and show a one-line note, "Adapted from the first Chinese edition. The Chinese chapter has since been revised", linking to the revised Chinese ([V4 design](../design/v4/reader-v4-design.html), English section) |
 
 ## Design reference and constraints
 
-- **Design system:** the [Editorial Reader design system](https://claude.ai/artifact/YWreQbgH39fzcEYqkFvPXL). It is a proposal until the V4 Figma design is accepted.
-- **Figma:** new screens go in the Editorial Reader V4 file. The older file, including the V3.1 candidate, is reference only.
+- **Design of record:** [`docs/design/v4/reader-v4-design.html`](../design/v4/reader-v4-design.html), 39 frames, built for [T-010](../tasks/T-010-v4-reader.md). It is a proposal until the author accepts it. Tokens come from the [Editorial Reader design system](https://claude.ai/artifact/YWreQbgH39fzcEYqkFvPXL), version 10 (author-private); where the two differ, the design file wins.
+- **Figma:** optional. The author's seat is View, so the V4 design lives in the repository. The older Figma file, including the V3.1 candidate, is reference only.
 - **Layout:** long-form comfort comes first. Text, code, tables and captions must fit at 320 px and when text is enlarged; a narrow-layout overlap of book-card artwork with its text was seen on 26 November and needs rechecking.
 - **Motion:** no scroll hijacking, no infinite animation loops, and an alternative for every action under reduced motion.
 - **Language pairs:** Chinese and English screens are designed as matching pairs, with English layer names and reviewer captions placed outside the reader interface.

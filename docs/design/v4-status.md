@@ -14,7 +14,7 @@ The author wants a modern, high-quality, Apple-like feel.
 
 ## Design of record
 
-**[`docs/design/v4/reader-v4-design.html`](v4/reader-v4-design.html)** is the complete Phase 1 design. Open it in a browser. It has 27 frames with English reviewer captions:
+**[`docs/design/v4/reader-v4-design.html`](v4/reader-v4-design.html)** is the complete Phase 1 design. Open it in a browser. It has 39 frames with English reviewer captions:
 
 - home, first visit and returning, on phone and desktop;
 - the chapter opener in Chinese and English, and on desktop with a margin note;
@@ -26,11 +26,18 @@ The author wants a modern, high-quality, Apple-like feel.
 - the chapter end and the report-a-problem sheet;
 - bookmarks;
 - three tone, dark and accent combinations;
-- the 404 page and the moved-section fallback.
+- the 404 page and the moved-section fallback;
+- the English edition: home, contents, the adaptation note, the language sheet, search and 404;
+- tablet and desktop panels: the settings popover, iPad split view, and the chapter end with the footer;
+- failure states: a figure that did not load, storage denied, and 320 px at the largest text size.
 
-It also holds the V3.1 → V4 change table, the layout, type and motion rules, and the acceptance table for [T-010](../tasks/T-010-v4-reader.md). The same page is published as an author-private artifact (https://claude.ai/artifact/Mi5obCcxQMJBLMHL9Tw2Fp, version 3); edit both together.
+It also holds the V3.1 → V4 change table, the layout, type and motion rules, and the acceptance table for [T-010](../tasks/T-010-v4-reader.md). The same page is published as an author-private artifact (https://claude.ai/artifact/Mi5obCcxQMJBLMHL9Tw2Fp, version 5); edit both together.
 
 Figma is no longer a blocker. The author's seat is View, so the V3.1 file stays read-only as history. If the seat is upgraded later, the design can be redrawn there, but the repository file stays the reference until a decision record changes it.
+
+## Design-system follow-up
+
+The design file introduces components that design system version 10 does not yet document: the dock, the typographic cover, the status tag, the toast, the popover, the search palette and the bookmarks sheet. The Designer adds them to the design system once the author accepts V4. Until then, the design file is the reference.
 
 ## Other artefacts
 

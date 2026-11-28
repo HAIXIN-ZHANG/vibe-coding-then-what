@@ -120,6 +120,7 @@ Visits measure access, not reading or understanding.
 ## Waiting on the author
 
 - Accept the [V4 design](design/v4/reader-v4-design.html), or say what to change. A Figma seat upgrade is optional now.
+- Decide supported devices and browsers ([PRD O04](product/volume-one-public-edition.md#decisions-needed-before-release-scope-is-frozen)) and what English readers see after the Chinese browser chapter is revised (O10). Both have proposals.
 - Decide when to run the five-person reading.
 - Pick the Chinese platforms for Volume II, in Phase 3.
 - Decide the public edition label, from [PRD O01](product/volume-one-public-edition.md#decisions-needed-before-release-scope-is-frozen).
