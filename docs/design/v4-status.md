@@ -33,7 +33,7 @@ The author wants a modern, high-quality, Apple-like feel.
 
 It also holds the V3.1 → V4 change table, the layout, type and motion rules, and the acceptance table for [T-010](../tasks/T-010-v4-reader.md). The same page is published as an author-private artifact (https://claude.ai/artifact/Mi5obCcxQMJBLMHL9Tw2Fp, version 7); edit both together.
 
-Figma is no longer a blocker. The author's seat is View, so the V3.1 file stays read-only as history. If the seat is upgraded later, the design can be redrawn there, but the repository file stays the reference until a decision record changes it.
+Figma is no longer a blocker. [T-014](../tasks/T-014-figma-bridge.md) builds a start-once plugin. With it, Claude and Codex can draw this design into the author's free Figma draft and check the result, because the paid Figma MCP write path is not available on the author's plan. The author's seat is View, so the V3.1 file stays read-only as history. If the seat is upgraded later, the design can be redrawn there, but the repository file stays the reference until a decision record changes it.
 
 ## Design-system follow-up
 

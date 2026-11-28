@@ -37,6 +37,7 @@ Codex has no quota, so every Writer and Developer task waits in the [queue](task
 
 - **Per-chapter revision plans** for the five flagship pieces and for Part 8: done on 28 November ([plans](../book/planning/phase-one-chapter-plans.md), [T-011](tasks/T-011-volume-one-flagship-revision.md)). The PostgreSQL example was desk-traced instead of run ([T-012](tasks/T-012-postgresql-example.md)) and the reader trial is [T-013](audience/reader-trial-plan.md).
 - **Audience-panel rehearsals.**
+- **Figma, without a paid plan:** when Codex returns it first builds [T-014](tasks/T-014-figma-bridge.md), a start-once plugin. Claude then draws the V4 design into the author's Figma draft with it. The repository design file stays the design of record.
 - **The V4 reader design:** done on 28 November. The [design of record](design/v4/reader-v4-design.html) covers every Phase 1 screen, and the [T-010 brief](tasks/T-010-v4-reader.md) splits it into eight slices. The author accepted it on 28 November ([PDR-010](decisions/pdr-010-v4-acceptance-and-edition.md)), together with the edition label, supported browsers and English adaptation note.
 
 ## Phase 1 · Volume I v1: the book settles and the design stops changing
