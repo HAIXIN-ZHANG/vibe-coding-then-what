@@ -69,6 +69,17 @@ The earlier roadmap, now [archived](../archive/roadmap-2026-11-27.md), collected
   - Reduced motion falls back to fades.
 - **The shelf** shows the three books as covers with a light 3D hover, each in its own colour. CSS transforms are enough; WebGL is not needed.
 
+## Art direction · decided 28 November 2026
+
+The author chose a combination of two prototype directions, A and B, from the [three-direction prototype](https://claude.ai/artifact/U5gvDekt9RpSSFbbSP2XBy):
+
+- **The reading area takes A's book-like treatment:** the part name and chapter number set centred above a serif title, a lead paragraph, an estimated reading time, and margin notes on wide screens.
+- **The interface takes B's restraint:** a nearly invisible top bar, a thin reading-progress line, and a next-chapter card separated by a hairline.
+- **No drop cap.** The author sees no value in it.
+- **Direction C's chapter illustrations are not pursued for now.** Original explanatory figures from the revision plan come first; a shared illustration style can be chosen once they exist.
+
+The V4 Figma design follows this direction once the Figma seat is upgraded.
+
 ## Alternatives considered
 
 - **Keep the full early feature set on the roadmap.** Rejected: it spreads one author's time before any reader signal exists.
